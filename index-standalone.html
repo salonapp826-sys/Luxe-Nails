@@ -1,0 +1,2609 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nails by Uma | Luxury Nail Salon & Beauty Spa Jaipur</title>
+  <meta name="description" content="Premier luxury nail salon & beauty spa in Jaipur. Indulge in bespoke gel extensions, 3D nail art, organic bridal mehndi, deluxe pedicures and door-to-door home salon service.">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+  <!-- Google Fonts: Playfair Display + Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Tailwind CSS via CDN with custom configuration -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#fff5f7',
+              100: '#ffe6ec',
+              200: '#ffccd8',
+              300: '#ffa3bb',
+              400: '#fb7199',
+              500: '#f43f75',
+              600: '#e11d62',
+              700: '#be1250',
+              800: '#9e1246',
+              900: '#85133e',
+            },
+            gold: {
+              light: '#f5e6c8',
+              DEFAULT: '#d4af37',
+              dark: '#aa8c2c',
+              champagne: '#f7f1e5',
+            },
+            rose: {
+              gold: '#c59b7b',
+              blush: '#f9e8e8',
+              accent: '#e0a98b',
+            },
+            surface: {
+              light: 'rgba(255, 255, 255, 0.75)',
+              glass: 'rgba(255, 255, 255, 0.85)',
+              card: 'rgba(255, 255, 255, 0.65)',
+              border: 'rgba(255, 255, 255, 0.8)',
+            }
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            'glass': '0 8px 32px 0 rgba(225, 29, 98, 0.08), 0 2px 8px 0 rgba(0, 0, 0, 0.04)',
+            'glass-hover': '0 16px 40px 0 rgba(225, 29, 98, 0.15), 0 4px 16px 0 rgba(0, 0, 0, 0.06)',
+            'glow-gold': '0 0 25px rgba(212, 175, 55, 0.3)',
+            'glow-rose': '0 0 25px rgba(244, 63, 117, 0.25)',
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-10px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Premium Glassmorphism & Luxury Styles */
+    html {
+      scroll-behavior: smooth;
+    }
+    *:focus-visible {
+      outline: 2px solid #ec4899 !important;
+      outline-offset: 2px !important;
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: radial-gradient(circle at 10% 20%, #fff7f9 0%, #ffffff 40%, #fdf5f0 100%);
+      color: #2d3748;
+      overflow-x: hidden;
+    }
+
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 10px 30px rgba(219, 39, 119, 0.05), 0 1px 3px rgba(0, 0, 0, 0.02);
+    }
+
+    .glass-card,
+    .glass-card-primary {
+      background: rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      box-shadow: 0 12px 32px 0 rgba(225, 29, 98, 0.06), 0 2px 8px 0 rgba(0, 0, 0, 0.04);
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .glass-card:hover,
+    .glass-card-primary:hover {
+      background: rgba(255, 255, 255, 0.65);
+      transform: translateY(-5px);
+      border-color: rgba(255, 255, 255, 0.90);
+      box-shadow: 0 20px 40px rgba(225, 29, 98, 0.14), 0 4px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    .glass-card-secondary {
+      background: rgba(255, 255, 255, 0.28);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.40);
+    }
+
+    .glass-chip,
+    .floating-glass-chip {
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.80);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.50);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .glass-nav-scrolled {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid rgba(244, 114, 182, 0.25);
+      box-shadow: 0 10px 30px -10px rgba(225, 29, 98, 0.12);
+    }
+
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #be1250 0%, #e0a98b 50%, #d4af37 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .rose-gradient-btn {
+      background: linear-gradient(135deg, #e11d62 0%, #f43f75 50%, #e0a98b 100%);
+      color: #ffffff;
+      box-shadow: 0 8px 24px rgba(225, 29, 98, 0.28);
+      transition: all 0.3s ease;
+    }
+
+    .rose-gradient-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(225, 29, 98, 0.4);
+      filter: brightness(1.05);
+    }
+
+    /* =================================================================== */
+    /* HOVER & MICRO-INTERACTIONS DESIGN SYSTEM                            */
+    /* =================================================================== */
+
+    /* 1. Major Cards Hover Animation */
+    .card-hover-major,
+    .glass-card-interactive,
+    .major-card {
+      transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.35s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.35s ease, background-color 0.35s ease;
+    }
+
+    .card-hover-major:hover,
+    .glass-card-interactive:hover,
+    .major-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
+      border-color: rgba(255, 255, 255, 0.95);
+    }
+
+    /* 2. Logo Hover Animation */
+    .brand-logo-container,
+    .glass-logo {
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+      display: inline-flex;
+    }
+
+    .brand-logo-container:hover,
+    .glass-logo:hover {
+      transform: scale(1.05);
+    }
+
+    /* 3. Button Hover Animation */
+    .btn-hover-premium,
+    .rose-gradient-btn {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.25s cubic-bezier(0.25, 1, 0.5, 1), filter 0.25s ease;
+    }
+
+    .btn-hover-premium:hover,
+    .rose-gradient-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 12px 28px rgba(225, 29, 98, 0.38);
+      filter: brightness(1.04);
+    }
+
+    .btn-hover-premium:active,
+    .rose-gradient-btn:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    .rose-gradient-btn::after,
+    .btn-hover-premium::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+      transform: skewX(-20deg);
+      transition: 0.75s ease;
+    }
+
+    .rose-gradient-btn:hover::after,
+    .btn-hover-premium:hover::after {
+      left: 140%;
+    }
+
+    /* 4. Image Zoom on Hover */
+    .img-zoom-container {
+      overflow: hidden;
+    }
+
+    .img-zoom-container img {
+      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .img-zoom-container:hover img {
+      transform: scale(1.08);
+    }
+
+    /* 5. Service Card Lift */
+    .service-card-lift {
+      transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.35s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.35s ease;
+    }
+
+    .service-card-lift:hover {
+      transform: translateY(-6px) scale(1.015);
+      box-shadow: 0 20px 40px -10px rgba(225, 29, 98, 0.18);
+      border-color: rgba(244, 114, 182, 0.7);
+    }
+
+    /* 6. Package Card Lift */
+    .package-card-lift {
+      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s ease;
+    }
+
+    .package-card-lift:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 24px 50px -12px rgba(225, 29, 98, 0.22);
+      border-color: rgba(251, 113, 133, 0.8);
+    }
+
+    /* 7. Navigation Underline Animation */
+    .nav-btn {
+      position: relative;
+    }
+
+    .nav-btn::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, #ec4899, #f43f5e);
+      border-radius: 9999px;
+      transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1), transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+      transform: translateX(-50%);
+    }
+
+    .nav-btn:hover::after,
+    .nav-btn.active::after {
+      width: 65%;
+    }
+
+    /* 8. Subtle Floating Effects */
+    @keyframes float-subtle {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+    @keyframes float-slow-rotate {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-8px) rotate(1.5deg);
+      }
+    }
+
+    .animate-float-subtle {
+      animation: float-subtle 4s ease-in-out infinite;
+    }
+
+    .animate-float-slow {
+      animation: float-slow-rotate 6s ease-in-out infinite;
+    }
+
+    /* 9. Modal Entrance Animation */
+    @keyframes modal-scale-in {
+      0% {
+        opacity: 0;
+        transform: scale(0.95) translateY(14px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .animate-modal-in {
+      animation: modal-scale-in 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* 10. Booking Step Transitions */
+    @keyframes step-slide-fade {
+      0% {
+        opacity: 0;
+        transform: translateX(18px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .animate-step-in {
+      animation: step-slide-fade 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* 11. Success Confirmation Animation */
+    @keyframes success-pop {
+      0% {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      60% {
+        transform: scale(1.12);
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .animate-success-pop {
+      animation: success-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    /* 12. Scroll Reveal Animations */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .reveal-on-scroll.revealed {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    /* Page Visibility Transitions */
+    .page-view {
+      display: none;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .page-view.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #fdf2f4;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #f472b6;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #db2777;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+  <!-- TOP ANNOUNCEMENT BAR -->
+  <aside aria-label="Announcement" class="bg-gradient-to-r from-rose-900 via-brand-800 to-rose-900 text-white text-xs py-2 px-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <span class="bg-gold text-slate-900 font-bold px-2 py-0.5 rounded-full text-[10px] tracking-wide uppercase">Luxe 2026 Offer</span>
+        <span>Flat ₹200 OFF on First Booking with code <strong>LUXEUMA</strong></span>
+      </div>
+      <div class="hidden md:flex items-center space-x-4">
+        <span><i class="fa-solid fa-location-dot text-rose-accent mr-1"></i> Mansarovar & Vaishali Nagar, Jaipur</span>
+        <span><i class="fa-solid fa-phone text-rose-accent mr-1"></i> +91 63765 39366</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- STICKY GLASS HEADER -->
+  <header class="sticky top-0 z-50 glass-nav transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- Brand Logo -->
+      <a href="#home" onclick="navigateTo('home'); return false;" class="flex items-center space-x-3 brand-logo-container group">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-brand-600 via-rose-accent to-gold p-0.5 shadow-md group-hover:shadow-glow-rose transition-all">
+          <div class="w-full h-full bg-white rounded-[14px] flex items-center justify-center">
+            <span class="font-serif font-bold text-xl bg-gradient-to-r from-brand-600 to-gold bg-clip-text text-transparent">U</span>
+          </div>
+        </div>
+        <div>
+          <span class="font-serif text-2xl font-bold tracking-tight text-slate-900 block leading-none">Nails by Uma</span>
+          <span class="text-[10px] tracking-widest text-brand-600 uppercase font-semibold block mt-1">Nail &amp; Beauty Studio</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden xl:flex items-center space-x-1 font-medium text-sm text-slate-700">
+        <button onclick="navigateTo('home')" class="nav-btn px-3.5 py-2 rounded-xl hover:text-brand-600 transition" data-nav="home">Home</button>
+        <button onclick="navigateTo('services')" class="nav-btn px-3.5 py-2 rounded-xl hover:text-brand-600 transition" data-nav="services">Services</button>
+        <button onclick="navigateTo('about')" class="nav-btn px-3.5 py-2 rounded-xl hover:text-brand-600 transition" data-nav="about">About</button>
+        <button onclick="navigateTo('packages')" class="nav-btn px-3.5 py-2 rounded-xl hover:text-brand-600 transition" data-nav="packages">Packages</button>
+        <button onclick="navigateTo('booking')" class="nav-btn px-3.5 py-2 rounded-xl hover:text-brand-600 transition" data-nav="booking">Book Appointment</button>
+        <button onclick="navigateTo('my-bookings')" class="nav-btn px-3.5 py-2 rounded-xl hover:text-brand-600 transition" data-nav="my-bookings">
+          <i class="fa-regular fa-calendar-check text-brand-500 mr-1"></i>My Bookings
+        </button>
+        <button onclick="navigateTo('contact')" class="nav-btn px-3.5 py-2 rounded-xl hover:text-brand-600 transition" data-nav="contact">Contact</button>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="hidden sm:flex items-center space-x-3">
+        <a href="https://wa.me/916376539366?text=Hi%20Uma,%20I%20want%20to%20book%20an%20appointment!" target="_blank" class="p-2.5 rounded-xl border border-emerald-200 bg-emerald-50/70 text-emerald-700 hover:bg-emerald-100 transition shadow-xs">
+          <i class="fa-brands fa-whatsapp text-lg"></i>
+        </a>
+        <button onclick="navigateTo('booking')" class="rose-gradient-btn px-5 py-2.5 rounded-xl text-sm font-semibold flex items-center space-x-2">
+          <span>Book Appointment</span>
+          <i class="fa-solid fa-arrow-right text-xs"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Menu Hamburger -->
+      <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-xl text-slate-700 hover:bg-rose-50 focus:outline-none">
+        <i id="mobileMenuIcon" class="fa-solid fa-bars-staggered text-xl"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden lg:hidden glass-panel border-t border-rose-100 px-6 py-5 space-y-3">
+      <button onclick="navigateTo('home'); toggleMobileMenu()" class="block w-full text-left py-2 text-slate-800 font-medium">Home</button>
+      <button onclick="navigateTo('services'); toggleMobileMenu()" class="block w-full text-left py-2 text-slate-800 font-medium">Services & Menu</button>
+      <button onclick="navigateTo('packages'); toggleMobileMenu()" class="block w-full text-left py-2 text-slate-800 font-medium">Packages & Combos</button>
+      <button onclick="navigateTo('about'); toggleMobileMenu()" class="block w-full text-left py-2 text-slate-800 font-medium">About Salon</button>
+      <button onclick="navigateTo('my-bookings'); toggleMobileMenu()" class="block w-full text-left py-2 text-slate-800 font-medium">My Bookings & Status</button>
+      <button onclick="navigateTo('contact'); toggleMobileMenu()" class="block w-full text-left py-2 text-slate-800 font-medium">Contact & Location</button>
+      <div class="pt-3 border-t border-rose-100 flex flex-col space-y-2">
+        <button onclick="navigateTo('booking'); toggleMobileMenu()" class="w-full rose-gradient-btn py-3 rounded-xl font-bold text-center">
+          Book Appointment Now
+        </button>
+        <a href="https://wa.me/916376539366" target="_blank" class="w-full text-center py-2.5 rounded-xl border border-emerald-300 text-emerald-700 bg-emerald-50 text-sm font-semibold">
+          <i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp Inquiry
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- =================================================================== -->
+  <!-- 1. HOME PAGE VIEW -->
+  <!-- =================================================================== -->
+  <main id="page-home" class="page-view active flex-grow">
+    <!-- HERO SECTION -->
+    <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-16 px-4 sm:px-6 lg:px-8">
+      <!-- Background Hero Image with Glass Overlay -->
+      <div class="absolute inset-0 z-0">
+        <img id="standaloneHeroBg" src="/src/assets/images/modern_beauty_campaign_1790699835066.jpg" alt="Modern Beauty Campaign Nails by Uma" class="w-full h-full object-cover object-center scale-105 animate-pulse-slow transition-all duration-700">
+        <div class="absolute inset-0 bg-gradient-to-r from-rose-950/70 via-rose-900/40 to-slate-900/60 backdrop-blur-[2px]"></div>
+      </div>
+
+      <!-- Floating Hero Glass Container -->
+      <div class="relative z-10 max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-8 items-center">
+        <!-- Text & Headline -->
+        <div class="lg:col-span-7 text-white space-y-6">
+          <div class="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-md border border-white/30 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider text-rose-100 uppercase">
+            <i class="fa-solid fa-gem text-gold"></i>
+            <span>Jaipur's Favorite Nail &amp; Beauty Studio</span>
+          </div>
+
+          <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]">
+            Artistry on Every <span class="bg-gradient-to-r from-rose-200 via-gold-light to-rose-300 bg-clip-text text-transparent">Fingertip.</span>
+          </h1>
+
+          <p class="text-base sm:text-xl text-rose-50/90 font-light max-w-xl leading-relaxed">
+            Get beautiful gel extensions, custom 3D nail art, organic bridal mehndi &amp; relaxing foot spa care. In-salon or doorstep home service.
+          </p>
+
+          <!-- CTAs -->
+          <div class="flex flex-wrap gap-4 pt-2">
+            <button onclick="navigateTo('booking')" class="rose-gradient-btn px-8 py-4 rounded-2xl font-bold text-base shadow-glass hover:shadow-glass-hover flex items-center space-x-3">
+              <span>Book Appointment</span>
+              <i class="fa-solid fa-calendar-check"></i>
+            </button>
+            <button onclick="navigateTo('services')" class="bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/40 text-white px-8 py-4 rounded-2xl font-semibold text-base transition">
+              Explore Services
+            </button>
+          </div>
+
+          <!-- Trust Badges -->
+          <div class="grid grid-cols-3 gap-4 pt-6 border-t border-white/20 max-w-lg">
+            <div>
+              <div class="font-serif text-2xl sm:text-3xl font-bold text-gold">10+</div>
+              <div class="text-xs text-rose-100">Years Experience</div>
+            </div>
+            <div>
+              <div class="font-serif text-2xl sm:text-3xl font-bold text-gold">500+</div>
+              <div class="text-xs text-rose-100">5-Star Reviews</div>
+            </div>
+            <div>
+              <div class="font-serif text-2xl sm:text-3xl font-bold text-gold">100%</div>
+              <div class="text-xs text-rose-100">Sterilized & Safe</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating Glass Card over Hero -->
+        <div class="lg:col-span-5 hidden lg:block">
+          <div class="glass-panel p-6 rounded-3xl border border-white/40 shadow-2xl text-slate-800 space-y-4 animate-float">
+            <div class="flex items-center justify-between pb-3 border-b border-rose-100">
+              <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-brand-500 shadow-sm">
+                  <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&q=80" alt="Uma Sharma" class="w-full h-full object-cover">
+                </div>
+                <div>
+                  <h4 class="font-bold text-sm text-slate-900">Uma Sharma</h4>
+                  <p class="text-xs text-brand-600 font-medium">Master Nail & Henna Stylist</p>
+                </div>
+              </div>
+              <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span> Slots Open Today
+              </span>
+            </div>
+
+            <div class="space-y-2">
+              <div class="flex items-center justify-between text-xs bg-rose-50/60 p-2.5 rounded-xl">
+                <span class="font-semibold text-slate-700"><i class="fa-solid fa-wand-magic-sparkles text-brand-500 mr-2"></i>Signature Service</span>
+                <span class="font-bold text-brand-700">Bridal Gel Extensions</span>
+              </div>
+              <div class="flex items-center justify-between text-xs bg-rose-50/60 p-2.5 rounded-xl">
+                <span class="font-semibold text-slate-700"><i class="fa-solid fa-house-chimney-user text-brand-500 mr-2"></i>Service Mode</span>
+                <span class="font-bold text-slate-800">Salon & Doorstep Home</span>
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-2xl bg-gradient-to-r from-rose-100 to-amber-50 border border-rose-200">
+              <p class="text-xs text-slate-700 italic">"Luxury is in each detail. We craft manicures that last weeks and leave you feeling royalty."</p>
+            </div>
+
+            <button onclick="navigateTo('booking')" class="w-full rose-gradient-btn py-3 rounded-xl font-bold text-xs uppercase tracking-wider">
+              Quick Reservation
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- POPULAR SERVICES SHOWCASE -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs uppercase font-bold tracking-widest text-brand-600 block mb-2">Our Signature Repertoire</span>
+        <h2 class="font-serif text-3xl sm:text-5xl font-bold text-slate-900">Curated Nail & Beauty Services</h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-brand-500 to-gold mx-auto mt-4 rounded-full"></div>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Card 1 -->
+        <div class="glass-card rounded-3xl overflow-hidden p-3 border border-white shadow-glass group">
+          <div class="relative h-60 rounded-2xl overflow-hidden mb-5">
+            <img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=800&h=600&fit=crop&q=80" alt="Gel Nails" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            <span class="absolute top-3 right-3 bg-white/90 backdrop-blur-md text-brand-700 font-bold text-xs px-3 py-1 rounded-full shadow-xs">₹899 onwards</span>
+          </div>
+          <div class="px-3 pb-3">
+            <div class="flex items-center justify-between text-xs text-slate-500 mb-2">
+              <span><i class="fa-regular fa-clock text-brand-500 mr-1"></i> 60 Mins</span>
+              <span class="text-amber-500 font-bold"><i class="fa-solid fa-star"></i> 4.9 (120)</span>
+            </div>
+            <h3 class="font-serif text-xl font-bold text-slate-900 mb-2">High-Gloss Gel Manicure</h3>
+            <p class="text-sm text-slate-600 mb-4 line-clamp-2">Chip-free long-lasting UV gel polish with cuticle therapy and relaxing hand massage.</p>
+            <div class="flex items-center justify-between pt-3 border-t border-rose-100">
+              <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-md">Home Service Ready</span>
+              <button onclick="quickBookService('gel-mani', 'Gel Manicure', 899)" class="text-brand-600 font-bold text-sm hover:text-brand-700 flex items-center gap-1">
+                Book Now <i class="fa-solid fa-arrow-right text-xs"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="glass-card rounded-3xl overflow-hidden p-3 border border-white shadow-glass group">
+          <div class="relative h-60 rounded-2xl overflow-hidden mb-5">
+            <img src="https://images.unsplash.com/photo-1604654894623-b5e7c0a5a6d1?w=800&h=600&fit=crop&q=80" alt="3D Nail Art" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            <span class="absolute top-3 right-3 bg-white/90 backdrop-blur-md text-brand-700 font-bold text-xs px-3 py-1 rounded-full shadow-xs">₹1,599 onwards</span>
+          </div>
+          <div class="px-3 pb-3">
+            <div class="flex items-center justify-between text-xs text-slate-500 mb-2">
+              <span><i class="fa-regular fa-clock text-brand-500 mr-1"></i> 120 Mins</span>
+              <span class="text-amber-500 font-bold"><i class="fa-solid fa-star"></i> 5.0 (98)</span>
+            </div>
+            <h3 class="font-serif text-xl font-bold text-slate-900 mb-2">Full Set 3D Nail Extensions</h3>
+            <p class="text-sm text-slate-600 mb-4 line-clamp-2">Custom sculpted acrylic/polygel extensions with chrome, Swarovski stones, and French ombre.</p>
+            <div class="flex items-center justify-between pt-3 border-t border-rose-100">
+              <span class="text-xs font-semibold text-amber-700 bg-amber-50 px-2 py-1 rounded-md">Master Artist Only</span>
+              <button onclick="quickBookService('nail-art-complex', '3D Nail Art Extensions', 1599)" class="text-brand-600 font-bold text-sm hover:text-brand-700 flex items-center gap-1">
+                Book Now <i class="fa-solid fa-arrow-right text-xs"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="glass-card rounded-3xl overflow-hidden p-3 border border-white shadow-glass group">
+          <div class="relative h-60 rounded-2xl overflow-hidden mb-5">
+            <img src="https://images.unsplash.com/photo-1583001809873-a128495da465?w=800&h=600&fit=crop&q=80" alt="Bridal Mehndi" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            <span class="absolute top-3 right-3 bg-white/90 backdrop-blur-md text-brand-700 font-bold text-xs px-3 py-1 rounded-full shadow-xs">₹3,499 onwards</span>
+          </div>
+          <div class="px-3 pb-3">
+            <div class="flex items-center justify-between text-xs text-slate-500 mb-2">
+              <span><i class="fa-regular fa-clock text-brand-500 mr-1"></i> 180 Mins</span>
+              <span class="text-amber-500 font-bold"><i class="fa-solid fa-star"></i> 4.9 (84)</span>
+            </div>
+            <h3 class="font-serif text-xl font-bold text-slate-900 mb-2">Bridal Organic Henna & Mehndi</h3>
+            <p class="text-sm text-slate-600 mb-4 line-clamp-2">Intricate Marwari, Arabic and figure bridal mehndi using pure organic dark-stain henna cones.</p>
+            <div class="flex items-center justify-between pt-3 border-t border-rose-100">
+              <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-md">Doorstep Bridal Setup</span>
+              <button onclick="quickBookService('mehndi-bridal', 'Bridal Mehndi Design', 3499)" class="text-brand-600 font-bold text-sm hover:text-brand-700 flex items-center gap-1">
+                Book Now <i class="fa-solid fa-arrow-right text-xs"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-12">
+        <button onclick="navigateTo('services')" class="px-8 py-3.5 rounded-2xl border-2 border-brand-500 text-brand-600 font-bold hover:bg-brand-50 transition">
+          View All 15+ Services & Prices
+        </button>
+      </div>
+    </section>
+
+    <!-- BRIDAL & SPA HIGHLIGHT -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-rose-100/50 via-white to-amber-50/50">
+      <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+        <div class="relative">
+          <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[4/3]">
+            <img src="https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?w=1000&h=750&fit=crop&q=80" alt="Bridal Package" class="w-full h-full object-cover">
+          </div>
+          <!-- Floating Badge -->
+          <div class="absolute -bottom-6 -right-6 glass-panel p-5 rounded-2xl border border-white shadow-xl max-w-xs hidden sm:block">
+            <div class="flex items-center space-x-3 mb-2">
+              <i class="fa-solid fa-crown text-gold text-2xl"></i>
+              <div>
+                <h5 class="font-bold text-sm text-slate-900">Royal Bridal Glow</h5>
+                <p class="text-xs text-brand-600 font-medium">Save ₹1,500 on Bundles</p>
+              </div>
+            </div>
+            <p class="text-xs text-slate-600">Includes Extensions, 3D Art, Luxury Pedicure & Henna.</p>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          <span class="text-xs uppercase font-bold tracking-widest text-brand-600">Exclusive Luxury Packages</span>
+          <h2 class="font-serif text-3xl sm:text-5xl font-bold text-slate-900 leading-tight">
+            Complete Bridal Glow & Spa Makeovers
+          </h2>
+          <p class="text-slate-600 leading-relaxed">
+            Planning your wedding, sangeet, or pre-wedding shoot? Our all-inclusive bridal packages take the stress away. We bring luxury salon hospitality straight to your home or hotel suite in Jaipur.
+          </p>
+          <ul class="space-y-3 text-sm text-slate-700">
+            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-500"></i> Free bridal nail trial consultation</li>
+            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-500"></i> Organic natural dark-stain henna cones</li>
+            <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-brand-500"></i> Deluxe aromatherapeutic foot reflexology pedicure</li>
+          </ul>
+          <div class="pt-4 flex gap-4">
+            <button onclick="navigateTo('packages')" class="rose-gradient-btn px-6 py-3.5 rounded-xl font-bold text-sm">
+              Explore Bridal Packages
+            </button>
+            <a href="https://wa.me/916376539366?text=Hi%20Uma,%20I%20want%20to%20inquire%20about%20Bridal%20Packages" target="_blank" class="px-6 py-3.5 rounded-xl border border-emerald-300 text-emerald-700 bg-emerald-50 hover:bg-emerald-100 font-bold text-sm flex items-center gap-2">
+              <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY CHOOSE NAILS BY UMA (Editorial Luxury Redesign) -->
+    <section class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white via-rose-50/40 to-white relative overflow-hidden" id="why-choose-us">
+      <!-- Radial Glow Orbs -->
+      <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-gradient-to-tr from-pink-300/20 via-rose-200/15 to-amber-200/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute bottom-10 right-10 w-80 h-80 bg-rose-400/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto relative z-10">
+        <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          
+          <!-- LEFT SIDE: Dominant Heading, Emotional Statement, CTA & Trust Metrics -->
+          <div class="lg:col-span-5 space-y-8 text-left">
+            <div>
+              <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pink-100/80 border border-pink-200/60 text-pink-700 text-xs font-bold uppercase tracking-widest mb-4">
+                <i class="fa-solid fa-sparkles text-brand-600"></i> Our Quality Promise
+              </span>
+              
+              <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 leading-[1.1]">
+                Why Choose <br>
+                <span class="bg-gradient-to-r from-pink-600 via-rose-500 to-amber-600 bg-clip-text text-transparent">
+                  Nails by Uma
+                </span>
+              </h2>
+            </div>
+
+            <p class="text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
+              We combine years of professional experience, 100% sterilized clean tools, personal attention, and warm Indian hospitality so you feel completely pampered.
+            </p>
+
+            <!-- CTA & Secondary Text -->
+            <div class="space-y-3 pt-2">
+              <button onclick="navigateTo('booking')" class="rose-gradient-btn px-8 py-4 rounded-2xl font-bold text-sm sm:text-base shadow-xl flex items-center gap-3 transition-all hover:scale-[1.02]">
+                <span>Experience the Difference</span>
+                <i class="fa-solid fa-arrow-right text-xs"></i>
+              </button>
+
+              <p class="text-xs text-slate-500 font-medium italic">
+                Trusted by beauty lovers who expect more than an ordinary salon visit.
+              </p>
+            </div>
+
+            <!-- Trust Metrics Bar -->
+            <div class="grid grid-cols-3 gap-4 pt-6 border-t border-rose-200/60">
+              <div class="group cursor-default">
+                <div class="font-serif text-3xl sm:text-4xl font-bold bg-gradient-to-r from-pink-600 to-amber-600 bg-clip-text text-transparent">
+                  10+
+                </div>
+                <div class="text-xs font-semibold text-slate-600 mt-1 uppercase tracking-wider">
+                  Years Experience
+                </div>
+              </div>
+
+              <div class="group cursor-default">
+                <div class="font-serif text-3xl sm:text-4xl font-bold bg-gradient-to-r from-pink-600 to-amber-600 bg-clip-text text-transparent">
+                  5K+
+                </div>
+                <div class="text-xs font-semibold text-slate-600 mt-1 uppercase tracking-wider">
+                  Happy Clients
+                </div>
+              </div>
+
+              <div class="group cursor-default">
+                <div class="font-serif text-3xl sm:text-4xl font-bold bg-gradient-to-r from-pink-600 to-amber-600 bg-clip-text text-transparent">
+                  100%
+                </div>
+                <div class="text-xs font-semibold text-slate-600 mt-1 uppercase tracking-wider">
+                  Hygiene Focus
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT SIDE: Large Central "Luxury Promise" Glass Panel & Organic Floating Badges -->
+          <div class="lg:col-span-7 relative">
+            
+            <!-- Organic Floating Glass Badges -->
+            <div class="absolute -top-6 -left-4 sm:-top-8 sm:-left-6 z-20 animate-float-subtle">
+              <div class="glass-chip px-4 py-2 rounded-full text-xs font-bold text-slate-800 flex items-center gap-2 shadow-lg border border-white">
+                <i class="fa-solid fa-sparkles text-pink-500"></i>
+                <span>Premium Care</span>
+              </div>
+            </div>
+
+            <div class="absolute -top-4 -right-2 sm:-top-6 sm:-right-4 z-20 animate-float-slow">
+              <div class="glass-chip px-4 py-2 rounded-full text-xs font-bold text-slate-800 flex items-center gap-2 shadow-lg border border-white">
+                <i class="fa-solid fa-crown text-amber-500"></i>
+                <span>Certified Professionals</span>
+              </div>
+            </div>
+
+            <div class="absolute -bottom-6 -right-2 sm:-bottom-8 sm:-right-6 z-20 animate-float-subtle">
+              <div class="glass-chip px-4 py-2 rounded-full text-xs font-bold text-slate-800 flex items-center gap-2 shadow-lg border border-white">
+                <i class="fa-solid fa-gem text-rose-500"></i>
+                <span>Luxury Experience</span>
+              </div>
+            </div>
+
+            <!-- MAIN CENTER GLASS PANEL -->
+            <div class="group relative bg-white/85 backdrop-blur-2xl border border-white/90 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-2xl shadow-pink-500/10 transition-all duration-500 hover:-translate-y-2 hover:shadow-pink-500/20 hover:border-pink-300">
+              
+              <!-- Panel Header -->
+              <div class="border-b border-rose-100 pb-6 mb-8">
+                <h3 class="text-2xl sm:text-3xl font-serif font-bold text-slate-900 flex items-center gap-3">
+                  Your Beauty, Our Signature.
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-500 mt-1">
+                  Our simple promise: great beauty care, total hygiene, and a friendly smile every time.
+                </p>
+              </div>
+
+              <!-- 4 Visually Distinct Trust Points connected with thin line -->
+              <div class="relative space-y-8">
+                <!-- Thin Connecting Vertical Line -->
+                <div class="absolute left-[23px] sm:left-[27px] top-6 bottom-6 w-[2px] bg-gradient-to-b from-pink-400 via-rose-300 to-amber-300 opacity-40 pointer-events-none"></div>
+
+                <!-- 01 — Expert Craft -->
+                <div class="relative flex items-start gap-5 sm:gap-6 group/item">
+                  <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-tr from-pink-500 to-rose-400 text-white font-serif font-bold text-sm sm:text-base flex items-center justify-center shrink-0 shadow-md shadow-pink-500/20 group-hover/item:scale-110 transition-all duration-300 z-10">
+                    01
+                  </div>
+                  <div class="pt-1">
+                    <div class="flex items-center gap-2">
+                      <h4 class="font-serif font-bold text-lg sm:text-xl text-slate-900">
+                        Expert Craft
+                      </h4>
+                      <i class="fa-solid fa-award text-pink-500 opacity-70"></i>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed font-normal">
+                      Professional nail artists and beauty specialists with years of hands-on experience in Russian techniques &amp; 3D extensions.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- 02 — Hygiene First -->
+                <div class="relative flex items-start gap-5 sm:gap-6 group/item pl-2 sm:pl-4">
+                  <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-tr from-rose-500 to-amber-500 text-white font-serif font-bold text-sm sm:text-base flex items-center justify-center shrink-0 shadow-md shadow-rose-500/20 group-hover/item:scale-110 transition-all duration-300 z-10">
+                    02
+                  </div>
+                  <div class="pt-1">
+                    <div class="flex items-center gap-2">
+                      <h4 class="font-serif font-bold text-lg sm:text-xl text-slate-900">
+                        Hygiene First
+                      </h4>
+                      <i class="fa-solid fa-shield-halved text-rose-500 opacity-70"></i>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed font-normal">
+                      Sterilized tools, single-use buffers, clean workstations, safe high-quality polishes, and strict hygiene practices.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- 03 — Personal Attention -->
+                <div class="relative flex items-start gap-5 sm:gap-6 group/item">
+                  <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-tr from-amber-500 to-pink-500 text-white font-serif font-bold text-sm sm:text-base flex items-center justify-center shrink-0 shadow-md shadow-amber-500/20 group-hover/item:scale-110 transition-all duration-300 z-10">
+                    03
+                  </div>
+                  <div class="pt-1">
+                    <div class="flex items-center gap-2">
+                      <h4 class="font-serif font-bold text-lg sm:text-xl text-slate-900">
+                        Personal Attention
+                      </h4>
+                      <i class="fa-solid fa-heart text-amber-500 opacity-70"></i>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed font-normal">
+                      Every appointment is customized according to your unique nail health, style preference, comfort, and aesthetic vision.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- 04 — Timely Service -->
+                <div class="relative flex items-start gap-5 sm:gap-6 group/item pl-2 sm:pl-4">
+                  <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-tr from-pink-600 to-rose-600 text-white font-serif font-bold text-sm sm:text-base flex items-center justify-center shrink-0 shadow-md shadow-pink-600/20 group-hover/item:scale-110 transition-all duration-300 z-10">
+                    04
+                  </div>
+                  <div class="pt-1">
+                    <div class="flex items-center gap-2">
+                      <h4 class="font-serif font-bold text-lg sm:text-xl text-slate-900">
+                        Timely Service
+                      </h4>
+                      <i class="fa-solid fa-clock text-pink-600 opacity-70"></i>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed font-normal">
+                      Thoughtfully managed schedule slots with dedicated artists, zero waiting delays, and smooth, attentive salon hospitality.
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs uppercase font-bold tracking-widest text-brand-600 block mb-2">Client Love</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900">What Our Guests Say</h2>
+        <div class="w-16 h-1 bg-brand-500 mx-auto mt-3 rounded-full"></div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="glass-card p-6 rounded-3xl border border-white">
+          <div class="flex text-amber-400 text-xs mb-3 space-x-1">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-sm text-slate-700 italic mb-4 leading-relaxed">"Uma did my bridal nail extensions and mehndi for my wedding at Fairmont Jaipur. They lasted 4 weeks with zero chipping! Absolute perfection."</p>
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-full bg-rose-200 flex items-center justify-center font-bold text-brand-800">PS</div>
+            <div>
+              <div class="text-sm font-bold text-slate-900">Pooja Shekhawat</div>
+              <div class="text-xs text-slate-500">Bridal Package · Jaipur</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card p-6 rounded-3xl border border-white">
+          <div class="flex text-amber-400 text-xs mb-3 space-x-1">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-sm text-slate-700 italic mb-4 leading-relaxed">"Booked home service pedicure and gel manicure for my mom and myself. The technician arrived on time with completely sanitized tools. Outstanding hygiene."</p>
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-full bg-rose-200 flex items-center justify-center font-bold text-brand-800">AK</div>
+            <div>
+              <div class="text-sm font-bold text-slate-900">Ananya Kothari</div>
+              <div class="text-xs text-slate-500">Home Service · Vaishali Nagar</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card p-6 rounded-3xl border border-white">
+          <div class="flex text-amber-400 text-xs mb-3 space-x-1">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-sm text-slate-700 italic mb-4 leading-relaxed">"The best chrome and 3D nail art in Rajasthan! Uma's attention to precision smile lines and cuticle treatment is world-class."</p>
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-full bg-rose-200 flex items-center justify-center font-bold text-brand-800">RM</div>
+            <div>
+              <div class="text-sm font-bold text-slate-900">Rhea Mathur</div>
+              <div class="text-xs text-slate-500">Gel Nail Art · Mansarovar</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =================================================================== -->
+  <!-- 2. SERVICES PAGE VIEW -->
+  <!-- =================================================================== -->
+  <main id="page-services" class="page-view flex-grow">
+    <!-- Services Hero Banner -->
+    <section class="relative py-24 px-4 sm:px-6 lg:px-8 bg-slate-900 text-white overflow-hidden min-h-[400px] flex items-center justify-center">
+      <div class="absolute inset-0 opacity-40">
+        <img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=1920&h=800&fit=crop&q=85" alt="Professional Studio Hero" class="w-full h-full object-cover">
+      </div>
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-rose-950/60 to-slate-950/80"></div>
+      <div class="relative z-10 max-w-7xl mx-auto text-center space-y-4">
+        <span class="inline-block bg-white/20 backdrop-blur-md px-4 py-1 rounded-full text-xs uppercase tracking-wider font-semibold text-rose-100">
+          <i class="fa-solid fa-gem text-gold mr-1.5"></i> Comprehensive Treatment Menu &amp; Pricing
+        </span>
+        <h1 class="font-serif text-4xl sm:text-6xl font-bold">Haute Couture Services</h1>
+        <p class="text-rose-100/90 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+          Transparent ₹ INR pricing, certified non-toxic European polishes, hospital-grade sterilization, and luxury doorstep salon options across Jaipur.
+        </p>
+      </div>
+    </section>
+
+    <!-- Filter & Menu Section -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <!-- High-Level Group Filters -->
+      <div class="flex flex-wrap items-center justify-center gap-2 mb-4">
+        <button onclick="filterServicesByGroup('all')" class="group-filter-btn active px-5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-brand-600 text-white shadow-sm" data-group="all">✨ All Services</button>
+        <button onclick="filterServicesByGroup('nails')" class="group-filter-btn px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-700 hover:bg-rose-50 border border-rose-100" data-group="nails">💅 Nails &amp; Extensions</button>
+        <button onclick="filterServicesByGroup('spa')" class="group-filter-btn px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-700 hover:bg-rose-50 border border-rose-100" data-group="spa">🫧 Spa Treatments</button>
+        <button onclick="filterServicesByGroup('bridal')" class="group-filter-btn px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-700 hover:bg-rose-50 border border-rose-100" data-group="bridal">👑 Bridal Nails</button>
+        <button onclick="filterServicesByGroup('mehndi')" class="group-filter-btn px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-700 hover:bg-rose-50 border border-rose-100" data-group="mehndi">🌿 Mehndi &amp; Henna</button>
+        <button onclick="filterServicesByGroup('beauty')" class="group-filter-btn px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-700 hover:bg-rose-50 border border-rose-100" data-group="beauty">🌸 Facials &amp; Beauty</button>
+      </div>
+
+      <!-- Specific Category Filter Tags -->
+      <div class="flex flex-wrap items-center justify-center gap-1.5 mb-10 text-xs">
+        <button onclick="filterServices('all')" class="cat-filter-btn active px-3 py-1 rounded-lg font-bold bg-slate-900 text-white" data-cat="all">All</button>
+        <button onclick="filterServices('manicure')" class="cat-filter-btn px-3 py-1 rounded-lg font-medium text-slate-600 hover:bg-pink-50" data-cat="manicure">Manicure</button>
+        <button onclick="filterServices('pedicure')" class="cat-filter-btn px-3 py-1 rounded-lg font-medium text-slate-600 hover:bg-pink-50" data-cat="pedicure">Pedicure</button>
+        <button onclick="filterServices('extensions')" class="cat-filter-btn px-3 py-1 rounded-lg font-medium text-slate-600 hover:bg-pink-50" data-cat="extensions">Nail Extensions</button>
+        <button onclick="filterServices('gel-nails')" class="cat-filter-btn px-3 py-1 rounded-lg font-medium text-slate-600 hover:bg-pink-50" data-cat="gel-nails">Gel Nails</button>
+        <button onclick="filterServices('art')" class="cat-filter-btn px-3 py-1 rounded-lg font-medium text-slate-600 hover:bg-pink-50" data-cat="art">Nail Art</button>
+        <button onclick="filterServices('chrome-french')" class="cat-filter-btn px-3 py-1 rounded-lg font-medium text-slate-600 hover:bg-pink-50" data-cat="chrome-french">French / Chrome / Glitter</button>
+        <button onclick="filterServices('bridal')" class="cat-filter-btn px-3 py-1 rounded-lg font-medium text-slate-600 hover:bg-pink-50" data-cat="bridal">Bridal Nails</button>
+        <button onclick="filterServices('mehndi')" class="cat-filter-btn px-3 py-1 rounded-lg font-medium text-slate-600 hover:bg-pink-50" data-cat="mehndi">Mehndi / Henna</button>
+        <button onclick="filterServices('beauty')" class="cat-filter-btn px-3 py-1 rounded-lg font-medium text-slate-600 hover:bg-pink-50" data-cat="beauty">Facial / Beauty</button>
+        <button onclick="filterServices('spa')" class="cat-filter-btn px-3 py-1 rounded-lg font-medium text-slate-600 hover:bg-pink-50" data-cat="spa">Spa Treatments</button>
+      </div>
+
+      <!-- Services Grid -->
+      <div id="servicesGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-300">
+        <!-- Dynamically rendered via JavaScript -->
+      </div>
+    </section>
+  </main>
+
+  <!-- =================================================================== -->
+  <!-- 3. PACKAGES PAGE VIEW -->
+  <!-- =================================================================== -->
+  <main id="page-packages" class="page-view flex-grow">
+    <!-- Packages Hero Banner -->
+    <section class="relative py-24 px-4 sm:px-6 lg:px-8 bg-slate-950 text-white overflow-hidden min-h-[440px] flex items-center justify-center">
+      <div class="absolute inset-0 opacity-35">
+        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1920&h=1080&fit=crop&q=85" alt="Luxury Pampering Flat-Lay" class="w-full h-full object-cover">
+      </div>
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-rose-950/70 to-slate-950/80"></div>
+      <div class="relative z-10 max-w-5xl mx-auto text-center space-y-4">
+        <span class="inline-block bg-white/20 backdrop-blur-md px-4 py-1 rounded-full text-xs uppercase tracking-wider font-semibold text-rose-100">
+          <i class="fa-solid fa-gift text-gold mr-1.5"></i> Curated Rituals &amp; Privileged Combinations
+        </span>
+        <h1 class="font-serif text-4xl sm:text-6xl font-bold leading-tight">Elevated Packages &amp; Combos</h1>
+        <p class="text-rose-100/90 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+          Bespoke combinations crafted for weddings, weekend pampering, and self-care indulgence. Save up to 35% with master technicians.
+        </p>
+      </div>
+    </section>
+
+    <!-- 6 Signature Packages Grid -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+        <!-- 1. Bridal Glow Package -->
+        <div class="glass-card rounded-3xl p-6 border-2 border-brand-500/80 flex flex-col justify-between shadow-2xl relative bg-white/90">
+          <div class="absolute -top-3.5 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-brand-600 to-gold text-white text-[11px] font-bold uppercase tracking-widest px-4 py-1 rounded-full shadow-md whitespace-nowrap">
+            👑 Most Popular Bridal
+          </div>
+          <div>
+            <div class="relative h-48 rounded-2xl overflow-hidden mb-4 bg-pink-100">
+              <img src="https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?w=800&h=600&fit=crop&q=80" alt="Bridal Glow Package" class="w-full h-full object-cover">
+              <span class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-md text-white text-[11px] px-2.5 py-0.5 rounded-full"><i class="fa-regular fa-clock mr-1"></i> 4.5 Hours</span>
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-slate-900 mb-1">Bridal Glow Package</h3>
+            <p class="text-xs text-slate-600 mb-4">Complete royal bridal ceremony makeover featuring 3D extensions, dark henna, gold facial &amp; rose foot spa.</p>
+            <div class="p-3.5 rounded-2xl bg-pink-50/70 border border-pink-100 mb-4 text-xs space-y-1.5 text-slate-800">
+              <div class="font-bold text-brand-700 uppercase tracking-wider text-[10px] mb-1">Included Treatments:</div>
+              <div><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> Full Gel Extensions with 3D Crystal Art</div>
+              <div><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> Organic Bridal Mehndi (Arms &amp; Feet)</div>
+              <div><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> 24K Gold Foil Facial &amp; Clean-up</div>
+              <div><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> Deluxe Rose Petal Foot Spa</div>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-baseline gap-2 mb-3 pt-3 border-t border-rose-100">
+              <span class="font-serif text-3xl font-extrabold text-brand-700">₹4,999</span>
+              <span class="text-xs text-slate-400 line-through">₹7,499</span>
+              <span class="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">Save ₹2,500</span>
+            </div>
+            <button onclick="quickBookPackage('Bridal Glow Package', 4999)" class="w-full rose-gradient-btn py-3.5 rounded-xl font-bold text-sm shadow-md">
+              Book Bridal Glow Package
+            </button>
+          </div>
+        </div>
+
+        <!-- 2. Nail + Spa Combo -->
+        <div class="glass-card rounded-3xl p-6 border border-white flex flex-col justify-between shadow-glass bg-white/85">
+          <div>
+            <div class="relative h-48 rounded-2xl overflow-hidden mb-4 bg-pink-100">
+              <img src="https://images.unsplash.com/photo-1604654894623-b5e7c0a5a6d1?w=800&h=600&fit=crop&q=80" alt="Nail + Spa Combo" class="w-full h-full object-cover">
+              <span class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-md text-white text-[11px] px-2.5 py-0.5 rounded-full"><i class="fa-regular fa-clock mr-1"></i> 2.5 Hours</span>
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-slate-900 mb-1">Nail + Spa Combo</h3>
+            <p class="text-xs text-slate-600 mb-4">High-shine UV gel manicure paired with crystalline jelly foot spa and hot basalt stone massage.</p>
+            <div class="p-3.5 rounded-2xl bg-pink-50/70 border border-pink-100 mb-4 text-xs space-y-1.5 text-slate-800">
+              <div class="font-bold text-brand-700 uppercase tracking-wider text-[10px] mb-1">Included Treatments:</div>
+              <div><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> High-Gloss UV Gel Manicure (3+ weeks)</div>
+              <div><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> Crystalline Jelly Foot Spa Pedicure</div>
+              <div><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> Swarovski Crystal Accent Nail Art</div>
+              <div><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> Hot Basalt Stone Foot Reflexology</div>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-baseline gap-2 mb-3 pt-3 border-t border-rose-100">
+              <span class="font-serif text-3xl font-extrabold text-brand-700">₹2,499</span>
+              <span class="text-xs text-slate-400 line-through">₹3,199</span>
+              <span class="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">Save ₹700</span>
+            </div>
+            <button onclick="quickBookPackage('Nail + Spa Combo', 2499)" class="w-full rose-gradient-btn py-3.5 rounded-xl font-bold text-sm">
+              Book Nail + Spa Combo
+            </button>
+          </div>
+        </div>
+
+        <!-- 3. Self-Care Luxury Package -->
+        <div class="glass-card rounded-3xl p-6 border border-white flex flex-col justify-between shadow-glass bg-white/85">
+          <div>
+            <div class="relative h-48 rounded-2xl overflow-hidden mb-4 bg-pink-100">
+              <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&h=600&fit=crop&q=80" alt="Self-Care Luxury" class="w-full h-full object-cover">
+              <span class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-md text-white text-[11px] px-2.5 py-0.5 rounded-full"><i class="fa-regular fa-clock mr-1"></i> 3.0 Hours</span>
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-slate-900 mb-1">Self-Care Luxury Package</h3>
+            <p class="text-xs text-slate-600 mb-4">Restorative sanctuary session for skin, scalp, and joints with warm paraffin and lavender bath.</p>
+            <div class="p-3.5 rounded-2xl bg-pink-50/70 border border-pink-100 mb-4 text-xs space-y-1.5 text-slate-800">
+              <div class="font-bold text-brand-700 uppercase tracking-wider text-[10px] mb-1">Included Treatments:</div>
+              <div><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> Deep Hydration Anti-Tan Facial</div>
+              <div><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> Warm Paraffin Wax Hand Rejuvenation</div>
+              <div><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> Lavender Essential Oil Foot Bath</div>
+              <div><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> Herbal Steam Hair Spa &amp; Massage</div>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-baseline gap-2 mb-3 pt-3 border-t border-rose-100">
+              <span class="font-serif text-3xl font-extrabold text-brand-700">₹3,299</span>
+              <span class="text-xs text-slate-400 line-through">₹4,299</span>
+              <span class="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">Save ₹1,000</span>
+            </div>
+            <button onclick="quickBookPackage('Self-Care Luxury Package', 3299)" class="w-full rose-gradient-btn py-3.5 rounded-xl font-bold text-sm">
+              Book Self-Care Package
+            </button>
+          </div>
+        </div>
+
+        <!-- 4. Weekend Pamper Package -->
+        <div class="glass-card rounded-3xl p-6 border border-white flex flex-col justify-between shadow-glass bg-white/85">
+          <div>
+            <div class="relative h-48 rounded-2xl overflow-hidden mb-4 bg-pink-100">
+              <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&h=600&fit=crop&q=80" alt="Weekend Pamper" class="w-full h-full object-cover">
+              <span class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-md text-white text-[11px] px-2.5 py-0.5 rounded-full"><i class="fa-regular fa-clock mr-1"></i> 90 Mins</span>
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-slate-900 mb-1">Weekend Pamper Package</h3>
+            <p class="text-xs text-slate-600 mb-4">Fast yet thorough head-to-toe grooming designed for weekend parties, brunches &amp; events.</p>
+            <div class="p-3.5 rounded-2xl bg-pink-50/70 border border-pink-100 mb-4 text-xs space-y-1.5 text-slate-800">
+              <div class="font-bold text-brand-700 uppercase tracking-wider text-[10px] mb-1">Included Treatments:</div>
+              <div><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> Express File, Shape &amp; Buff Manicure</div>
+              <div><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> Peppermint Cooling Foot Polish</div>
+              <div><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> Eyebrow &amp; Upper Lip Threading</div>
+              <div><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> Vitamin C Radiance Face Clean-up</div>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-baseline gap-2 mb-3 pt-3 border-t border-rose-100">
+              <span class="font-serif text-3xl font-extrabold text-brand-700">₹1,699</span>
+              <span class="text-xs text-slate-400 line-through">₹2,199</span>
+              <span class="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">Save ₹500</span>
+            </div>
+            <button onclick="quickBookPackage('Weekend Pamper Package', 1699)" class="w-full rose-gradient-btn py-3.5 rounded-xl font-bold text-sm">
+              Book Weekend Package
+            </button>
+          </div>
+        </div>
+
+        <!-- 5. Couple / Friends Package -->
+        <div class="glass-card rounded-3xl p-6 border border-white flex flex-col justify-between shadow-glass bg-white/85">
+          <div>
+            <div class="relative h-48 rounded-2xl overflow-hidden mb-4 bg-pink-100">
+              <img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=800&h=600&fit=crop&q=80" alt="Couple Friends Package" class="w-full h-full object-cover">
+              <span class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-md text-white text-[11px] px-2.5 py-0.5 rounded-full"><i class="fa-regular fa-clock mr-1"></i> 2.0 Hours</span>
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-slate-900 mb-1">Couple / Friends Package (For 2)</h3>
+            <p class="text-xs text-slate-600 mb-4">Simultaneous dual luxury spa ritual tailored for couples, mothers &amp; daughters, or best friends.</p>
+            <div class="p-3.5 rounded-2xl bg-pink-50/70 border border-pink-100 mb-4 text-xs space-y-1.5 text-slate-800">
+              <div class="font-bold text-brand-700 uppercase tracking-wider text-[10px] mb-1">Included Treatments:</div>
+              <div><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> 2x Deluxe Rose Petal Foot Spas Side-by-Side</div>
+              <div><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> 2x Hand Manicures or Reflexology</div>
+              <div><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> Gel Polish or High-Shine Buff for Both</div>
+              <div><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> Gourmet Herbal Tea Tray</div>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-baseline gap-2 mb-3 pt-3 border-t border-rose-100">
+              <span class="font-serif text-3xl font-extrabold text-brand-700">₹3,799</span>
+              <span class="text-xs text-slate-400 line-through">₹4,999</span>
+              <span class="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">Save ₹1,200</span>
+            </div>
+            <button onclick="quickBookPackage('Couple Friends Package', 3799)" class="w-full rose-gradient-btn py-3.5 rounded-xl font-bold text-sm">
+              Book Package for 2
+            </button>
+          </div>
+        </div>
+
+        <!-- 6. Complete Beauty Package -->
+        <div class="glass-card rounded-3xl p-6 border border-white flex flex-col justify-between shadow-glass bg-white/85">
+          <div>
+            <div class="relative h-48 rounded-2xl overflow-hidden mb-4 bg-pink-100">
+              <img src="https://images.unsplash.com/photo-1610992015762-45dca7464f11?w=800&h=600&fit=crop&q=80" alt="Complete Beauty Package" class="w-full h-full object-cover">
+              <span class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-md text-white text-[11px] px-2.5 py-0.5 rounded-full"><i class="fa-regular fa-clock mr-1"></i> 4.0 Hours</span>
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-slate-900 mb-1">Complete Beauty Package</h3>
+            <p class="text-xs text-slate-600 mb-4">The all-inclusive head-to-toe couture transformation with BIAB, gold facial &amp; organic festival henna.</p>
+            <div class="p-3.5 rounded-2xl bg-pink-50/70 border border-pink-100 mb-4 text-xs space-y-1.5 text-slate-800">
+              <div class="font-bold text-brand-700 uppercase tracking-wider text-[10px] mb-1">Included Treatments:</div>
+              <div><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> BIAB (Builder Gel) Natural Overlay</div>
+              <div><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> 24K Gold Foil Facial &amp; Micro-Cleanse</div>
+              <div><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> Full Arms &amp; Legs Honey Waxing</div>
+              <div><i class="fa-solid fa-check text-emerald-600 mr-1.5"></i> Organic Festival Mehndi on Palms</div>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-baseline gap-2 mb-3 pt-3 border-t border-rose-100">
+              <span class="font-serif text-3xl font-extrabold text-brand-700">₹5,199</span>
+              <span class="text-xs text-slate-400 line-through">₹6,999</span>
+              <span class="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">Save ₹1,800</span>
+            </div>
+            <button onclick="quickBookPackage('Complete Beauty Package', 5199)" class="w-full rose-gradient-btn py-3.5 rounded-xl font-bold text-sm">
+              Book Complete Package
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Package Comparison Matrix Area -->
+      <div class="mt-20">
+        <div class="text-center max-w-2xl mx-auto mb-8">
+          <span class="text-xs uppercase font-bold tracking-widest text-brand-600 block mb-1">Transparent Breakdown</span>
+          <h3 class="font-serif text-3xl font-bold text-slate-900">Package Comparison Matrix</h3>
+        </div>
+
+        <div class="glass-panel rounded-3xl border border-white/90 shadow-xl overflow-hidden bg-white/95">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs sm:text-sm border-collapse">
+              <thead>
+                <tr class="bg-gradient-to-r from-pink-100/80 via-rose-50 to-pink-100/80 border-b border-pink-200 text-slate-900 font-serif">
+                  <th class="p-4 sm:p-5 font-bold">Treatment Feature</th>
+                  <th class="p-4 sm:p-5 font-bold text-brand-700">Bridal Glow</th>
+                  <th class="p-4 sm:p-5 font-bold">Nail + Spa</th>
+                  <th class="p-4 sm:p-5 font-bold">Self-Care</th>
+                  <th class="p-4 sm:p-5 font-bold">Weekend</th>
+                  <th class="p-4 sm:p-5 font-bold">Couple (x2)</th>
+                  <th class="p-4 sm:p-5 font-bold">Complete</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-pink-100/70 text-slate-700">
+                <tr class="bg-white/40">
+                  <td class="p-4 sm:p-5 font-semibold text-slate-900">Duration</td>
+                  <td class="p-4 sm:p-5 font-bold text-brand-600">4.5 Hours</td>
+                  <td class="p-4 sm:p-5">2.5 Hours</td>
+                  <td class="p-4 sm:p-5">3.0 Hours</td>
+                  <td class="p-4 sm:p-5">90 Mins</td>
+                  <td class="p-4 sm:p-5">2.0 Hours</td>
+                  <td class="p-4 sm:p-5 font-semibold">4.0 Hours</td>
+                </tr>
+                <tr class="bg-white/80">
+                  <td class="p-4 sm:p-5 font-semibold text-slate-900">Nail Enhancement</td>
+                  <td class="p-4 sm:p-5 font-bold text-brand-600">3D Gel Extensions</td>
+                  <td class="p-4 sm:p-5">Gel Manicure</td>
+                  <td class="p-4 sm:p-5">Paraffin Hand Spa</td>
+                  <td class="p-4 sm:p-5">Express Polish</td>
+                  <td class="p-4 sm:p-5">Gel or Buff (x2)</td>
+                  <td class="p-4 sm:p-5 font-semibold">BIAB Builder Gel</td>
+                </tr>
+                <tr class="bg-white/40">
+                  <td class="p-4 sm:p-5 font-semibold text-slate-900">Pedicure &amp; Foot Spa</td>
+                  <td class="p-4 sm:p-5 font-bold text-brand-600">Rose Petal Bath</td>
+                  <td class="p-4 sm:p-5">Jelly Spa + Stone</td>
+                  <td class="p-4 sm:p-5">Lavender Soak</td>
+                  <td class="p-4 sm:p-5">Peppermint Buff</td>
+                  <td class="p-4 sm:p-5">Dual Rose Basin</td>
+                  <td class="p-4 sm:p-5 font-semibold">Paraffin Foot Spa</td>
+                </tr>
+                <tr class="bg-white/80">
+                  <td class="p-4 sm:p-5 font-semibold text-slate-900">Facial Therapy</td>
+                  <td class="p-4 sm:p-5 font-bold text-brand-600">24K Gold Radiant</td>
+                  <td class="p-4 sm:p-5">—</td>
+                  <td class="p-4 sm:p-5">Anti-Tan Enzyme</td>
+                  <td class="p-4 sm:p-5">Vitamin C Cleanse</td>
+                  <td class="p-4 sm:p-5">—</td>
+                  <td class="p-4 sm:p-5 font-semibold">24K Gold Foil</td>
+                </tr>
+                <tr class="bg-white/40">
+                  <td class="p-4 sm:p-5 font-semibold text-slate-900">Organic Henna / Mehndi</td>
+                  <td class="p-4 sm:p-5 font-bold text-brand-600">Arms &amp; Feet</td>
+                  <td class="p-4 sm:p-5">—</td>
+                  <td class="p-4 sm:p-5">—</td>
+                  <td class="p-4 sm:p-5">—</td>
+                  <td class="p-4 sm:p-5">—</td>
+                  <td class="p-4 sm:p-5 font-semibold">Festival Palms</td>
+                </tr>
+                <tr class="bg-white/80">
+                  <td class="p-4 sm:p-5 font-semibold text-slate-900">Package Price</td>
+                  <td class="p-4 sm:p-5 font-serif font-bold text-lg text-brand-700">₹4,999</td>
+                  <td class="p-4 sm:p-5 font-serif font-bold text-lg text-brand-700">₹2,499</td>
+                  <td class="p-4 sm:p-5 font-serif font-bold text-lg text-brand-700">₹3,299</td>
+                  <td class="p-4 sm:p-5 font-serif font-bold text-lg text-brand-700">₹1,699</td>
+                  <td class="p-4 sm:p-5 font-serif font-bold text-lg text-brand-700">₹3,799</td>
+                  <td class="p-4 sm:p-5 font-serif font-bold text-lg text-brand-700">₹5,199</td>
+                </tr>
+                <tr class="bg-emerald-50/40 font-bold text-emerald-800">
+                  <td class="p-4 sm:p-5">Total Savings</td>
+                  <td class="p-4 sm:p-5">Save ₹2,500</td>
+                  <td class="p-4 sm:p-5">Save ₹700</td>
+                  <td class="p-4 sm:p-5">Save ₹1,000</td>
+                  <td class="p-4 sm:p-5">Save ₹500</td>
+                  <td class="p-4 sm:p-5">Save ₹1,200</td>
+                  <td class="p-4 sm:p-5">Save ₹1,800</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =================================================================== -->
+  <!-- 4. ABOUT US PAGE VIEW -->
+  <!-- =================================================================== -->
+  <main id="page-about" class="page-view flex-grow">
+    <!-- Editorial Hero -->
+    <section class="relative py-24 px-4 sm:px-6 lg:px-8 bg-slate-950 text-white overflow-hidden min-h-[440px] flex items-center justify-center">
+      <div class="absolute inset-0 opacity-40">
+        <img src="https://images.unsplash.com/photo-1583001809873-a128495da465?w=1920&h=1080&fit=crop&q=85" alt="Close-up nail craftsmanship and mehndi" class="w-full h-full object-cover">
+      </div>
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-rose-950/70 to-slate-950/80"></div>
+      <div class="relative z-10 max-w-5xl mx-auto text-center space-y-4">
+        <span class="inline-block bg-white/20 backdrop-blur-md px-4 py-1 rounded-full text-xs uppercase tracking-wider font-semibold text-rose-100">
+          <i class="fa-solid fa-gem text-gold mr-1.5"></i> Our Story · Heritage · Artistry
+        </span>
+        <h1 class="font-serif text-4xl sm:text-6xl font-bold leading-tight">Where Artistry Meets Pure Elegance</h1>
+        <p class="text-rose-100/90 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+          Since 2014, Nails by Uma has redefined bespoke nail architecture, organic bridal mehndi, and sensory spa wellness in Jaipur.
+        </p>
+      </div>
+    </section>
+
+    <!-- Stats Ribbon -->
+    <section class="max-w-6xl mx-auto px-4 -mt-8 relative z-20">
+      <div class="glass-panel p-6 rounded-3xl border border-white/90 shadow-xl bg-white/95 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div>
+          <div class="font-serif text-3xl font-extrabold text-slate-900">5,000+</div>
+          <div class="text-xs font-semibold text-slate-500 uppercase mt-1">Happy Clients</div>
+        </div>
+        <div>
+          <div class="font-serif text-3xl font-extrabold text-slate-900">12+</div>
+          <div class="text-xs font-semibold text-slate-500 uppercase mt-1">Years of Artistry</div>
+        </div>
+        <div>
+          <div class="font-serif text-3xl font-extrabold text-slate-900">25+</div>
+          <div class="text-xs font-semibold text-slate-500 uppercase mt-1">Awards &amp; Honors</div>
+        </div>
+        <div>
+          <div class="font-serif text-3xl font-extrabold text-slate-900">100%</div>
+          <div class="text-xs font-semibold text-slate-500 uppercase mt-1">Autoclave Sterile</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Story & Philosophy -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+        <div class="space-y-6">
+          <span class="text-xs uppercase font-bold tracking-widest text-brand-600">The Salon Story</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900 leading-snug">
+            A Decade of Mastering the Fine Art of Nail Architecture
+          </h2>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Founded in 2014 by master nail artist <strong>Uma Sharma</strong>, Nails by Uma started with a single conviction: nail care is not just cosmetic maintenance, but an intimate form of wearable art and personal confidence.
+          </p>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Today, our salon serves over 5,000+ loyal clients each year, offering certified non-toxic European gel polishes, autoclave hospital-grade sterilization, and customized mobile home salon services throughout Jaipur.
+          </p>
+          <div class="grid grid-cols-2 gap-4 pt-2">
+            <div class="p-4 rounded-2xl bg-white border border-rose-100 shadow-xs">
+              <i class="fa-solid fa-shield-virus text-brand-600 text-2xl mb-2"></i>
+              <h4 class="font-bold text-sm text-slate-900">Hospital-Grade Sterilization</h4>
+              <p class="text-xs text-slate-500 mt-1">Single-use buffers and sealed autoclave pouches for each guest.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-white border border-rose-100 shadow-xs">
+              <i class="fa-solid fa-leaf text-emerald-600 text-2xl mb-2"></i>
+              <h4 class="font-bold text-sm text-slate-900">100% Organic Henna</h4>
+              <p class="text-xs text-slate-500 mt-1">Chemical-free cones curated for deep, fragrant, natural dark stains.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[4/3] bg-pink-50">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=800&fit=crop&q=80" alt="Uma Sharma Founder" class="w-full h-full object-cover">
+          </div>
+        </div>
+      </div>
+
+      <!-- Core Values -->
+      <div class="grid md:grid-cols-3 gap-6 mb-16">
+        <div class="glass-card p-6 rounded-3xl border border-white bg-white/80">
+          <i class="fa-solid fa-heart text-brand-500 text-2xl mb-3"></i>
+          <h4 class="font-serif text-lg font-bold text-slate-900 mb-2">Customer-First Empathy</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">Personalized consultations, unhurried attention, and gentle care tailored to your exact style.</p>
+        </div>
+        <div class="glass-card p-6 rounded-3xl border border-white bg-white/80">
+          <i class="fa-solid fa-wand-magic-sparkles text-brand-500 text-2xl mb-3"></i>
+          <h4 class="font-serif text-lg font-bold text-slate-900 mb-2">Artisanal Precision</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">Microscopic e-file cuticle pockets and hand-sculpted 3D crystal art engineered to last.</p>
+        </div>
+        <div class="glass-card p-6 rounded-3xl border border-white bg-white/80">
+          <i class="fa-solid fa-leaf text-emerald-500 text-2xl mb-3"></i>
+          <h4 class="font-serif text-lg font-bold text-slate-900 mb-2">Clean Chemistry</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">10-free non-toxic formulas that keep your natural nails strong, healthy, and nourished.</p>
+        </div>
+      </div>
+
+      <!-- Team Section -->
+      <div class="mb-16">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <span class="text-xs uppercase font-bold tracking-widest text-brand-600 block">Master Artisans</span>
+          <h3 class="font-serif text-3xl font-bold text-slate-900">Meet Our Specialists</h3>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="glass-card rounded-3xl overflow-hidden border border-white bg-white/80">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&q=80" alt="Uma Sharma" class="w-full h-48 object-cover">
+            <div class="p-4">
+              <h5 class="font-bold text-slate-900 text-sm">Uma Sharma</h5>
+              <p class="text-xs text-brand-600 font-semibold mb-2">Founder &amp; Master Artist</p>
+              <p class="text-[11px] text-slate-500">12+ years experience in 3D sculpted nail art &amp; bridal styling.</p>
+            </div>
+          </div>
+          <div class="glass-card rounded-3xl overflow-hidden border border-white bg-white/80">
+            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&q=80" alt="Anita Verma" class="w-full h-48 object-cover">
+            <div class="p-4">
+              <h5 class="font-bold text-slate-900 text-sm">Anita Verma</h5>
+              <p class="text-xs text-brand-600 font-semibold mb-2">Senior Gel Technician</p>
+              <p class="text-[11px] text-slate-500">Specialist in mirror chrome, BIAB overlays &amp; French tips.</p>
+            </div>
+          </div>
+          <div class="glass-card rounded-3xl overflow-hidden border border-white bg-white/80">
+            <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=400&h=400&fit=crop&q=80" alt="Neha Patel" class="w-full h-48 object-cover">
+            <div class="p-4">
+              <h5 class="font-bold text-slate-900 text-sm">Neha Patel</h5>
+              <p class="text-xs text-brand-600 font-semibold mb-2">Bridal Mehndi Master</p>
+              <p class="text-[11px] text-slate-500">Intricate royal Marwari figure henna &amp; organic dark stains.</p>
+            </div>
+          </div>
+          <div class="glass-card rounded-3xl overflow-hidden border border-white bg-white/80">
+            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&h=400&fit=crop&q=80" alt="Kavita Singh" class="w-full h-48 object-cover">
+            <div class="p-4">
+              <h5 class="font-bold text-slate-900 text-sm">Kavita Singh</h5>
+              <p class="text-xs text-brand-600 font-semibold mb-2">Lead Aesthetician</p>
+              <p class="text-[11px] text-slate-500">Expert in 24K gold facials &amp; luxury aromatherapy foot spas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Final Appointment Invitation -->
+      <div class="glass-panel p-8 sm:p-12 rounded-3xl text-center border border-white shadow-xl bg-gradient-to-r from-white via-rose-50/40 to-amber-50/30">
+        <h3 class="font-serif text-3xl font-bold text-slate-900 mb-3">Experience Haute Couture Nail Care</h3>
+        <p class="text-slate-600 max-w-xl mx-auto text-sm mb-6">Book your in-salon session or doorstep home service in Jaipur today.</p>
+        <button onclick="navigateTo('booking')" class="rose-gradient-btn px-8 py-3.5 rounded-xl font-bold text-sm shadow-glass">
+          Book Appointment Now
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- =================================================================== -->
+  <!-- 5. APPOINTMENT / BOOKING PAGE VIEW -->
+  <!-- =================================================================== -->
+  <main id="page-booking" class="page-view flex-grow">
+    <!-- Booking Hero Banner -->
+    <section class="relative py-20 px-4 sm:px-6 lg:px-8 bg-slate-950 text-white overflow-hidden min-h-[360px] flex items-center justify-center">
+      <div class="absolute inset-0 opacity-35">
+        <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?w=1920&h=800&fit=crop&q=85" alt="Minimalist Marble & Orchid Setup" class="w-full h-full object-cover">
+      </div>
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-rose-950/70 to-slate-950/80"></div>
+      <div class="relative z-10 max-w-5xl mx-auto text-center space-y-3">
+        <span class="inline-block bg-white/20 backdrop-blur-md px-4 py-1 rounded-full text-xs uppercase tracking-wider font-semibold text-rose-100">
+          <i class="fa-solid fa-calendar-check text-gold mr-1.5"></i> Instant Online Atelier Booking
+        </span>
+        <h1 class="font-serif text-3xl sm:text-5xl font-bold leading-tight">Schedule Your Beauty Session</h1>
+        <p class="text-rose-100/90 max-w-xl mx-auto text-sm leading-relaxed">
+          Select treatments, pick real-time confirmed time slots, and choose between in-salon pampering or doorstep home spa in Jaipur.
+        </p>
+      </div>
+    </section>
+
+    <!-- Booking Multi-Step Form Container -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+      <div id="bookingSuccessBox" class="hidden glass-panel p-8 sm:p-12 rounded-3xl border border-white shadow-2xl text-center bg-white/95 mb-8">
+        <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-400 text-white flex items-center justify-center mx-auto mb-6 shadow-xl text-3xl">
+          <i class="fa-solid fa-check"></i>
+        </div>
+        <span class="text-xs uppercase font-bold tracking-widest text-brand-600 block mb-1">Reservation Confirmed</span>
+        <h2 class="font-serif text-3xl font-bold text-slate-900 mb-2">We Look Forward to Seeing You!</h2>
+        <p class="text-xs sm:text-sm text-slate-600 mb-6">A confirmation SMS and receipt have been generated for your appointment.</p>
+        <div id="successDetailsCard" class="p-5 rounded-2xl bg-pink-50/80 border border-pink-100 text-left space-y-2 mb-6 text-xs sm:text-sm"></div>
+        <div class="flex flex-wrap gap-3 justify-center">
+          <button onclick="navigateTo('my-bookings')" class="rose-gradient-btn px-6 py-3 rounded-xl font-bold text-sm">
+            View in My Bookings
+          </button>
+          <a id="successWhatsAppBtn" href="#" target="_blank" class="px-5 py-3 rounded-xl border border-emerald-300 text-emerald-700 bg-emerald-50 font-bold text-sm flex items-center gap-2">
+            <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <div id="bookingFormWrapper" class="glass-panel p-6 sm:p-10 rounded-3xl border border-white shadow-2xl bg-white/90">
+        <form id="bookingForm" onsubmit="handleBookingSubmit(event)" class="space-y-8">
+          
+          <!-- Step 1: Select Service -->
+          <div>
+            <h3 class="font-serif text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
+              <span class="w-7 h-7 rounded-full bg-brand-600 text-white text-xs flex items-center justify-center font-sans font-bold">1</span>
+              Select Service
+            </h3>
+            <div class="grid sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Treatment Catalog *</label>
+                <select id="selectedService" onchange="updateBookingCalculations()" required class="w-full px-4 py-3 rounded-xl border border-rose-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm bg-white">
+                  <option value="gel-mani" data-price="899" data-name="High-Gloss Gel Manicure">High-Gloss Gel Manicure (₹899)</option>
+                  <option value="russian-manicure" data-price="799" data-name="Russian Dry Manicure">Russian Dry Manicure (₹799)</option>
+                  <option value="classic-mani" data-price="499" data-name="Classic Manicure">Classic Manicure (₹499)</option>
+                  <option value="classic-pedi" data-price="699" data-name="Classic Pedicure">Classic Pedicure (₹699)</option>
+                  <option value="spa-pedicure-jelly" data-price="1199" data-name="Ice Cream & Jelly Foot Spa">Ice Cream & Jelly Foot Spa (₹1,199)</option>
+                  <option value="gel-pedi" data-price="1099" data-name="Gel Pedicure Deluxe">Gel Pedicure Deluxe (₹1,099)</option>
+                  <option value="soft-gel-extensions" data-price="1499" data-name="Soft Gel (Gel-X) Extensions">Soft Gel (Gel-X) Extensions (₹1,499)</option>
+                  <option value="nail-art-complex" data-price="1599" data-name="Full Set 3D Nail Extensions">Full Set 3D Nail Extensions (₹1,599)</option>
+                  <option value="chrome-glazed-nails" data-price="999" data-name="Glazed Donut Mirror Chrome">Glazed Donut Mirror Chrome (₹999)</option>
+                  <option value="bridal-3d-crystals" data-price="2199" data-name="Royal Bridal 3D Crystal Set">Royal Bridal 3D Crystal Set (₹2,199)</option>
+                  <option value="mehndi-bridal" data-price="3499" data-name="Bridal Henna & Mehndi">Bridal Henna & Mehndi (₹3,499)</option>
+                  <option value="facial-glow" data-price="1299" data-name="Gold Glow Facial & Clean-up">Gold Glow Facial & Clean-up (₹1,299)</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Service Location *</label>
+                <div class="grid grid-cols-2 gap-2">
+                  <label class="flex items-center justify-center gap-2 p-3 rounded-xl border border-rose-200 cursor-pointer bg-white has-[:checked]:border-brand-600 has-[:checked]:bg-rose-50 text-xs font-bold">
+                    <input type="radio" name="visitType" value="salon" checked onchange="toggleAddressField()" class="text-brand-600">
+                    <span><i class="fa-solid fa-store mr-1"></i> In-Salon</span>
+                  </label>
+                  <label class="flex items-center justify-center gap-2 p-3 rounded-xl border border-rose-200 cursor-pointer bg-white has-[:checked]:border-brand-600 has-[:checked]:bg-rose-50 text-xs font-bold">
+                    <input type="radio" name="visitType" value="home" onchange="toggleAddressField()" class="text-brand-600">
+                    <span><i class="fa-solid fa-house mr-1"></i> Home (+₹199)</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div id="homeAddressContainer" class="hidden mt-3">
+              <label class="block text-xs font-bold text-slate-700 mb-1">Doorstep Address in Jaipur *</label>
+              <textarea id="homeAddress" rows="2" placeholder="Street, Colony, Apartment, Landmark (e.g. Vaishali Nagar, Jaipur)" class="w-full px-4 py-2.5 rounded-xl border border-rose-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm bg-white/80"></textarea>
+            </div>
+          </div>
+
+          <!-- Step 2: Select Package (Optional) -->
+          <div class="pt-6 border-t border-rose-100">
+            <h3 class="font-serif text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
+              <span class="w-7 h-7 rounded-full bg-brand-600 text-white text-xs flex items-center justify-center font-sans font-bold">2</span>
+              Package Upgrade (Optional)
+            </h3>
+            <select id="selectedPackage" onchange="updateBookingCalculations()" class="w-full px-4 py-3 rounded-xl border border-rose-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm bg-white">
+              <option value="" data-price="0">-- No package (Use single service above) --</option>
+              <option value="bridal-glow" data-price="4999" data-name="Royal Bridal Glow Package">👑 Royal Bridal Glow Package (₹4,999 · Save ₹2,500)</option>
+              <option value="nail-spa-combo" data-price="2499" data-name="Nail + Spa Combo">💅 Nail + Spa Combo (₹2,499 · Save ₹700)</option>
+              <option value="self-care-luxury" data-price="3299" data-name="Self-Care Luxury Package">🫧 Self-Care Luxury Package (₹3,299 · Save ₹1,000)</option>
+              <option value="weekend-pamper" data-price="1699" data-name="Weekend Pamper Package">⚡ Weekend Pamper Package (₹1,699 · Save ₹500)</option>
+              <option value="couple-friends" data-price="3799" data-name="Couple / Friends Package">👯 Couple / Friends Package (₹3,799 · Save ₹1,200)</option>
+              <option value="complete-beauty" data-price="5199" data-name="Complete Beauty Package">💎 Complete Beauty Package (₹5,199 · Save ₹1,800)</option>
+            </select>
+          </div>
+
+          <!-- Step 3 & 4: Date & Time Slot -->
+          <div class="pt-6 border-t border-rose-100">
+            <h3 class="font-serif text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
+              <span class="w-7 h-7 rounded-full bg-brand-600 text-white text-xs flex items-center justify-center font-sans font-bold">3 &amp; 4</span>
+              Appointment Date &amp; Time Slot
+            </h3>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Select Date *</label>
+                <input type="date" id="bookDate" required class="w-full px-4 py-3 rounded-xl border border-rose-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm bg-white">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Confirmed Time Slot *</label>
+                <select id="bookTime" required class="w-full px-4 py-3 rounded-xl border border-rose-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm bg-white">
+                  <option value="10:00 AM">10:00 AM - Morning Slot (Available)</option>
+                  <option value="11:00 AM">11:00 AM - Morning Slot (Available)</option>
+                  <option value="01:00 PM">01:00 PM - Afternoon Slot (Available)</option>
+                  <option value="02:00 PM">02:00 PM - Afternoon Slot (Available)</option>
+                  <option value="04:00 PM">04:00 PM - Afternoon Slot (Available)</option>
+                  <option value="05:00 PM">05:00 PM - Evening Slot (Available)</option>
+                  <option value="06:00 PM">06:00 PM - Evening Slot (Available)</option>
+                  <option value="07:00 PM">07:00 PM - Evening Slot (Available)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 5: Customer Details -->
+          <div class="pt-6 border-t border-rose-100">
+            <h3 class="font-serif text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
+              <span class="w-7 h-7 rounded-full bg-brand-600 text-white text-xs flex items-center justify-center font-sans font-bold">5</span>
+              Customer Details &amp; Notes
+            </h3>
+            <div class="grid sm:grid-cols-2 gap-4 mb-3">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Full Name *</label>
+                <input type="text" id="custName" required placeholder="e.g. Pooja Sharma" class="w-full px-4 py-3 rounded-xl border border-rose-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm bg-white">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">WhatsApp / Phone Number *</label>
+                <input type="tel" id="custPhone" required placeholder="e.g. 9876543210" class="w-full px-4 py-3 rounded-xl border border-rose-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm bg-white">
+              </div>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Email Address *</label>
+                <input type="email" id="custEmail" required placeholder="pooja@example.com" class="w-full px-4 py-3 rounded-xl border border-rose-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm bg-white">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Notes / Special Requests (Optional)</label>
+                <input type="text" id="custNotes" placeholder="e.g. Almond shape gel extensions, sensitive skin" class="w-full px-4 py-3 rounded-xl border border-rose-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm bg-white">
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 6: Summary & Confirmation -->
+          <div class="pt-6 border-t border-rose-100 bg-rose-50/80 p-5 rounded-2xl border border-rose-200">
+            <h3 class="font-serif text-base font-bold text-slate-900 mb-3 flex items-center justify-between">
+              <span>Step 6: Summary &amp; Confirmation</span>
+              <span class="text-xs font-semibold text-brand-600">Promo: LUXEUMA applied</span>
+            </h3>
+            <div class="flex justify-between items-center text-xs sm:text-sm mb-2">
+              <span class="text-slate-600">Base Treatment Price:</span>
+              <span id="summaryServiceCost" class="font-bold text-slate-900">₹899</span>
+            </div>
+            <div class="flex justify-between items-center text-xs sm:text-sm mb-2">
+              <span class="text-slate-600">Doorstep Travel Fee:</span>
+              <span id="summaryHomeFee" class="font-bold text-slate-900">₹0</span>
+            </div>
+            <div class="flex justify-between items-center text-base font-bold pt-2 border-t border-rose-200 text-slate-900">
+              <span>Final Total Price:</span>
+              <span id="summaryTotalPrice" class="text-brand-700 font-serif text-2xl">₹899</span>
+            </div>
+
+            <div class="mt-4 p-3 rounded-xl bg-white border border-rose-200 flex items-center justify-between text-xs">
+              <div>
+                <span class="font-bold text-slate-900 block">Advance Deposit Required: ₹200</span>
+                <span class="text-slate-500">Remaining balance payable after service completion</span>
+              </div>
+              <span class="bg-emerald-100 text-emerald-800 font-bold px-2.5 py-1 rounded-md">100% Sterile Salon</span>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="w-full rose-gradient-btn py-4 rounded-2xl font-bold text-base shadow-glass hover:shadow-glass-hover">
+            Confirm &amp; Schedule Appointment
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- =================================================================== -->
+  <!-- 6. MY BOOKINGS / VIP USER DASHBOARD VIEW -->
+  <!-- =================================================================== -->
+  <main id="page-my-bookings" class="page-view flex-grow bg-slate-950 text-slate-100">
+    <!-- Abstract Rose Gold Glassmorphism Hero -->
+    <section class="relative py-20 px-4 sm:px-6 lg:px-8 border-b border-pink-500/20 overflow-hidden min-h-[360px] flex items-center">
+      <div class="absolute inset-0 opacity-30">
+        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1600&auto=format&fit=crop&q=80" alt="Abstract Rose Gold Glassmorphism" class="w-full h-full object-cover">
+      </div>
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent"></div>
+      <div class="relative z-10 max-w-6xl mx-auto w-full">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div>
+            <span class="inline-flex items-center gap-2 bg-pink-500/20 border border-pink-400/30 text-pink-300 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-2 backdrop-blur-md">
+              <i class="fa-solid fa-crown text-amber-400"></i> VIP Client Atelier Portal
+            </span>
+            <h1 class="font-serif text-3xl sm:text-5xl font-bold text-white">
+              Welcome Back, <span class="bg-gradient-to-r from-pink-400 via-rose-300 to-amber-200 bg-clip-text text-transparent" id="portalGuestName">Uma Guest</span>
+            </h1>
+            <p class="text-slate-300 text-sm max-w-xl mt-2">
+              Manage your upcoming luxury sessions, review your booking history, explore your saved treatments, and redeem your Luxe Loyalty points.
+            </p>
+          </div>
+
+          <!-- Quick Phone Sync Box -->
+          <div class="bg-white/10 backdrop-blur-xl border border-white/20 p-3.5 rounded-2xl shadow-xl w-full md:w-auto">
+            <div class="flex items-center gap-2">
+              <input type="tel" id="lookupPhone" placeholder="Enter phone number" class="px-3.5 py-2 rounded-xl border border-pink-500/30 bg-slate-900/80 text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-pink-500">
+              <button onclick="lookupUserBookings()" class="rose-gradient-btn px-4 py-2 rounded-xl font-bold text-xs">
+                Sync Account
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metric Badges -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+          <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-4">
+            <div class="text-xs text-slate-400 font-medium">Active Bookings</div>
+            <div class="text-2xl font-bold text-white mt-1" id="metricActiveCount">1</div>
+          </div>
+          <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-4">
+            <div class="text-xs text-slate-400 font-medium">Luxe Loyalty</div>
+            <div class="text-2xl font-bold text-amber-300 mt-1" id="metricLuxePoints">350 pts</div>
+          </div>
+          <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-4">
+            <div class="text-xs text-slate-400 font-medium">VIP Tier</div>
+            <div class="text-2xl font-bold text-pink-300 mt-1">Gold Prestige</div>
+          </div>
+          <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-4">
+            <div class="text-xs text-slate-400 font-medium">Reward Balance</div>
+            <div class="text-2xl font-bold text-emerald-300 mt-1">₹200 Available</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard Content Area -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto space-y-10">
+      <!-- Section 1: Next Scheduled Appointment Spotlight -->
+      <div>
+        <h2 class="font-serif text-2xl font-bold text-white mb-4 flex items-center gap-2">
+          <i class="fa-solid fa-sparkles text-pink-400 text-sm"></i> Upcoming Appointment
+        </h2>
+        <div id="upcomingSpotlightCard" class="bg-gradient-to-br from-pink-950/40 via-slate-900/90 to-slate-900 border border-pink-500/30 rounded-3xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl">
+          <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 pb-6 border-b border-pink-500/20">
+            <div>
+              <div class="flex items-center gap-3 mb-1">
+                <span class="text-xs font-bold text-pink-400 uppercase tracking-wider">Scheduled Session</span>
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Confirmed
+                </span>
+              </div>
+              <h3 class="font-serif text-2xl font-bold text-white">Russian Dry Manicure &amp; BIAB Gel Extensions</h3>
+              <p class="text-xs text-slate-400 font-mono mt-0.5">Booking Ref: #UMA-892410</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+              <button onclick="promptReschedule('UMA-892410')" class="bg-white/10 hover:bg-white/20 text-white px-3.5 py-2 rounded-xl text-xs font-bold border border-white/20 flex items-center gap-1.5">
+                <i class="fa-solid fa-clock-rotate-left text-pink-400"></i> Reschedule
+              </button>
+              <button onclick="promptCancel('UMA-892410')" class="bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 px-3.5 py-2 rounded-xl text-xs font-bold border border-rose-500/30 flex items-center gap-1.5">
+                <i class="fa-solid fa-xmark"></i> Cancel
+              </button>
+              <button onclick="viewBookingDetailsModal('UMA-892410', 'Russian Dry Manicure & BIAB Gel Extensions', '2026-10-04', '11:00 AM', 2699, 'confirmed', 'salon', 'Uma Sharma')" class="rose-gradient-btn px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5">
+                <i class="fa-solid fa-eye"></i> View Details
+              </button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 text-xs text-slate-300">
+            <div class="bg-slate-950/70 p-3.5 rounded-2xl border border-pink-500/20">
+              <div class="text-slate-400 mb-1"><i class="fa-regular fa-calendar text-pink-400 mr-1"></i> Date</div>
+              <div class="text-white font-bold text-sm">October 04, 2026</div>
+            </div>
+            <div class="bg-slate-950/70 p-3.5 rounded-2xl border border-pink-500/20">
+              <div class="text-slate-400 mb-1"><i class="fa-regular fa-clock text-pink-400 mr-1"></i> Time Slot</div>
+              <div class="text-white font-bold text-sm">11:00 AM</div>
+            </div>
+            <div class="bg-slate-950/70 p-3.5 rounded-2xl border border-pink-500/20">
+              <div class="text-slate-400 mb-1"><i class="fa-solid fa-location-dot text-pink-400 mr-1"></i> Location</div>
+              <div class="text-white font-bold text-sm">Jaipur Studio Atelier</div>
+            </div>
+            <div class="bg-slate-950/70 p-3.5 rounded-2xl border border-pink-500/20">
+              <div class="text-slate-400 mb-1"><i class="fa-solid fa-wand-magic-sparkles text-amber-400 mr-1"></i> Specialist</div>
+              <div class="text-amber-300 font-bold text-sm">Uma Sharma (Master)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Booking History Grid with Status Filters -->
+      <div>
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
+          <h2 class="font-serif text-2xl font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-clock-rotate-left text-pink-400 text-sm"></i> Booking History
+          </h2>
+          <div class="flex gap-1 bg-slate-900 border border-white/10 p-1 rounded-xl text-xs">
+            <button onclick="filterPortalHistory('all')" class="px-3 py-1 rounded-lg font-bold bg-pink-600 text-white">All</button>
+            <button onclick="filterPortalHistory('confirmed')" class="px-3 py-1 rounded-lg font-bold text-slate-400 hover:text-white">Confirmed</button>
+            <button onclick="filterPortalHistory('completed')" class="px-3 py-1 rounded-lg font-bold text-slate-400 hover:text-white">Completed</button>
+            <button onclick="filterPortalHistory('cancelled')" class="px-3 py-1 rounded-lg font-bold text-slate-400 hover:text-white">Cancelled</button>
+          </div>
+        </div>
+
+        <div id="userBookingsList" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Dynamically populated or default history -->
+          <div class="bg-white/10 border border-white/15 rounded-2xl p-5 backdrop-blur-xl flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-mono text-xs text-pink-400 font-bold">#UMA-741290</span>
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30">
+                  <i class="fa-solid fa-circle-check mr-1"></i> Completed
+                </span>
+              </div>
+              <h3 class="font-serif font-bold text-white text-lg">Rose &amp; Milk Foot Spa + 24K Clean-up</h3>
+              <div class="text-xs text-slate-300 space-y-1 mt-3">
+                <div><span class="text-slate-400">Date:</span> Sept 14, 2026 at 03:00 PM</div>
+                <div><span class="text-slate-400">Specialist:</span> Kavita Singh</div>
+                <div class="font-bold text-pink-300 pt-2 border-t border-white/10 flex justify-between">
+                  <span>Paid: ₹2,498</span>
+                  <span class="text-amber-300">+250 Luxe Points</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex gap-2 mt-4 pt-3 border-t border-white/10">
+              <button onclick="viewBookingDetailsModal('UMA-741290', 'Rose & Milk Foot Spa + 24K Clean-up', '2026-09-14', '03:00 PM', 2498, 'completed', 'salon', 'Kavita Singh')" class="flex-1 bg-white/10 hover:bg-white/20 text-white py-2 rounded-xl text-xs font-bold">
+                View Receipt
+              </button>
+              <button onclick="navigateTo('page-booking')" class="rose-gradient-btn px-4 py-2 rounded-xl text-xs font-bold">
+                Re-Book
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Refer a Friend Module -->
+      <div>
+        <div class="relative overflow-hidden bg-gradient-to-br from-pink-950/70 via-slate-900/90 to-slate-900 border border-pink-500/30 rounded-3xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl">
+          <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+            <div>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-amber-500/20 to-pink-500/20 border border-amber-500/30 text-amber-300 text-xs font-bold uppercase tracking-wider mb-2">
+                <i class="fa-solid fa-gift"></i> Give ₹300, Get ₹300 Rewards
+              </span>
+              <h3 class="font-serif text-2xl font-bold text-white">Refer Friends &amp; Earn Atelier Credit</h3>
+              <p class="text-xs text-slate-300 mt-1 max-w-xl">
+                Share your personal VIP link. Your friend gets <strong class="text-pink-300">₹300 OFF</strong> their first session, and you get <strong class="text-amber-300">₹300 Wallet Credit</strong> as soon as their visit is complete!
+              </p>
+            </div>
+            <div class="bg-slate-950/80 border border-pink-500/20 p-4 rounded-2xl text-center w-full lg:w-auto">
+              <p class="text-[11px] font-medium text-slate-400 uppercase">Referral Earnings</p>
+              <p class="text-2xl font-serif font-bold text-amber-300 mt-0.5">₹900 Credit</p>
+              <p class="text-[10px] text-emerald-400 font-bold mt-0.5">3 Successful Referrals</p>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-6 border-t border-pink-500/20 grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
+            <div class="md:col-span-8 bg-slate-950/80 border border-pink-500/30 p-3 rounded-2xl flex items-center justify-between gap-2">
+              <div class="overflow-hidden">
+                <p class="text-[10px] text-slate-400 font-medium uppercase">Personal Referral Link</p>
+                <p class="text-xs font-mono font-bold text-pink-300 truncate" id="standaloneRefLink">https://nailsbyuma.com/book?ref=UMA-VIP-8821</p>
+              </div>
+              <button onclick="copyStandaloneRefLink()" class="rose-gradient-btn px-3.5 py-1.5 rounded-xl text-xs font-bold shrink-0">
+                <i class="fa-solid fa-copy mr-1"></i> Copy
+              </button>
+            </div>
+            <div class="md:col-span-4 flex gap-2">
+              <a href="https://wa.me/?text=Hey!%20Get%20flat%20%E2%82%B9300%20OFF%20your%20first%20luxury%20nail%20session%20at%20Nails%20by%20Uma%20Jaipur!%20Use%20my%20link:%20https://nailsbyuma.com/book?ref=UMA-VIP-8821" target="_blank" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white text-center py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <!-- Referred Status List -->
+          <div class="mt-6 pt-6 border-t border-pink-500/20">
+            <h4 class="text-sm font-bold text-white mb-3 flex items-center gap-2">
+              <i class="fa-solid fa-list-check text-amber-400"></i> Referred Friends Status
+            </h4>
+            <div class="space-y-2 text-xs">
+              <div class="flex items-center justify-between p-3 rounded-xl bg-slate-950/70 border border-white/10">
+                <div>
+                  <span class="font-bold text-white">Ananya Sharma</span>
+                  <span class="text-slate-400 block text-[11px]">Russian Dry Manicure &amp; BIAB Gel</span>
+                </div>
+                <span class="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30 text-[11px]">
+                  Completed (₹300 Credited)
+                </span>
+              </div>
+              <div class="flex items-center justify-between p-3 rounded-xl bg-slate-950/70 border border-white/10">
+                <div>
+                  <span class="font-bold text-white">Rhea Kapoor</span>
+                  <span class="text-slate-400 block text-[11px]">Royal Bridal Extension Suite</span>
+                </div>
+                <span class="px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30 text-[11px]">
+                  Pending Visit (₹300 Pending)
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: Saved Services & Favorite Packages -->
+      <div class="grid lg:grid-cols-2 gap-8">
+        <!-- Saved Services -->
+        <div class="bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-xl">
+          <h3 class="font-serif text-xl font-bold text-white mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-heart text-pink-500"></i> Saved Favorite Services
+          </h3>
+          <div class="space-y-3">
+            <div class="flex items-center justify-between p-3.5 bg-slate-900/80 rounded-2xl border border-pink-500/20">
+              <div>
+                <h4 class="font-bold text-white text-sm">Russian Dry Manicure &amp; BIAB Gel</h4>
+                <p class="text-xs text-slate-400">75 min · ₹1,899 starting</p>
+              </div>
+              <button onclick="quickBookService('Russian Dry Manicure', 1899)" class="rose-gradient-btn px-3 py-1.5 rounded-xl text-xs font-bold">
+                Book
+              </button>
+            </div>
+
+            <div class="flex items-center justify-between p-3.5 bg-slate-900/80 rounded-2xl border border-pink-500/20">
+              <div>
+                <h4 class="font-bold text-white text-sm">Royal Bridal Nail Art with Swarovski</h4>
+                <p class="text-xs text-slate-400">90 min · ₹2,499 starting</p>
+              </div>
+              <button onclick="quickBookService('Royal Bridal Nail Art', 2499)" class="rose-gradient-btn px-3 py-1.5 rounded-xl text-xs font-bold">
+                Book
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Favorite Packages -->
+        <div class="bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-xl">
+          <h3 class="font-serif text-xl font-bold text-white mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-crown text-amber-400"></i> Favorite Packages
+          </h3>
+          <div class="space-y-3">
+            <div class="flex items-center justify-between p-3.5 bg-slate-900/80 rounded-2xl border border-pink-500/20">
+              <div>
+                <h4 class="font-bold text-white text-sm">Bridal Glow Couture Package</h4>
+                <p class="text-xs text-emerald-400 font-bold">₹4,999 · Save ₹2,500</p>
+              </div>
+              <button onclick="quickBookPackage('Bridal Glow Package', 4999)" class="rose-gradient-btn px-3 py-1.5 rounded-xl text-xs font-bold">
+                Reserve
+              </button>
+            </div>
+
+            <div class="flex items-center justify-between p-3.5 bg-slate-900/80 rounded-2xl border border-pink-500/20">
+              <div>
+                <h4 class="font-bold text-white text-sm">Weekend Pamper Glow Package</h4>
+                <p class="text-xs text-emerald-400 font-bold">₹1,799 · Save ₹500</p>
+              </div>
+              <button onclick="quickBookPackage('Weekend Pamper Package', 1799)" class="rose-gradient-btn px-3 py-1.5 rounded-xl text-xs font-bold">
+                Reserve
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- =================================================================== -->
+  <!-- 7. CONTACT US / LOCATION VIEW -->
+  <!-- =================================================================== -->
+  <main id="page-contact" class="page-view flex-grow bg-slate-950 text-slate-100">
+    <!-- Hero Section with Luxury Salon Entrance Image -->
+    <section class="relative py-24 px-4 sm:px-6 lg:px-8 border-b border-pink-500/20 overflow-hidden min-h-[440px] flex items-center justify-center">
+      <div class="absolute inset-0 opacity-30">
+        <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1600&auto=format&fit=crop&q=80" alt="Luxury Salon Entrance" class="w-full h-full object-cover">
+      </div>
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/85 to-slate-950/70"></div>
+      <div class="relative z-10 max-w-5xl mx-auto text-center space-y-4">
+        <span class="inline-flex items-center gap-2 bg-pink-500/20 border border-pink-400/30 text-pink-300 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest backdrop-blur-md">
+          <i class="fa-solid fa-sparkles text-amber-400"></i> Visit Our Atelier & Concierge
+        </span>
+        <h1 class="font-serif text-4xl sm:text-6xl font-bold leading-tight text-white">
+          Where Beauty Meets <span class="bg-gradient-to-r from-pink-400 via-rose-300 to-amber-200 bg-clip-text text-transparent">Warm Hospitality</span>
+        </h1>
+        <p class="text-slate-300 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+          Step into our luxury Jaipur atelier for bespoke nail artistry and sensory spa rituals, or request our certified master technicians at your doorstep.
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-3 pt-4">
+          <a href="https://wa.me/916376539366" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 shadow-lg">
+            <i class="fa-brands fa-whatsapp text-base"></i> WhatsApp Direct: +91 63765 39366
+          </a>
+          <button onclick="window.open('https://maps.google.com/?q=Mansarovar,+Jaipur,+Rajasthan', '_blank')" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 backdrop-blur-md">
+            <i class="fa-solid fa-location-arrow text-pink-400"></i> Get Driving Directions
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 Contact Information Glass Cards -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
+        <!-- 1. Address -->
+        <div class="bg-white/10 border border-white/15 rounded-3xl p-6 backdrop-blur-xl flex flex-col justify-between hover:border-pink-500/40 transition-all shadow-xl">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-pink-500/20 text-pink-400 flex items-center justify-center text-xl mb-4">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <h3 class="font-serif font-bold text-white text-lg mb-1">Salon Atelier</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Main Market Road, Near City Center Plaza, Mansarovar, Jaipur, Rajasthan 302020
+            </p>
+          </div>
+          <button onclick="window.open('https://maps.google.com/?q=Mansarovar,+Jaipur,+Rajasthan', '_blank')" class="mt-4 pt-3 border-t border-white/10 text-xs font-bold text-pink-300 flex items-center gap-1.5">
+            Open in Google Maps <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+          </button>
+        </div>
+
+        <!-- 2. Direct Phone & WhatsApp -->
+        <div class="bg-white/10 border border-white/15 rounded-3xl p-6 backdrop-blur-xl flex flex-col justify-between hover:border-emerald-500/40 transition-all shadow-xl">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl mb-4">
+              <i class="fa-solid fa-phone"></i>
+            </div>
+            <h3 class="font-serif font-bold text-white text-lg mb-1">Call & WhatsApp</h3>
+            <p class="text-sm font-mono font-bold text-white mt-1">+91 63765 39366</p>
+            <p class="text-xs text-emerald-400 font-medium mt-1">Direct Line to Uma Sharma</p>
+          </div>
+          <a href="https://wa.me/916376539366" target="_blank" class="mt-4 pt-3 border-t border-white/10 text-xs font-bold text-emerald-400 flex items-center gap-1.5">
+            Chat on WhatsApp <i class="fa-brands fa-whatsapp text-sm"></i>
+          </a>
+        </div>
+
+        <!-- 3. Opening Hours -->
+        <div class="bg-white/10 border border-white/15 rounded-3xl p-6 backdrop-blur-xl flex flex-col justify-between hover:border-amber-500/40 transition-all shadow-xl">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-xl mb-4">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            <h3 class="font-serif font-bold text-white text-lg mb-1">Opening Hours</h3>
+            <div class="text-xs text-slate-300 space-y-1 mt-2">
+              <p><span class="text-slate-400">Mon – Sat:</span> 10:00 AM – 08:00 PM</p>
+              <p><span class="text-slate-400">Sunday:</span> 11:00 AM – 06:00 PM</p>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-white/10 text-[11px] font-semibold text-emerald-400 flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Open &amp; Accepting Bookings
+          </div>
+        </div>
+
+        <!-- 4. Email Concierge -->
+        <div class="bg-white/10 border border-white/15 rounded-3xl p-6 backdrop-blur-xl flex flex-col justify-between hover:border-pink-500/40 transition-all shadow-xl">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-rose-500/20 text-rose-400 flex items-center justify-center text-xl mb-4">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <h3 class="font-serif font-bold text-white text-lg mb-1">Email Concierge</h3>
+            <p class="text-xs text-slate-300 leading-relaxed break-all">
+              diamonmediapromotion@gmail.com
+            </p>
+            <p class="text-xs text-slate-400 mt-1">Bridal & Destination Wedding Requests</p>
+          </div>
+          <a href="mailto:diamonmediapromotion@gmail.com" class="mt-4 pt-3 border-t border-white/10 text-xs font-bold text-rose-300 flex items-center gap-1.5">
+            Write to Concierge <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Prominent Map & Transit + Contact Form -->
+      <div class="grid lg:grid-cols-12 gap-8 items-start mb-16">
+        <!-- Prominent Map & Transit Guides (7 Cols) -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="bg-white/10 border border-white/15 rounded-3xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+              <div>
+                <span class="text-xs uppercase font-bold tracking-widest text-pink-400">Atelier Coordinates</span>
+                <h2 class="text-2xl sm:text-3xl font-serif font-bold text-white mt-0.5">Location &amp; Directions</h2>
+              </div>
+              <button onclick="window.open('https://maps.google.com/?q=Mansarovar,+Jaipur,+Rajasthan', '_blank')" class="rose-gradient-btn px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5">
+                <i class="fa-solid fa-location-arrow"></i> Navigate Now
+              </button>
+            </div>
+
+            <!-- Prominent Map Embed -->
+            <div class="relative rounded-2xl overflow-hidden border border-pink-500/30 shadow-2xl h-80 sm:h-96 w-full bg-slate-900">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113886.7327914561!2d75.71987515!3d26.91243365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396c4adf4c57e281%3A0xce1c63a0cf22e09!2sJaipur%2C%20Rajasthan!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+
+            <!-- Transit & Landmark Guide -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+              <div class="p-4 rounded-2xl bg-slate-900/80 border border-white/10 text-xs">
+                <div class="flex items-center gap-2 text-pink-400 font-bold mb-1">
+                  <i class="fa-solid fa-train-subway"></i> Metro Access
+                </div>
+                <p class="text-slate-300">Mansarovar Metro Station (5 min cab ride to studio).</p>
+              </div>
+
+              <div class="p-4 rounded-2xl bg-slate-900/80 border border-white/10 text-xs">
+                <div class="flex items-center gap-2 text-amber-400 font-bold mb-1">
+                  <i class="fa-solid fa-square-parking"></i> Valet &amp; Parking
+                </div>
+                <p class="text-slate-300">Complimentary guest valet &amp; ample dedicated car parking.</p>
+              </div>
+
+              <div class="p-4 rounded-2xl bg-slate-900/80 border border-white/10 text-xs">
+                <div class="flex items-center gap-2 text-emerald-400 font-bold mb-1">
+                  <i class="fa-solid fa-landmark"></i> Landmark
+                </div>
+                <p class="text-slate-300">Opposite City Center Plaza &amp; Gold Souk Boulevard.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact & Enquiry Form (5 Cols) -->
+        <div class="lg:col-span-5">
+          <div class="bg-gradient-to-br from-pink-950/40 via-slate-900/90 to-slate-900 border border-pink-500/30 rounded-3xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl">
+            <div class="mb-6">
+              <span class="text-xs uppercase font-bold tracking-widest text-pink-400">Concierge Inquiry</span>
+              <h3 class="text-2xl font-serif font-bold text-white mt-1">Send a Message</h3>
+              <p class="text-xs text-slate-300 mt-1">Have a question regarding custom bridal themes or doorstep visits?</p>
+            </div>
+
+            <form onsubmit="handleInquirySubmit(event)" class="space-y-4">
+              <div>
+                <label class="block text-xs text-slate-300 mb-1">Full Name *</label>
+                <input type="text" id="inqName" required placeholder="e.g. Pooja Sharma" class="w-full bg-slate-950/80 border border-pink-500/30 rounded-xl px-4 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:ring-2 focus:ring-pink-500">
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs text-slate-300 mb-1">WhatsApp Phone *</label>
+                  <input type="tel" id="inqPhone" required placeholder="9876543210" class="w-full bg-slate-950/80 border border-pink-500/30 rounded-xl px-4 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:ring-2 focus:ring-pink-500">
+                </div>
+                <div>
+                  <label class="block text-xs text-slate-300 mb-1">Email (Optional)</label>
+                  <input type="email" placeholder="pooja@example.com" class="w-full bg-slate-950/80 border border-pink-500/30 rounded-xl px-4 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:ring-2 focus:ring-pink-500">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs text-slate-300 mb-1">Service Interest</label>
+                <select class="w-full bg-slate-950/80 border border-pink-500/30 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:ring-2 focus:ring-pink-500">
+                  <option>Russian Manicure &amp; 3D Nail Art</option>
+                  <option>Royal Bridal Nails &amp; Henna</option>
+                  <option>BIAB Gel Extensions</option>
+                  <option>Rose Foot Spa Pedicure</option>
+                  <option>Doorstep Home Salon Service</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs text-slate-300 mb-1">Message</label>
+                <textarea id="inqMessage" required rows="3" placeholder="Tell us about the nail designs or bridal dates you have in mind..." class="w-full bg-slate-950/80 border border-pink-500/30 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:ring-2 focus:ring-pink-500"></textarea>
+              </div>
+
+              <button type="submit" class="w-full rose-gradient-btn py-3.5 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg">
+                <i class="fa-solid fa-paper-plane"></i> Send Message via WhatsApp
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Social Media & Quick Booking Banner -->
+      <div class="grid lg:grid-cols-12 gap-8 items-center">
+        <!-- Social Channels -->
+        <div class="lg:col-span-5 bg-white/10 border border-white/15 rounded-3xl p-6 sm:p-8 backdrop-blur-xl">
+          <h3 class="font-serif font-bold text-white text-xl mb-2">Connect on Social</h3>
+          <p class="text-xs text-slate-400 mb-6">Follow our daily client nail transformations and bridal mehndi reels.</p>
+          <div class="space-y-3">
+            <a href="https://instagram.com" target="_blank" class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-900/80 border border-pink-500/20 hover:border-pink-500 transition-all">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-pink-500/20 text-pink-400 flex items-center justify-center text-lg">
+                  <i class="fa-brands fa-instagram"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-white text-xs">@nailsbyuma_jaipur</h4>
+                  <p class="text-[10px] text-slate-400">18.5K Fashion &amp; Bridal Followers</p>
+                </div>
+              </div>
+              <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400"></i>
+            </a>
+
+            <a href="https://youtube.com" target="_blank" class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-900/80 border border-pink-500/20 hover:border-rose-500 transition-all">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center text-lg">
+                  <i class="fa-brands fa-youtube"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-white text-xs">Nails by Uma Studio</h4>
+                  <p class="text-[10px] text-slate-400">Tutorials &amp; Technique Vlogs</p>
+                </div>
+              </div>
+              <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Booking Banner -->
+        <div class="lg:col-span-7 bg-gradient-to-r from-pink-950/60 via-purple-950/50 to-slate-900 border border-pink-500/30 rounded-3xl p-8 backdrop-blur-xl shadow-2xl">
+          <span class="text-xs font-bold text-amber-300 uppercase tracking-wider flex items-center gap-1.5 mb-2">
+            <i class="fa-solid fa-sparkles"></i> Instant Online Booking
+          </span>
+          <h3 class="font-serif font-bold text-white text-2xl sm:text-3xl">
+            Ready for Your Couture Beauty Session?
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-xl mt-2 mb-6">
+            Reserve an available appointment slot in under 2 minutes with transparent pricing and real-time confirmations.
+          </p>
+          <div class="flex flex-wrap items-center gap-3">
+            <button onclick="navigateTo('page-booking')" class="rose-gradient-btn px-6 py-3 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2">
+              <i class="fa-regular fa-calendar-check"></i> Book Appointment Online
+            </button>
+            <a href="https://wa.me/916376539366" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-3 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2">
+              <i class="fa-brands fa-whatsapp text-base"></i> WhatsApp Stylist
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- =================================================================== -->
+  <!-- LUXURY FOOTER -->
+  <!-- =================================================================== -->
+  <footer class="glass-nav border-t border-rose-100 bg-white/90 text-slate-800 pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-4 gap-10 mb-12">
+      <!-- Brand column -->
+      <div class="space-y-4">
+        <div class="flex items-center space-x-3">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-600 to-gold flex items-center justify-center text-white font-serif font-bold">U</div>
+          <span class="font-serif text-xl font-bold text-slate-900">Nails by Uma</span>
+        </div>
+        <p class="text-xs text-slate-600 leading-relaxed">Jaipur's premier luxury atelier for bespoke gel extensions, 3D hand art, and organic bridal mehndi.</p>
+        <div class="flex space-x-3 text-brand-600 text-sm">
+          <a href="https://instagram.com" target="_blank" class="w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center hover:bg-rose-100"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://facebook.com" target="_blank" class="w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center hover:bg-rose-100"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://wa.me/916376539366" target="_blank" class="w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center hover:bg-rose-100"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h5 class="font-bold text-sm text-slate-900 uppercase tracking-wider mb-4">Explore</h5>
+        <ul class="space-y-2 text-xs text-slate-600">
+          <li><a href="#services" onclick="navigateTo('services'); return false;" class="hover:text-brand-600">Services Menu</a></li>
+          <li><a href="#packages" onclick="navigateTo('packages'); return false;" class="hover:text-brand-600">Bridal Combos</a></li>
+          <li><a href="#about" onclick="navigateTo('about'); return false;" class="hover:text-brand-600">About Founder</a></li>
+          <li><a href="#booking" onclick="navigateTo('booking'); return false;" class="hover:text-brand-600">Book Online</a></li>
+        </ul>
+      </div>
+
+      <!-- Popular Services -->
+      <div>
+        <h5 class="font-bold text-sm text-slate-900 uppercase tracking-wider mb-4">Top Treatments</h5>
+        <ul class="space-y-2 text-xs text-slate-600">
+          <li>High-Gloss Gel Manicure</li>
+          <li>Full Set 3D Nail Extensions</li>
+          <li>Bridal Organic Mehndi</li>
+          <li>Aromatherapy Foot Spa</li>
+        </ul>
+      </div>
+
+      <!-- Service Areas -->
+      <div>
+        <h5 class="font-bold text-sm text-slate-900 uppercase tracking-wider mb-4">Jaipur Service Hubs</h5>
+        <p class="text-xs text-slate-600 mb-2">In-salon & doorstep home appointments available in:</p>
+        <p class="text-xs text-slate-800 font-semibold leading-relaxed">Mansarovar · Vaishali Nagar · Malviya Nagar · Raja Park · C-Scheme · Tonk Road</p>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-rose-100 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500">
+      <p>© 2026 Nails by Uma. All Rights Reserved.</p>
+      <p class="mt-2 sm:mt-0 font-medium">Crafted with luxury in Jaipur, Rajasthan.</p>
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP CHAT BUTTON -->
+  <a href="https://wa.me/916376539366?text=Hi%20Uma,%20I%20have%20an%20inquiry%20regarding%20nail%20services!" target="_blank" class="fixed bottom-6 right-6 z-50 bg-emerald-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition duration-300">
+    <i class="fa-brands fa-whatsapp text-3xl"></i>
+  </a>
+
+  <!-- =================================================================== -->
+  <!-- JAVASCRIPT APPLICATION LOGIC -->
+  <!-- =================================================================== -->
+  <script>
+    // Initial Services Catalog
+    const SERVICES_DATA = [
+      { id: 'classic-mani', name: 'Classic Manicure', category: 'manicure', group: 'nails', price: 499, duration: 45, image: 'https://images.unsplash.com/photo-1610992015762-45dca7464f11?w=800&h=600&fit=crop&q=80', desc: 'Precision nail shaping, cuticle therapy, hand massage and polish.' },
+      { id: 'russian-manicure', name: 'Russian Dry Manicure', category: 'manicure', group: 'nails', price: 799, duration: 55, image: 'https://images.unsplash.com/photo-1607779097040-26e80aa78e66?w=800&h=600&fit=crop&q=80', desc: 'Precision e-file cuticle alignment with strengthening base overlay.' },
+      { id: 'classic-pedi', name: 'Classic Pedicure', category: 'pedicure', group: 'nails', price: 699, duration: 60, image: 'https://images.unsplash.com/photo-1629198735700-610c0e49aab2?w=800&h=600&fit=crop&q=80', desc: 'Foot soak with herbal salts, gentle exfoliation, massage and shaping.' },
+      { id: 'gel-mani', name: 'High-Gloss Gel Manicure', category: 'gel-nails', group: 'nails', price: 899, duration: 60, image: 'https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=800&h=600&fit=crop&q=80', desc: 'High-gloss chip-free UV gel polish cured for up to 3 weeks wear.' },
+      { id: 'gel-pedi', name: 'Gel Pedicure Deluxe', category: 'gel-nails', group: 'nails', price: 1099, duration: 75, image: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=800&h=600&fit=crop&q=80', desc: 'Luxury foot spa with callus removal, scrub mask and gel polish.' },
+      { id: 'soft-gel-extensions', name: 'Soft Gel (Gel-X) Extensions', category: 'extensions', group: 'nails', price: 1499, duration: 90, image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&h=600&fit=crop&q=80', desc: 'Seamless soft gel tips bonded for instant length & durable strength.' },
+      { id: 'nail-art-complex', name: 'Full Set 3D Extensions', category: 'extensions', group: 'nails', price: 1599, duration: 120, image: 'https://images.unsplash.com/photo-1604654894623-b5e7c0a5a6d1?w=800&h=600&fit=crop&q=80', desc: 'Full acrylic extensions with 3D hand art, pearls and rhinestones.' },
+      { id: 'nail-art-simple', name: 'Custom Accent Nail Art', category: 'art', group: 'nails', price: 649, duration: 60, image: 'https://images.unsplash.com/photo-1610992015732-2449b76344bc?w=800&h=600&fit=crop&q=80', desc: 'Hand-painted designs, chrome powder, foil flakes, or crystals.' },
+      { id: 'french-mani', name: 'French Manicure & Tips', category: 'chrome-french', group: 'nails', price: 799, duration: 50, image: 'https://images.unsplash.com/photo-1606789674925-58a94bf6d1e8?w=800&h=600&fit=crop&q=80', desc: 'Classic French tips with pink base and clean white smile lines.' },
+      { id: 'chrome-glazed-nails', name: 'Glazed Donut & Mirror Chrome', category: 'chrome-french', group: 'nails', price: 999, duration: 60, image: 'https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=800&h=600&fit=crop&q=80', desc: 'Ultra-reflective pearl mirror chrome powder buffed over gel base.' },
+      { id: 'bridal-3d-crystals', name: 'Royal Bridal 3D Crystal Set', category: 'bridal', group: 'bridal', price: 2199, duration: 120, image: 'https://images.unsplash.com/photo-1583001809873-a128495da465?w=800&h=600&fit=crop&q=80', desc: 'Extravagant bridal nail design with hand-sculpted acrylic florals.' },
+      { id: 'bridal-package', name: 'Bridal Glow Package', category: 'bridal', group: 'bridal', price: 4999, duration: 240, image: 'https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?w=800&h=600&fit=crop&q=80', desc: 'Gel extensions, bridal mehndi, luxury pedicure and gold facial.' },
+      { id: 'mehndi-bridal', name: 'Bridal Henna & Mehndi', category: 'mehndi', group: 'mehndi', price: 3499, duration: 180, image: 'https://images.unsplash.com/photo-1583001809873-a128495da465?w=800&h=600&fit=crop&q=80', desc: 'Full bridal arms and feet ornate mehndi using organic henna cones.' },
+      { id: 'mehndi-arabic', name: 'Arabic & Designer Mehndi', category: 'mehndi', group: 'mehndi', price: 1299, duration: 90, image: 'https://images.unsplash.com/photo-1583001809873-a128495da465?w=800&h=600&fit=crop&q=80', desc: 'Modern floral trails and delicate back-hand organic patterns.' },
+      { id: 'facial-glow', name: 'Gold Glow Facial & Clean-up', category: 'beauty', group: 'beauty', price: 1299, duration: 60, image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&h=600&fit=crop&q=80', desc: 'Deep pore cleansing, skin rejuvenating fruit peel and gold mask.' },
+      { id: 'hydra-glow-facial', name: 'Hydra Glow Dermabrasion', category: 'beauty', group: 'beauty', price: 1999, duration: 75, image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&h=600&fit=crop&q=80', desc: 'Hydro-suction pore vacuuming, salicylic peel and serum infusion.' },
+      { id: 'spa-pedicure-jelly', name: 'Ice Cream & Jelly Foot Spa', category: 'spa', group: 'spa', price: 1199, duration: 75, image: 'https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?w=800&h=600&fit=crop&q=80', desc: 'Crystalline jelly foot soak, volcanic scrub, and hot stone massage.' },
+      { id: 'aromatherapy-spa-ritual', name: 'Aromatherapy Luxury Spa Ritual', category: 'spa', group: 'spa', price: 1699, duration: 90, image: 'https://images.unsplash.com/photo-1629198735700-610c0e49aab2?w=800&h=600&fit=crop&q=80', desc: 'Lavender salt bath, organic sugar polish and paraffin dip.' }
+    ];
+
+    let currentGroupFilter = 'all';
+    let currentCatFilter = 'all';
+
+    function filterServicesByGroup(group) {
+      currentGroupFilter = group;
+      currentCatFilter = 'all';
+
+      document.querySelectorAll('.group-filter-btn').forEach(btn => {
+        if (btn.getAttribute('data-group') === group) {
+          btn.classList.add('bg-brand-600', 'text-white');
+          btn.classList.remove('bg-white', 'text-slate-700');
+        } else {
+          btn.classList.remove('bg-brand-600', 'text-white');
+          btn.classList.add('bg-white', 'text-slate-700');
+        }
+      });
+
+      document.querySelectorAll('.cat-filter-btn').forEach(btn => {
+        if (btn.getAttribute('data-cat') === 'all') {
+          btn.classList.add('bg-slate-900', 'text-white');
+          btn.classList.remove('text-slate-600');
+        } else {
+          btn.classList.remove('bg-pink-600', 'text-white', 'bg-slate-900');
+          btn.classList.add('text-slate-600');
+        }
+      });
+
+      renderServices();
+    }
+
+    function filterServices(category) {
+      currentCatFilter = category;
+
+      document.querySelectorAll('.cat-filter-btn').forEach(btn => {
+        if (btn.getAttribute('data-cat') === category) {
+          btn.classList.add(category === 'all' ? 'bg-slate-900' : 'bg-pink-600', 'text-white');
+          btn.classList.remove('text-slate-600');
+        } else {
+          btn.classList.remove('bg-pink-600', 'text-white', 'bg-slate-900');
+          btn.classList.add('text-slate-600');
+        }
+      });
+
+      renderServices();
+    }
+
+    // Render Services
+    function renderServices() {
+      const grid = document.getElementById('servicesGrid');
+      if (!grid) return;
+
+      let filtered = SERVICES_DATA;
+      if (currentGroupFilter !== 'all') {
+        filtered = filtered.filter(s => s.group === currentGroupFilter);
+      }
+      if (currentCatFilter !== 'all') {
+        filtered = filtered.filter(s => s.category === currentCatFilter);
+      }
+
+      grid.innerHTML = filtered.map(s => `
+        <div class="glass-card rounded-3xl overflow-hidden p-4 border border-white/80 shadow-glass group hover:shadow-glass-hover transition-all duration-300 transform hover:-translate-y-1 bg-white/80 backdrop-blur-md flex flex-col justify-between">
+          <div>
+            <div class="relative h-56 rounded-2xl overflow-hidden mb-4 bg-pink-50">
+              <img src="${s.image}" alt="${s.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              <span class="absolute top-3 right-3 bg-white/90 backdrop-blur-md text-brand-700 font-bold text-xs px-3 py-1 rounded-full shadow-xs">₹${s.price}</span>
+            </div>
+            <div class="px-2">
+              <div class="flex items-center justify-between text-xs text-slate-500 mb-1.5">
+                <span><i class="fa-regular fa-clock text-brand-500 mr-1"></i> ${s.duration} Mins</span>
+                <span class="capitalize text-brand-600 font-bold bg-pink-50 px-2 py-0.5 rounded-full text-[10px]">${s.category}</span>
+              </div>
+              <h3 class="font-serif text-lg font-bold text-slate-900 mb-1.5 group-hover:text-brand-600 transition-colors">${s.name}</h3>
+              <p class="text-xs text-slate-600 mb-4 line-clamp-2 leading-relaxed">${s.desc}</p>
+            </div>
+          </div>
+          <div class="px-2 pt-2 border-t border-rose-100/60 flex items-center justify-between gap-2">
+            <div>
+              <span class="text-[10px] text-slate-400 uppercase font-semibold block">Starts at</span>
+              <span class="font-serif font-bold text-lg text-slate-900">₹${s.price}</span>
+            </div>
+            <button onclick="quickBookService('${s.id}', '${s.name}', ${s.price})" class="rose-gradient-btn py-2.5 px-4 rounded-xl font-bold text-xs flex items-center gap-1.5 shadow-sm">
+              <span>Book</span>
+              <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function quickBookService(serviceId, serviceName, price) {
+      navigateTo('booking');
+      const select = document.getElementById('selectedService');
+      if (select) {
+        select.value = serviceId;
+        updateBookingCalculations();
+      }
+    }
+
+    function quickBookPackage(packageName, price) {
+      navigateTo('booking');
+      const select = document.getElementById('selectedService');
+      if (select) {
+        // Find matching or set fallback
+        select.value = packageName.includes('Bridal') ? 'bridal-package' : 'basic-combo';
+        updateBookingCalculations();
+      }
+    }
+
+    // Booking Calculation Logic
+    function toggleAddressField() {
+      const visitType = document.querySelector('input[name="visitType"]:checked').value;
+      const addrBox = document.getElementById('homeAddressContainer');
+      if (visitType === 'home') {
+        addrBox.classList.remove('hidden');
+      } else {
+        addrBox.classList.add('hidden');
+      }
+      updateBookingCalculations();
+    }
+
+    function updateBookingCalculations() {
+      const select = document.getElementById('selectedService');
+      const selectedOption = select.options[select.selectedIndex];
+      const servicePrice = parseInt(selectedOption.getAttribute('data-price') || '899', 10);
+      const visitType = document.querySelector('input[name="visitType"]:checked').value;
+      const homeCharge = visitType === 'home' ? 199 : 0;
+      const total = servicePrice + homeCharge;
+      const remaining = Math.max(0, total - 200);
+
+      document.getElementById('summaryServiceCost').textContent = `₹${servicePrice}`;
+      document.getElementById('summaryHomeFee').textContent = `₹${homeCharge}`;
+      document.getElementById('summaryTotalPrice').textContent = `₹${total}`;
+      document.getElementById('summaryRemaining').textContent = `${remaining}`;
+    }
+
+    // Booking Form Submission Handler
+    function handleBookingSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('custName').value.trim();
+      const phone = document.getElementById('custPhone').value.trim();
+      const select = document.getElementById('selectedService');
+      const selectedOption = select.options[select.selectedIndex];
+      const serviceName = selectedOption.getAttribute('data-name');
+      const servicePrice = parseInt(selectedOption.getAttribute('data-price'), 10);
+      const visitType = document.querySelector('input[name="visitType"]:checked').value;
+      const homeCharge = visitType === 'home' ? 199 : 0;
+      const address = visitType === 'home' ? document.getElementById('homeAddress').value.trim() : 'Salon Visit';
+      const date = document.getElementById('bookDate').value;
+      const time = document.getElementById('bookTime').value;
+
+      const bookingId = `UMA-${Date.now().toString().slice(-6)}`;
+      const total = servicePrice + homeCharge;
+
+      const newBooking = {
+        id: bookingId,
+        customerName: name,
+        customerPhone: phone,
+        serviceName,
+        totalPrice: total,
+        visitType,
+        address,
+        date,
+        time,
+        status: 'Confirmed',
+        createdAt: new Date().toISOString()
+      };
+
+      const existing = getStoredBookings();
+      existing.unshift(newBooking);
+      saveStoredBookings(existing);
+
+      // Open WhatsApp Confirmation automatically
+      const waMsg = encodeURIComponent(`*New Booking: ${bookingId}*\nName: ${name}\nPhone: ${phone}\nService: ${serviceName}\nMode: ${visitType.toUpperCase()}\nDate: ${date}\nTime: ${time}\nTotal: ₹${total}\nAdvance: ₹200 (UPI)`);
+      window.open(`https://wa.me/916376539366?text=${waMsg}`, '_blank');
+
+      alert(`Thank you, ${name}! Your booking (#${bookingId}) is registered. We have sent the confirmation to WhatsApp.`);
+      navigateTo('my-bookings');
+    }
+
+    // User Bookings Dashboard Render
+    function renderUserBookings(filterPhone = '') {
+      const container = document.getElementById('userBookingsList');
+      if (!container) return;
+
+      let bookings = getStoredBookings();
+      if (filterPhone) {
+        bookings = bookings.filter(b => b.customerPhone.includes(filterPhone));
+      }
+
+      if (bookings.length === 0) {
+        container.innerHTML = `
+          <div class="glass-panel p-8 rounded-3xl text-center">
+            <i class="fa-regular fa-calendar-xmark text-4xl text-rose-300 mb-3 block"></i>
+            <h4 class="font-bold text-slate-800 text-lg">No Bookings Found</h4>
+            <p class="text-sm text-slate-500 mb-4">Book your first luxury nail or spa session today.</p>
+            <button onclick="navigateTo('booking')" class="rose-gradient-btn px-6 py-2.5 rounded-xl font-bold text-xs">
+              Book Appointment
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = bookings.map(b => `
+        <div class="glass-card p-6 rounded-3xl border border-white shadow-glass">
+          <div class="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-rose-100">
+            <div>
+              <span class="text-[10px] font-bold tracking-widest text-brand-600 uppercase">Booking ID: ${b.id}</span>
+              <h3 class="font-serif text-xl font-bold text-slate-900">${b.serviceName}</h3>
+            </div>
+            <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span> ${b.status}
+            </span>
+          </div>
+
+          <div class="grid sm:grid-cols-3 gap-4 py-4 text-xs text-slate-600">
+            <div>
+              <span class="block text-slate-400">Date & Time</span>
+              <strong class="text-slate-800 text-sm">${b.date} · ${b.time}</strong>
+            </div>
+            <div>
+              <span class="block text-slate-400">Visit Mode</span>
+              <strong class="text-slate-800 text-sm capitalize">${b.visitType} ${b.visitType === 'home' ? '(Doorstep)' : '(Salon)'}</strong>
+            </div>
+            <div>
+              <span class="block text-slate-400">Total Price</span>
+              <strong class="text-brand-700 text-sm font-bold">₹${b.totalPrice}</strong>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-rose-100 flex items-center justify-between text-xs">
+            <span class="text-slate-500">Client: ${b.customerName} (${b.customerPhone})</span>
+            <a href="https://wa.me/916376539366?text=Hi%20Uma,%20inquiring%20about%20booking%20${b.id}" target="_blank" class="text-emerald-700 font-bold hover:underline">
+              <i class="fa-brands fa-whatsapp"></i> Chat with Stylist
+            </a>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function lookupUserBookings() {
+      const phone = document.getElementById('lookupPhone').value.trim();
+      renderUserBookings(phone);
+    }
+
+    function handleInquirySubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('inqName').value.trim();
+      const phone = document.getElementById('inqPhone').value.trim();
+      const msg = document.getElementById('inqMessage').value.trim();
+      const text = encodeURIComponent(`*Inquiry from ${name} (${phone})*\n${msg}`);
+      window.open(`https://wa.me/916376539366?text=${text}`, '_blank');
+    }
+
+    function copyStandaloneRefLink() {
+      const linkText = document.getElementById('standaloneRefLink')?.innerText || 'https://nailsbyuma.com/book?ref=UMA-VIP-8821';
+      navigator.clipboard.writeText(linkText);
+      alert('Referral link copied! Share with friends to earn ₹300 per booking.');
+    }
+
+    // Sticky Header Scroll Transition
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (header) {
+        if (window.scrollY > 20) {
+          header.classList.add('glass-nav-scrolled');
+          header.classList.remove('glass-nav');
+        } else {
+          header.classList.remove('glass-nav-scrolled');
+          header.classList.add('glass-nav');
+        }
+      }
+    }, { passive: true });
+
+    // Set Default Minimum Date for Booking Picker (Today)
+    window.addEventListener('DOMContentLoaded', () => {
+      const dateInput = document.getElementById('bookDate');
+      if (dateInput) {
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.min = today;
+        dateInput.value = today;
+      }
+
+      // Initial Hash Routing
+      const hash = window.location.hash.replace('#', '') || 'home';
+      navigateTo(hash);
+      renderServices('all');
+
+      // Scroll Reveal Animations Observer
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+        revealObserver.observe(el);
+      });
+    });
+
+    window.addEventListener('hashchange', () => {
+      const hash = window.location.hash.replace('#', '') || 'home';
+      navigateTo(hash);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,690 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 340 10% 15%;
+    --card: 0 0% 100%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 340 10% 15%;
+    --primary: 340 82% 52%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 340 100% 97%;
+    --secondary-foreground: 340 82% 52%;
+    --muted: 340 30% 96%;
+    --muted-foreground: 340 10% 45%;
+    --accent: 25 95% 63%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 340 20% 90%;
+    --input: 340 20% 90%;
+    --ring: 340 82% 52%;
+    --radius: 1rem;
+    --chart-1: 340 82% 52%;
+    --chart-2: 25 95% 63%;
+    --chart-3: 340 100% 97%;
+    --chart-4: 340 30% 96%;
+    --chart-5: 340 10% 45%;
+  }
+}
+
+@layer base {
+  html, body, #root {
+    width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+  }
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding-top: env(safe-area-inset-top);
+  }
+  h1, h2, h3, h4, .font-serif {
+    font-family: 'Playfair Display', 'Cinzel', Georgia, serif;
+    letter-spacing: -0.01em;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+  *:focus-visible {
+    @apply outline-none ring-2 ring-pink-500 ring-offset-2 ring-offset-white dark:ring-offset-slate-900;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    margin: 0;
+    touch-action: manipulation;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    line-height: 1.7;
+  }
+}
+
+@layer utilities {
+  /* Scrollbar hiding utilities */
+  .scrollbar-none::-webkit-scrollbar,
+  .no-scrollbar::-webkit-scrollbar {
+    display: none !important;
+  }
+  .scrollbar-none,
+  .no-scrollbar {
+    -ms-overflow-style: none !important; /* IE and Edge */
+    scrollbar-width: none !important; /* Firefox */
+  }
+
+  /* Shimmer Skeleton Loader */
+  @keyframes shimmerEffect {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+  .shimmer-bg {
+    background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+    background-size: 200% 100%;
+    animation: shimmerEffect 1.5s infinite linear;
+  }
+  .dark .shimmer-bg {
+    background: linear-gradient(90deg, #1f2937 25%, #374151 50%, #1f2937 75%);
+    background-size: 200% 100%;
+  }
+
+  /* =================================================================== */
+  /* AMBIENT GRADIENT MESH BACKGROUNDS & GLOWING GLASSWRAPPER SYSTEM    */
+  /* =================================================================== */
+
+  /* Ambient Mesh Gradient Field */
+  .ambient-gradient-mesh {
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(244, 114, 182, 0.22) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(192, 132, 252, 0.20) 0px, transparent 50%),
+      radial-gradient(at 50% 50%, rgba(251, 191, 36, 0.15) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(244, 114, 182, 0.20) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, rgba(168, 85, 247, 0.18) 0px, transparent 50%);
+  }
+
+  /* Soft Glowing Ambient Orbs behind Glassmorphic Containers */
+  .glow-orb-pink {
+    background: radial-gradient(circle, rgba(244, 114, 182, 0.35) 0%, rgba(225, 29, 72, 0.15) 50%, transparent 70%);
+    filter: blur(60px);
+  }
+
+  .glow-orb-purple {
+    background: radial-gradient(circle, rgba(192, 132, 252, 0.35) 0%, rgba(147, 51, 234, 0.15) 50%, transparent 70%);
+    filter: blur(60px);
+  }
+
+  .glow-orb-gold {
+    background: radial-gradient(circle, rgba(251, 191, 36, 0.30) 0%, rgba(245, 158, 11, 0.12) 50%, transparent 70%);
+    filter: blur(60px);
+  }
+
+  /* Wrapper to elevate Glassmorphism with background gradient aura */
+  .glowing-glass-container {
+    position: relative;
+  }
+
+  .glowing-glass-container::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg, rgba(244, 114, 182, 0.4), rgba(192, 132, 252, 0.3), rgba(251, 191, 36, 0.35));
+    border-radius: 26px;
+    filter: blur(12px);
+    opacity: 0.6;
+    z-index: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .glowing-glass-container:hover::before {
+    opacity: 0.9;
+  }
+
+  /* =================================================================== */
+  /* ANIMATED MESH GRADIENT & SECTION TITLE APP STYLING                  */
+  /* =================================================================== */
+
+  @keyframes meshGlowAnimation {
+    0%, 100% {
+      background-position: 0% 50%, 100% 50%, 50% 0%, 50% 100%;
+    }
+    50% {
+      background-position: 100% 50%, 0% 50%, 50% 100%, 50% 0%;
+    }
+  }
+
+  .animated-mesh-gradient {
+    background: 
+      radial-gradient(at 10% 20%, rgba(244, 114, 182, 0.25) 0px, transparent 45%),
+      radial-gradient(at 90% 10%, rgba(192, 132, 252, 0.22) 0px, transparent 45%),
+      radial-gradient(at 50% 50%, rgba(251, 191, 36, 0.18) 0px, transparent 50%),
+      radial-gradient(at 80% 90%, rgba(244, 114, 182, 0.22) 0px, transparent 45%),
+      radial-gradient(at 20% 80%, rgba(168, 85, 247, 0.20) 0px, transparent 45%);
+    background-size: 180% 180%;
+    animation: meshGlowAnimation 14s ease infinite;
+  }
+
+  /* Universal Section Title Class for App-Like Authority */
+  .section-title-app {
+    font-family: 'Playfair Display', 'Cinzel', Georgia, serif;
+    font-weight: 800;
+    font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+  }
+
+  /* Micro-Animation Icon Shimmer Glow */
+  @keyframes icon-shimmer {
+    0%, 100% {
+      filter: drop-shadow(0 0 3px rgba(244, 114, 182, 0.4));
+      transform: scale(1);
+    }
+    50% {
+      filter: drop-shadow(0 0 12px rgba(244, 114, 182, 0.95)) drop-shadow(0 0 20px rgba(251, 191, 36, 0.7));
+      transform: scale(1.08);
+    }
+  }
+
+  .shimmer-icon-glow {
+    animation: icon-shimmer 3s ease-in-out infinite;
+  }
+
+  /* Soft Pulse for Primary CTAs */
+  @keyframes cta-pulse {
+    0%, 100% {
+      box-shadow: 0 12px 32px -6px rgba(225, 29, 72, 0.35);
+    }
+    50% {
+      box-shadow: 0 18px 42px -4px rgba(225, 29, 72, 0.55), 0 0 0 6px rgba(244, 114, 182, 0.18);
+    }
+  }
+
+  .btn-pulse-app {
+    animation: cta-pulse 3.5s ease-in-out infinite;
+  }
+
+  /* =================================================================== */
+  /* INTENSIFIED GLASSMORPHISM SYSTEM (Global App-Wide Reset 2026)      */
+  /* =================================================================== */
+
+  /* Primary Central Glass Card & Panels */
+  .glass-card,
+  .glass-card-primary,
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.70);
+    border: 1px solid rgba(255, 255, 255, 0.40);
+    backdrop-filter: blur(24px) saturate(210%);
+    -webkit-backdrop-filter: blur(24px) saturate(210%);
+    box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.10), 0 8px 20px -8px rgba(31, 38, 135, 0.05);
+    border-radius: 28px;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, background 0.4s ease;
+  }
+
+  .glass-card:hover,
+  .glass-card-primary:hover,
+  .glass-panel:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.15), 0 12px 28px -8px rgba(225, 29, 72, 0.12);
+    border-color: rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.82);
+  }
+
+  /* Secondary Glass Card */
+  .glass-card-secondary {
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.50);
+    backdrop-filter: blur(24px) saturate(210%);
+    -webkit-backdrop-filter: blur(24px) saturate(210%);
+    box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.08), 0 6px 16px -6px rgba(31, 38, 135, 0.04);
+    border-radius: 24px;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Light Luxury Glass Card */
+  .glass-card-dark {
+    background: rgba(255, 255, 255, 0.80);
+    border: 1px solid rgba(255, 255, 255, 0.90);
+    backdrop-filter: blur(24px) saturate(210%);
+    -webkit-backdrop-filter: blur(24px) saturate(210%);
+    box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.08), 0 10px 24px -8px rgba(225, 29, 72, 0.05);
+    border-radius: 28px;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Floating Glass Chip */
+  .glass-chip,
+  .floating-glass-chip {
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px) saturate(210%);
+    -webkit-backdrop-filter: blur(20px) saturate(210%);
+    box-shadow: 0 8px 24px rgba(31, 38, 135, 0.08);
+    border-radius: 9999px;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
+  }
+
+  .glass-chip:hover,
+  .floating-glass-chip:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  /* Glass Navigation Bar */
+  .glass-nav {
+    background: rgba(255, 255, 255, 0.60);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(24px) saturate(210%);
+    -webkit-backdrop-filter: blur(24px) saturate(210%);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-nav-scrolled {
+    background: rgba(255, 255, 255, 0.88);
+    border-bottom: 1px solid rgba(244, 114, 182, 0.25);
+    backdrop-filter: blur(28px) saturate(210%);
+    -webkit-backdrop-filter: blur(28px) saturate(210%);
+    box-shadow: 0 16px 40px -10px rgba(225, 29, 72, 0.12);
+  }
+
+  /* Glass Modal & Drawer */
+  .glass-modal {
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(32px) saturate(210%);
+    -webkit-backdrop-filter: blur(32px) saturate(210%);
+    box-shadow: 0 32px 64px -16px rgba(0, 0, 0, 0.30);
+    border-radius: 32px;
+  }
+
+  /* Glass Booking Summary */
+  .glass-summary,
+  .glass-booking-summary {
+    background: rgba(255, 241, 242, 0.70);
+    border: 1px solid rgba(253, 164, 175, 0.60);
+    backdrop-filter: blur(24px) saturate(210%);
+    -webkit-backdrop-filter: blur(24px) saturate(210%);
+    border-radius: 28px;
+    box-shadow: 0 16px 40px -10px rgba(225, 29, 72, 0.08);
+  }
+
+  /* Glass Dashboard Panel */
+  .glass-dashboard-panel {
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(28px) saturate(210%);
+    -webkit-backdrop-filter: blur(28px) saturate(210%);
+    box-shadow: 0 24px 48px -15px rgba(225, 29, 72, 0.10);
+    border-radius: 28px;
+  }
+  
+  /* Interactive Glass Card with micro-lift */
+  .glass-card-interactive {
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.60);
+    backdrop-filter: blur(24px) saturate(210%);
+    -webkit-backdrop-filter: blur(24px) saturate(210%);
+    border-radius: 28px;
+    box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.35s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.35s ease, background 0.35s ease;
+  }
+
+  .glass-card-interactive:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 24px 48px -10px rgba(0, 0, 0, 0.14);
+    background: rgba(255, 255, 255, 0.78);
+    border-color: rgba(255, 255, 255, 0.95);
+  }
+
+  /* =================================================================== */
+  /* UNIFIED MICRO-INTERACTIONS & GLASS FOCUS GLOW SYSTEM               */
+  /* =================================================================== */
+
+  /* High-Quality Animation Easing Curve for Micro-Interactions */
+  .transition-app-fluid {
+    transition: all 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  /* Universal Interactive Cards, Chips, Nav Links & Feature Containers */
+  .app-interactive-element,
+  .glass-card-interactive,
+  .glass-chip,
+  .floating-glass-chip,
+  a.nav-link-interactive,
+  .filter-chip-interactive {
+    transition: transform 0.45s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.45s cubic-bezier(0.19, 1, 0.22, 1), border-color 0.35s ease, background-color 0.35s ease;
+    will-change: transform, box-shadow;
+  }
+
+  .app-interactive-element:hover,
+  .glass-card-interactive:hover,
+  .glass-chip:hover,
+  .floating-glass-chip:hover,
+  .filter-chip-interactive:hover {
+    transform: scale(1.05) translateY(-3px);
+    box-shadow: 0 24px 48px -10px rgba(0, 0, 0, 0.15), 0 12px 24px -6px rgba(225, 29, 72, 0.14);
+    border-color: rgba(255, 255, 255, 0.85);
+  }
+
+  .app-interactive-element:active,
+  .glass-card-interactive:active,
+  .glass-chip:active,
+  .floating-glass-chip:active,
+  .filter-chip-interactive:active {
+    transform: scale(0.98) translateY(0);
+    transition-duration: 0.12s;
+  }
+
+  /* Glassmorphic Form Inputs, Selects, & Textareas Focus Glow */
+  input, select, textarea, .glass-input {
+    transition: transform 0.35s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.35s cubic-bezier(0.19, 1, 0.22, 1), border-color 0.3s ease, background-color 0.3s ease;
+  }
+
+  input:focus, select:focus, textarea:focus, .glass-input:focus {
+    outline: none !important;
+    border-color: rgba(244, 114, 182, 0.85) !important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    box-shadow: 0 0 0 4px rgba(244, 114, 182, 0.25), 0 16px 36px -6px rgba(225, 29, 72, 0.22) !important;
+    transform: scale(1.015);
+  }
+
+  /* Universal Button & Interactive Tactile Vibration / Active Click */
+  button, .btn-tactile {
+    transition: transform 0.35s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.35s cubic-bezier(0.19, 1, 0.22, 1), background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  button:active, .btn-tactile:active {
+    transform: scale(0.96) !important;
+    transition-duration: 0.1s !important;
+  }
+
+  /* =================================================================== */
+  /* HOVER & MICRO-INTERACTIONS DESIGN SYSTEM                            */
+  /* =================================================================== */
+
+  /* 1. Major Cards Hover Animation */
+  .card-hover-major,
+  .hover-major-card {
+    transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.35s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.35s ease;
+  }
+  
+  .card-hover-major:hover,
+  .hover-major-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
+  }
+
+  /* 2. Logo Hover Animation */
+  .glass-logo,
+  .logo-hover-scale {
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), filter 0.3s ease;
+    display: inline-block;
+  }
+
+  .glass-logo:hover,
+  .logo-hover-scale:hover {
+    transform: scale(1.05);
+  }
+
+  /* 3. Button Hover Animation */
+  .btn-hover-premium {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.25s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.25s ease;
+  }
+
+  .btn-hover-premium:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 10px 25px -5px rgba(225, 29, 72, 0.35);
+  }
+
+  .btn-hover-premium:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  /* Shimmer sheen across button */
+  .btn-hover-premium::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+    transform: skewX(-20deg);
+    transition: 0.75s ease;
+  }
+
+  .btn-hover-premium:hover::after {
+    left: 140%;
+  }
+
+  /* 4. Image Zoom on Hover */
+  .img-zoom-container {
+    overflow: hidden;
+  }
+
+  .img-zoom-container img,
+  .img-zoom-target {
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .img-zoom-container:hover img,
+  .img-zoom-target:hover {
+    transform: scale(1.08);
+  }
+
+  /* 5. Service Card Lift */
+  .service-card-lift {
+    background: rgba(255, 255, 255, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
+    border-radius: 24px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .service-card-lift:hover {
+    transform: translateY(-6px) scale(1.025);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.12);
+    border-color: rgba(244, 114, 182, 0.6);
+  }
+
+  /* 6. Package Card Lift */
+  .package-card-lift {
+    background: rgba(255, 255, 255, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
+    border-radius: 24px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .package-card-lift:hover {
+    transform: translateY(-8px) scale(1.025);
+    box-shadow: 0 24px 50px -12px rgba(225, 29, 72, 0.18);
+    border-color: rgba(251, 113, 133, 0.7);
+  }
+
+  /* 7. Navigation Underline Animation */
+  .nav-underline-effect {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .nav-underline-effect::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(90deg, #ec4899, #f43f5e);
+    border-radius: 9999px;
+    transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1), transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    transform: translateX(-50%);
+  }
+
+  .nav-underline-effect:hover::after,
+  .nav-underline-effect.active::after {
+    width: 70%;
+  }
+
+  /* 8. Subtle Floating Effects */
+  @keyframes float-subtle {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+
+  @keyframes float-gentle-rotate {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-8px) rotate(1.5deg);
+    }
+  }
+
+  .animate-float-subtle {
+    animation: float-subtle 4s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: float-gentle-rotate 6s ease-in-out infinite;
+  }
+
+  /* 9. Modal Entrance Animation */
+  @keyframes modal-pop-in {
+    0% {
+      opacity: 0;
+      transform: scale(0.95) translateY(12px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  .animate-modal-entrance {
+    animation: modal-pop-in 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* 10. Booking Step Transitions */
+  @keyframes step-slide-fade {
+    0% {
+      opacity: 0;
+      transform: translateX(18px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-step-transition {
+    animation: step-slide-fade 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* 11. Success Confirmation Animation */
+  @keyframes success-pop {
+    0% {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    60% {
+      transform: scale(1.12);
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes success-ring-pulse {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 0 14px rgba(225, 29, 72, 0);
+    }
+  }
+
+  .animate-success-pop {
+    animation: success-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  .animate-success-pulse {
+    animation: success-ring-pulse 2.2s infinite;
+  }
+
+  /* 12. Scroll Reveal Animations */
+  .reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal-on-scroll.revealed,
+  .reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  /* Custom animations */
+  @keyframes pulse-slow {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+
+  @keyframes bounce-slow {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 3s ease-in-out infinite;
+  }
+
+  .animate-bounce-slow {
+    animation: bounce-slow 2s ease-in-out infinite;
+  }
+}

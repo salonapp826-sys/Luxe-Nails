@@ -1,11 +1,21 @@
-<div align="center">
+# LuxeNails - Luxury Nail & Beauty Studio
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+Production web application and booking platform for LuxeNails studio.
 
-  <h1>Built with AI Studio</h2>
+## Features
+- Online Booking & Real-Time Availability Calendar
+- Full Services & Pricing Catalog
+- Customizer and Multi-Tenant Branding Engine
+- Resilient API error handling and offline state protection
+- Responsive Mobile-First Design with Tailwind CSS & shadcn/ui
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+## Technology Stack
+- **Framework**: React 18 + Vite + TypeScript
+- **Styling**: Tailwind CSS, Framer Motion, Lucide Icons
+- **Deployment**: Vercel (SPA mode with configured rewrites)
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+## Repository & Owner
+- **Owner**: `diamondmediapromotion-del`
+- **Build Status**: Verified Production Release
 
-</div>
+

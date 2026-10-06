@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- ── Google Analytics 4 (gtag.js) ──────────────────────────────
+         The measurement id is injected at build time from
+         VITE_GA_MEASUREMENT_ID (see .env). If it is missing or malformed the
+         tag is never requested, so local and preview builds stay out of your
+         reports instead of polluting them.
+
+         send_page_view is false on purpose: this is a single-page app, so
+         React Router navigations are not page loads. Page views are sent by
+         usePageTracking() (src/hooks/usePageTracking.ts), which covers every
+         route — including /services, /gallery, /faq and /packages. Turning
+         the automatic hit back on would double-count the first page. -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+
+      (function () {
+        // measurementId is set at runtime from window.__GA_ID__ if injected by a build step,
+        // or remains empty so the block exits silently in dev / preview builds.
+        var measurementId = (typeof window !== 'undefined' && window.__GA_ID__) || '';
+        if (!/^G-[A-Z0-9]{4,}$/i.test(measurementId)) return;
+
+        window.__GA_MEASUREMENT_ID__ = measurementId;
+
+        var tag = document.createElement('script');
+        tag.async = true;
+        tag.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId;
+        document.head.appendChild(tag);
+
+        gtag('js', new Date());
+        gtag('config', measurementId, { send_page_view: false });
+      })();
+    </script>
+
+    <!-- ── Fonts (Playfair Display, Cinzel, Plus Jakarta Sans) ───── -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- ── Primary Meta Tags (default / homepage) ───────────────── -->
+    <title>Nails by Uma - Jaipur | Nail Salon & Beauty Studio – Book Appointment</title>
+    <meta name="description" content="Nails by Uma - Jaipur is the best nail salon in Mansarovar, Jaipur. Offering manicure, pedicure, gel nails, nail art, bridal mehndi & beauty packages. In-salon or doorstep home service.">
+    <meta name="keywords" content="nail salon jaipur, nails by uma jaipur, manicure mansarovar, pedicure jaipur, gel nails jaipur, nail art studio jaipur, bridal mehndi artist jaipur, home nail service jaipur">
+    <meta name="author" content="Nails by Uma - Jaipur">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#db2777">
+    <link rel="canonical" href="https://nailsbyuma.onspace.app">
+
+    <!-- ── Open Graph / Facebook ────────────────────────────────── -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nailsbyuma.onspace.app">
+    <meta property="og:title" content="Nails by Uma - Jaipur | Nail Salon & Beauty Studio">
+    <meta property="og:description" content="Visit Nails by Uma in Mansarovar, Jaipur for manicure, pedicure, gel nails, nail art, bridal mehndi & beauty packages. In-salon & home service available.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=1200&h=630&fit=crop&q=80">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Nails by Uma - Jaipur salon interior and nail art">
+    <meta property="og:site_name" content="Nails by Uma - Jaipur">
+    <meta property="og:locale" content="en_IN">
+
+    <!-- ── Twitter Card ─────────────────────────────────────────── -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://nailsbyuma.onspace.app">
+    <meta name="twitter:title" content="Nails by Uma | Luxury Nail Salon – Professional Manicure & Nail Art">
+    <meta name="twitter:description" content="Premium nail care, professional manicure, gel nails, nail art, mehndi & bridal packages. Book your appointment today!">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=1200&h=630&fit=crop&q=80">
+    <meta name="twitter:image:alt" content="Professional nail art and manicure services at Nails by Uma">
+
+    <!-- ── Schema.org JSON-LD — Local Business + BeautySalon ──────
+         Shares its @id with the richer graph emitted on /about
+         (src/lib/business.ts), so Google merges both into ONE business
+         entity. Keep the values below in sync with SALON in that file. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": ["BeautySalon", "LocalBusiness"],
+      "@id": "https://nailsbyuma.onspace.app/#business",
+      "name": "Nails by Uma - Jaipur",
+      "alternateName": "Nails by Uma Jaipur",
+      "url": "https://nailsbyuma.onspace.app",
+      "logo": "https://nailsbyuma.onspace.app/favicon.ico",
+      "image": "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=1200&h=630&fit=crop&q=80",
+      "description": "Best nail salon in Mansarovar Jaipur offering manicure, pedicure, gel nails, nail art, bridal mehndi and beauty packages. In-salon and doorstep home service.",
+      "priceRange": "₹₹",
+      "currenciesAccepted": "INR",
+      "paymentAccepted": "UPI (Google Pay / PhonePe / Paytm), Credit/Debit Card, Cash",
+      "telephone": "+916376539366",
+      "email": "info@nailsbyuma.in",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Main Market Road, Near City Center Plaza, Mansarovar",
+        "addressLocality": "Jaipur",
+        "addressRegion": "Rajasthan",
+        "postalCode": "302020",
+        "addressCountry": "IN"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+          "opens": "10:00",
+          "closes": "20:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Sunday"],
+          "opens": "11:00",
+          "closes": "18:00"
+        }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "500",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    }
+    </script>
+
+    <!-- ── BreadcrumbList Schema ──────────────────────────────────────
+         Injected per route at runtime by useBreadcrumbSchema()
+         (src/hooks/useBreadcrumbSchema.ts), as an application/ld+json
+         script tag marked with data-breadcrumb-schema.
+
+         A static list used to live here, but it described a flat nav menu
+         (Home, Services, Gallery, Book Appointment) instead of the hierarchy
+         of the page being viewed, and it shipped on every URL. Google needs
+         one breadcrumb trail that matches the current page, e.g.
+         Home > Packages on /packages — hence the dynamic version.
+         Please don't re-add a hard-coded trail here: two competing lists on
+         one page make it ineligible for the breadcrumb rich result. -->
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

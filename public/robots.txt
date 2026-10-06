@@ -1,0 +1,22 @@
+# robots.txt — Nails by Uma
+# https://nailsbyuma.onspace.app
+
+# Allow all crawlers full access
+User-agent: *
+Allow: /
+
+# Block admin routes from indexing
+Disallow: /admin/
+Disallow: /admin/login
+Disallow: /admin/signup
+Disallow: /admin/dashboard
+Disallow: /admin/whatsapp-leads
+
+# Block booking status pages (personalised, no SEO value)
+Disallow: /booking-status/
+
+# Block my-bookings (private user page)
+Disallow: /my-bookings
+
+# Sitemap location
+Sitemap: https://nailsbyuma.onspace.app/sitemap.xml

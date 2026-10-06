@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Homepage — highest priority -->
+  <url>
+    <loc>https://nailsbyuma.onspace.app/</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Services — core conversion page -->
+  <url>
+    <loc>https://nailsbyuma.onspace.app/services</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Book Appointment — primary CTA page -->
+  <url>
+    <loc>https://nailsbyuma.onspace.app/book</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Gallery — high engagement, visual SEO -->
+  <url>
+    <loc>https://nailsbyuma.onspace.app/gallery</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Packages — service bundle page -->
+  <url>
+    <loc>https://nailsbyuma.onspace.app/packages</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Reviews — social proof page -->
+  <url>
+    <loc>https://nailsbyuma.onspace.app/reviews</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- About — brand trust page -->
+  <url>
+    <loc>https://nailsbyuma.onspace.app/about</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Contact — local SEO signal -->
+  <url>
+    <loc>https://nailsbyuma.onspace.app/contact</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- FAQ — long-tail keyword capture -->
+  <url>
+    <loc>https://nailsbyuma.onspace.app/faq</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+</urlset>

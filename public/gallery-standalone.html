@@ -1,0 +1,769 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nail Art Gallery | Best Nail Art &amp; Mehndi Designs – Nails by Uma</title>
+<meta name="description" content="Browse our nail art gallery featuring the best nail art designs, gel nails, acrylic nails, bridal nail packages &amp; mehndi designs. See real work by our expert nail technicians.">
+<meta property="og:title" content="Nail Art Gallery – Nails by Uma">
+<meta property="og:image" content="gallery/og-gallery.jpg">
+
+<!--
+  ============================================================================
+  NAILS BY UMA — NAIL ART GALLERY (single-file build)
+  ============================================================================
+  Self-contained: HTML + CSS + JS in one document. No npm, no bundler, no
+  framework. Open it directly in a browser.
+
+  THIRD-PARTY DEPENDENCIES: none.
+  GLightbox/Swiper were considered and deliberately not used — the lightbox
+  and the mobile swipe strip are ~120 lines of vanilla JS, and shipping zero
+  CDN dependencies means there is no third-party failure mode to degrade
+  from. See initializeGallery() for the DOM-ready boot sequence.
+
+  TO ADD A PHOTO: drop the file in gallery/ and add one entry to
+  GALLERY_ITEMS at the bottom of this file. Nothing else needs to change —
+  the filters, counts, grid, lightbox and paging all derive from that array.
+  ============================================================================
+-->
+
+<style>
+/* ---------------------------------------------------------------- tokens */
+:root{
+  --primary:hsl(340 82% 52%);
+  --accent:hsl(25 95% 63%);
+  --foreground:hsl(340 10% 15%);
+  --muted:hsl(340 30% 96%);
+  --muted-foreground:hsl(340 10% 45%);
+  --border:hsl(340 20% 90%);
+  --radius:1rem;
+  --shadow-soft:0 4px 16px -6px rgba(190,120,150,.28);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  /* System stack: no webfont request, so nothing to fail or block render */
+  font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  color:var(--foreground);
+  background:linear-gradient(to bottom,#fff,hsl(340 30% 96% / .45));
+  min-height:100vh;
+  /* §15 — nothing may cause a sideways scroll */
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit}
+.container{max-width:80rem;margin:0 auto;padding:0 1rem}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+:focus-visible{outline:none;box-shadow:0 0 0 2px #fff,0 0 0 4px var(--primary)}
+
+/* ---------------------------------------------------------------- header */
+.site-header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.8);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem;max-width:80rem;margin:0 auto}
+.logo-link{display:flex;align-items:center;gap:.5rem;background:none;border:0;cursor:pointer;padding:.25rem;border-radius:999px}
+/* §13 — logo mark: 1.05 + soft drop shadow, artwork untouched */
+.logo-mark{width:2.5rem;height:2.5rem;border-radius:999px;display:grid;place-items:center;
+  background:linear-gradient(135deg,hsl(340 100% 97%),hsl(25 100% 95%));box-shadow:var(--shadow-soft);
+  transition:transform 300ms ease,filter 300ms ease;will-change:transform}
+.logo-link:hover .logo-mark,.logo-link:focus-visible .logo-mark{
+  transform:scale(1.05);filter:drop-shadow(0 6px 14px rgba(190,120,150,.45))}
+.logo-text{text-align:left;line-height:1.1}
+.logo-title{font-size:1.15rem;font-weight:800;background:linear-gradient(90deg,var(--primary),var(--accent));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.logo-sub{font-size:.7rem;color:var(--muted-foreground)}
+
+/* ------------------------------------------------------------------ hero */
+.hero{text-align:center;padding:3rem 1rem 0}
+.badge{display:inline-flex;align-items:center;gap:.5rem;background:hsl(340 82% 52% / .1);color:var(--primary);
+  padding:.5rem 1rem;border-radius:999px;font-size:.875rem;font-weight:600;margin-bottom:1rem}
+.hero h1{font-size:clamp(1.875rem,6vw,3.75rem);line-height:1.1;font-weight:800;margin:0 0 .75rem;text-wrap:balance}
+.hero h1 .grad{background:linear-gradient(90deg,var(--primary),var(--accent));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:clamp(1rem,2.4vw,1.25rem);color:var(--muted-foreground);max-width:42rem;margin:0 auto;line-height:1.6}
+@media(min-width:640px){.hero{padding:4rem 1rem 0}}
+@media(min-width:768px){.hero{padding:5rem 1rem 0}}
+
+/* ------------------------------------------------------- §11 glass panel */
+.gallery-wrap{padding:2rem 0 7rem}
+@media(min-width:640px){.gallery-wrap{padding:2.5rem 0 6rem}}
+.glass-panel{
+  background:rgba(255,255,255,.55);
+  border:1px solid rgba(255,255,255,.70);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
+  backdrop-filter:blur(18px) saturate(140%);
+  box-shadow:0 8px 32px -12px rgba(190,120,150,.18);
+  border-radius:1.25rem;padding:.75rem;
+  transition:transform 300ms ease,background 300ms ease,box-shadow 300ms ease,border-color 300ms ease;
+}
+@media(min-width:640px){.glass-panel{border-radius:1.5rem;padding:1.5rem}}
+@media(min-width:1024px){.glass-panel{padding:2.5rem}}
+/* Graceful fallback where backdrop-filter is unavailable */
+@supports not ((-webkit-backdrop-filter:blur(18px)) or (backdrop-filter:blur(18px))){
+  .glass-panel{background:rgba(255,255,255,.92);border-color:rgba(255,255,255,.95)}
+}
+/* §12 — 1.01 not 1.05: at ~1250px wide, 1.05 would overrun the gutter and
+   create a horizontal scrollbar. Depth comes from the shadow instead. */
+@media(hover:hover) and (pointer:fine){
+  .glass-panel:hover{transform:scale(1.01);background:rgba(255,255,255,.62);
+    border-color:rgba(255,255,255,.85);box-shadow:0 20px 50px -18px rgba(190,120,150,.34)}
+}
+
+/* --------------------------------------------------------- §16 filters */
+.filter-strip{margin:0 -.75rem 1.5rem;padding:0 .75rem;overflow-x:auto;scroll-padding-inline:.75rem;
+  -ms-overflow-style:none;scrollbar-width:none}
+.filter-strip::-webkit-scrollbar{display:none}
+.filter-row{display:flex;width:max-content;gap:.5rem;scroll-snap-type:x mandatory}
+@media(min-width:640px){
+  .filter-strip{margin:0 0 2.5rem;padding:0;overflow:visible}
+  .filter-row{width:auto;flex-wrap:wrap;justify-content:center;gap:.75rem}
+}
+.pill{display:inline-flex;align-items:center;gap:.5rem;flex-shrink:0;scroll-snap-align:start;
+  height:2.75rem;padding:0 1.25rem;border-radius:999px;font-size:.875rem;font-weight:600;white-space:nowrap;
+  background:#fff;border:1px solid var(--border);cursor:pointer;transition:color .2s ease,background-color .2s ease,border-color .2s ease}
+@media(min-width:640px){.pill{padding:0 1.5rem}}
+.pill:hover{border-color:hsl(340 82% 52% / .4);color:var(--primary);background:hsl(340 82% 52% / .05)}
+.pill[aria-pressed="true"]{background:linear-gradient(90deg,var(--primary),var(--accent));color:#fff;
+  border-color:transparent;box-shadow:0 4px 12px -2px rgba(190,120,150,.4)}
+.pill .emoji{font-size:1rem;line-height:1}
+/* §20 — active state is not colour-only: a check icon is added too */
+.pill .check{display:none;width:1rem;height:1rem;flex-shrink:0}
+.pill[aria-pressed="true"] .check{display:block}
+
+/* ------------------------------------------------------------ §23 count */
+.count-line{margin:0 0 1.25rem;text-align:center;font-size:.875rem;color:var(--muted-foreground)}
+.count-line strong{color:var(--foreground);font-weight:700}
+
+/* ------------------------------------------------------------- the grid */
+.masonry{column-count:1;column-gap:.75rem}
+@media(min-width:640px){.masonry{column-count:2;column-gap:1rem}}
+@media(min-width:1024px){.masonry{column-count:3}}
+@media(min-width:1280px){.masonry{column-count:4}}
+
+/* §18 — entrance sits on the WRAPPER so its end state can't cancel the
+   hover transform on the card itself */
+@keyframes galleryFadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.gallery-item{break-inside:avoid;margin-bottom:.75rem;animation:galleryFadeUp 420ms ease-out both}
+@media(min-width:640px){.gallery-item{margin-bottom:1rem}}
+
+.card{display:block;width:100%;text-align:left;padding:0;border:1px solid hsl(340 100% 97% / .5);
+  background:rgba(255,255,255,.8);border-radius:.75rem;overflow:hidden;cursor:pointer;
+  box-shadow:0 1px 2px rgba(0,0,0,.05);
+  transition:transform 300ms ease-out,box-shadow 300ms ease-out}
+@media(hover:hover) and (pointer:fine){
+  .card:hover{box-shadow:0 16px 36px -18px rgba(190,120,150,.55)}
+}
+@media(hover:hover) and (pointer:fine) and (min-width:768px){
+  .card:hover{transform:translateY(-4px)}
+}
+/* §14 — zoom is clipped by the card so it can never bleed into a neighbour */
+.image-card{position:relative;overflow:hidden}
+.image-card img{width:100%;object-fit:cover;transition:transform 350ms ease}
+@media(hover:hover) and (pointer:fine){
+  .card:hover .image-card img,.card:focus-visible .image-card img{transform:scale(1.05)}
+}
+.skeleton{position:absolute;inset:0;background:var(--muted);animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.img-hidden{opacity:0}
+
+/* §21 — fallback keeps the card's exact dimensions via aspect-ratio */
+.img-fallback{width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;
+  background:hsl(340 30% 96% / .7);color:var(--muted-foreground);padding:1rem;text-align:center}
+.img-fallback .t{font-size:.75rem;font-weight:600;line-height:1.35}
+.img-fallback .s{font-size:.6875rem;opacity:.85}
+
+.overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.8),rgba(0,0,0,.1) 45%,transparent);
+  transition:opacity 300ms ease;display:flex;align-items:flex-end}
+.overlay-inner{padding:1rem;color:#fff}
+.overlay h3{margin:0;font-size:.875rem;font-weight:600;line-height:1.25}
+.overlay .svc{margin:.25rem 0 0;font-size:.75rem;color:rgba(255,255,255,.9)}
+.overlay .desc{margin:.25rem 0 0;font-size:.75rem;color:rgba(255,255,255,.8);display:none;
+  overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+@media(min-width:640px){.overlay .desc{display:-webkit-box}}
+/* §10 — on touch the caption is always visible; hover-reveal only at md+ */
+@media(min-width:768px){
+  .overlay{opacity:0}
+  .card:hover .overlay,.card:focus-visible .overlay{opacity:1}
+}
+.cat-badge{position:absolute;top:.75rem;left:.75rem;background:rgba(255,255,255,.95);color:var(--foreground);
+  font-size:.75rem;font-weight:500;padding:.25rem .5rem;border-radius:999px;box-shadow:0 1px 2px rgba(0,0,0,.08);
+  transition:opacity 300ms ease}
+.expand-badge{position:absolute;top:.75rem;right:.75rem;width:2.25rem;height:2.25rem;border-radius:999px;
+  background:rgba(255,255,255,.9);display:none;align-items:center;justify-content:center;
+  box-shadow:0 1px 2px rgba(0,0,0,.08);opacity:0;transition:opacity 300ms ease}
+@media(min-width:768px){
+  .cat-badge{opacity:0}
+  .expand-badge{display:flex}
+  .card:hover .cat-badge,.card:focus-visible .cat-badge,
+  .card:hover .expand-badge,.card:focus-visible .expand-badge{opacity:1}
+}
+
+/* -------------------------------------------------------- load more/CTA */
+.load-more-wrap{margin-top:2rem;text-align:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;border-radius:999px;
+  font-weight:600;cursor:pointer;border:1px solid transparent;transition:background-color .2s ease,color .2s ease,border-color .2s ease}
+.btn-outline{height:3rem;padding:0 2rem;background:transparent;border-color:hsl(340 82% 52% / .3);color:var(--primary)}
+.btn-outline:hover{background:hsl(340 82% 52% / .05)}
+.btn-outline .rest{color:var(--muted-foreground);font-weight:500}
+.btn-primary{height:3.5rem;padding:0 2.5rem;background:linear-gradient(90deg,var(--primary),var(--accent));color:#fff;font-size:1rem}
+.btn-sm{height:2.25rem;padding:0 1rem;font-size:.875rem}
+.cta{margin-top:4rem;text-align:center;background:rgba(255,255,255,.8);border:1px solid hsl(340 100% 97% / .5);
+  border-radius:1rem;padding:1.5rem;box-shadow:var(--shadow-soft)}
+@media(min-width:640px){.cta{padding:3rem}}
+.cta h2{font-size:clamp(1.5rem,4vw,1.875rem);margin:0 0 1rem;font-weight:800}
+.cta p{color:var(--muted-foreground);max-width:42rem;margin:0 auto 2rem;line-height:1.6}
+.empty{text-align:center;padding:5rem 1rem;color:var(--muted-foreground)}
+
+/* ------------------------------------------------------------- lightbox */
+/* z-index 60 sits ABOVE the WhatsApp button (50) so it can't float over the
+   viewer or stay clickable behind the overlay. */
+.lightbox{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.9);display:flex;align-items:flex-start;
+  justify-content:center;overflow-y:auto;padding:4rem .75rem 2rem}
+.lightbox[hidden]{display:none}
+@media(min-width:640px){.lightbox{align-items:center;padding:1.5rem}}
+.lb-inner{position:relative;width:100%;max-width:48rem;margin:auto}
+.lb-img{width:100%;border-radius:1rem;max-height:58vh;object-fit:contain;background:rgba(0,0,0,.4)}
+@media(min-width:640px){.lb-img{max-height:70vh}}
+.lb-fallback{width:100%;aspect-ratio:4/3;border-radius:1rem;background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:.75rem;color:rgba(255,255,255,.85);text-align:center;padding:1.5rem}
+.lb-close{position:absolute;top:-3rem;right:0;height:2.75rem;min-width:2.75rem;padding:0 .75rem;
+  display:inline-flex;align-items:center;justify-content:center;gap:.375rem;background:transparent;border:0;
+  color:rgba(255,255,255,.9);border-radius:999px;cursor:pointer;font-size:.875rem;font-weight:500;transition:background-color .2s}
+.lb-close:hover{background:rgba(255,255,255,.1);color:#fff}
+.lb-close .label{display:none}
+@media(min-width:640px){.lb-close .label{display:inline}}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:2.75rem;height:2.75rem;border-radius:999px;
+  background:rgba(0,0,0,.7);border:0;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background-color .2s}
+.lb-nav:hover{background:rgba(0,0,0,.9)}
+.lb-prev{left:.25rem}.lb-next{right:.25rem}
+@media(min-width:640px){.lb-prev{left:.5rem}.lb-next{right:.5rem}}
+.lb-meta{margin-top:1rem;text-align:center;color:#fff}
+.lb-meta .title{font-size:1.125rem;font-weight:700;margin:0}
+.lb-meta .desc{margin:.5rem auto 0;max-width:36rem;font-size:.875rem;color:rgba(255,255,255,.8)}
+.lb-meta .svc{margin:.75rem 0 0;font-size:.875rem;color:rgba(255,255,255,.8)}
+.lb-meta .svc button{background:none;border:0;color:#fff;font-weight:500;text-decoration:underline;
+  text-underline-offset:4px;text-decoration-color:rgba(255,255,255,.5);cursor:pointer;border-radius:.25rem}
+.lb-meta .svc button:hover{text-decoration-color:#fff}
+.lb-actions{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.75rem;margin-top:1rem}
+.lb-cat{font-size:.75rem;background:rgba(255,255,255,.15);color:rgba(255,255,255,.9);padding:.25rem .75rem;border-radius:999px}
+.lb-pos{margin-top:1rem;font-size:.75rem;color:rgba(255,255,255,.7)}
+
+/* ---------------------------------------------------------- §22 whatsapp */
+.whatsapp-fab{position:fixed;bottom:1.5rem;right:1.5rem;z-index:50;background:#25D366;color:#fff;
+  border:0;border-radius:999px;padding:1rem;box-shadow:0 20px 25px -5px rgba(0,0,0,.25);cursor:pointer;
+  transition:transform .2s ease,background-color .2s ease}
+.whatsapp-fab:hover{background:#20BA5A;transform:scale(1.1)}
+.whatsapp-fab:active{transform:scale(.95)}
+
+/* ------------------------------------------------------- §18 reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;scroll-behavior:auto !important}
+  .gallery-item{animation:none;opacity:1;transform:none}
+  .glass-panel:hover,.card:hover,.card:hover .image-card img,.logo-link:hover .logo-mark,.whatsapp-fab:hover{transform:none}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <button class="logo-link" type="button" aria-label="Nails by Uma — go to homepage">
+      <span class="logo-mark" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="hsl(340 82% 52%)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/></svg>
+      </span>
+      <span class="logo-text">
+        <span class="logo-title">Nails by Uma</span><br>
+        <span class="logo-sub">Beauty, Nail &amp; Mehndi Salon</span>
+      </span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <!-- §27 — hero copy preserved verbatim -->
+  <section class="hero">
+    <div class="badge" aria-hidden="true">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/></svg>
+      Nail Art Gallery
+    </div>
+    <h1>Best Nail Art &amp; <span class="grad">Design Gallery</span></h1>
+    <p>Explore our luxury nail salon portfolio — gel nails, acrylic nail art, mehndi designs &amp; bridal collections, each piece crafted with passion by our expert technicians</p>
+  </section>
+
+  <div class="gallery-wrap">
+    <div class="container">
+      <!-- §11 — glassmorphism main container -->
+      <section class="glass-panel" aria-labelledby="gallery-heading">
+        <h2 id="gallery-heading" class="sr-only">Gallery portfolio</h2>
+
+        <!-- §16 — filters (rendered by renderFilters) -->
+        <div class="filter-strip">
+          <div class="filter-row" id="filters" role="group" aria-label="Filter gallery by category"></div>
+        </div>
+
+        <!-- §23 — the single dynamic count element -->
+        <p class="count-line" id="count" aria-live="polite"></p>
+
+        <!-- gallery grid (rendered by renderGallery) -->
+        <div class="masonry" id="grid"></div>
+
+        <div class="load-more-wrap" id="loadMoreWrap" hidden>
+          <button class="btn btn-outline" id="loadMore" type="button"></button>
+        </div>
+
+        <noscript>
+          <p class="empty">Please enable JavaScript to browse the interactive gallery,
+          or <a href="https://wa.me/916376539366">message us on WhatsApp</a> to see our latest work.</p>
+        </noscript>
+      </section>
+
+      <div class="cta">
+        <h2>Book Your Nail Art Appointment</h2>
+        <p>Love our work? Book at our luxury nail salon and let our professional nail artists create your dream look</p>
+        <button class="btn btn-primary" type="button" onclick="window.location.href='/book'">💅 Book My Appointment</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+  <div class="lb-inner" id="lbInner">
+    <button class="lb-close" id="lbClose" type="button" aria-label="Close photo viewer">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      <span class="label">Close</span>
+    </button>
+    <div id="lbMedia"></div>
+    <button class="lb-nav lb-prev" id="lbPrev" type="button" aria-label="Previous photo">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+    </button>
+    <button class="lb-nav lb-next" id="lbNext" type="button" aria-label="Next photo">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+    </button>
+    <div class="lb-meta" id="lbMeta"></div>
+  </div>
+</div>
+
+<!-- §22 — floating WhatsApp button, independent of the gallery -->
+<button class="whatsapp-fab" type="button" aria-label="Chat on WhatsApp"
+        onclick="window.open('https://wa.me/916376539366','_blank')">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+</button>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ==========================================================
+     DATA — the only thing you edit to add or remove a photo
+     ========================================================== */
+
+  var GALLERY_CATEGORIES = [
+    { id:'all',      label:'All Work',  emoji:'✨' },
+    { id:'gel',      label:'Gel Nails', emoji:'💅' },
+    { id:'acrylic',  label:'Acrylic',   emoji:'💎' },
+    { id:'nail-art', label:'Nail Art',  emoji:'🎨' },
+    { id:'mehndi',   label:'Mehndi',    emoji:'🌿' },
+    { id:'bridal',   label:'Bridal',    emoji:'👰' },
+    { id:'other',    label:'More',      emoji:'🌸' }
+  ];
+
+  /* Service id -> display name. Declared once; gallery items store only the
+     id, so a service name is never duplicated across the file. */
+  var SERVICES = {
+    'gel-mani':'Gel Manicure',
+    'gel-pedi':'Gel Pedicure',
+    'classic-mani':'Classic Manicure',
+    'classic-pedi':'Classic Pedicure',
+    'french-mani':'French Manicure',
+    'nail-art-simple':'Simple Nail Art',
+    'nail-art-complex':'Complex Nail Art',
+    'bridal-basic':'Bridal Basic',
+    'bridal-premium':'Bridal Premium',
+    'spa-deluxe':'Spa Deluxe',
+    'acrylic-nails':'Acrylic Nails',
+    'mehndi-art':'Mehndi / Henna Art'
+  };
+
+  var GALLERY_ITEMS = [
+    { id:'gel-01', service:'gel-mani', category:'gel', title:'Blush Pink Gel Manicure',
+      image:'gallery/gel-01.webp', thumb:'gallery/gel-01-thumb.webp', width:600, height:400,
+      alt:'Glossy blush pink gel manicure on short almond-shaped nails',
+      description:'A soft blush gel finish on short almond nails — our most requested everyday look, cured for up to three weeks of high shine.' },
+    { id:'gel-02', service:'gel-mani', category:'gel', title:'Wine Gloss Gel Nails',
+      image:'gallery/gel-02.webp', thumb:'gallery/gel-02-thumb.webp', width:400, height:600,
+      alt:'Deep wine burgundy gel polish on medium square nails with a mirror gloss finish',
+      description:'Deep burgundy gel on medium square nails, layered for a glass-like mirror shine that suits evenings and festive wear.' },
+    { id:'gel-03', service:'gel-mani', category:'gel', title:'Pearl Chrome Gel Nails',
+      image:'gallery/gel-03.webp', thumb:'gallery/gel-03-thumb.webp', width:400, height:600,
+      alt:'Milky beige gel nails with a pearl chrome shimmer on oval-shaped nails',
+      description:'A milky beige base finished with pearl chrome powder — understated in daylight, luminous under evening light.' },
+    { id:'acrylic-01', service:'acrylic-nails', category:'acrylic', title:'Baby Boomer Ombré Extensions',
+      image:'gallery/acrylic-01.webp', thumb:'gallery/acrylic-01-thumb.webp', width:600, height:400,
+      alt:'Long coffin-shaped acrylic nail extensions with a milky white and pink baby boomer ombré fade',
+      description:'Long coffin extensions blended from pink to milky white — the classic baby boomer fade, sculpted by hand.' },
+    { id:'acrylic-02', service:'acrylic-nails', category:'acrylic', title:'Matte Black & Gold Stilettos',
+      image:'gallery/acrylic-02.webp', thumb:'gallery/acrylic-02-thumb.webp', width:600, height:400,
+      alt:'Sculpted stiletto acrylic nail extensions in matte black with gold foil accents',
+      description:'Sculpted stiletto extensions in matte black, finished with hand-placed gold foil for a high-fashion statement set.' },
+    { id:'acrylic-03', service:'acrylic-nails', category:'acrylic', title:'Lilac Glitter Coffin Nails',
+      image:'gallery/acrylic-03.webp', thumb:'gallery/acrylic-03-thumb.webp', width:600, height:400,
+      alt:'Long square acrylic nails in soft lilac with encapsulated iridescent glitter',
+      description:'Soft lilac acrylics with iridescent glitter encapsulated under the top coat, so the sparkle stays smooth to the touch.' },
+    { id:'nail-art-01', service:'nail-art-simple', category:'nail-art', title:'Cherry Blossom Floral Art',
+      image:'gallery/nail-art-01.webp', thumb:'gallery/nail-art-01-thumb.webp', width:400, height:600,
+      alt:'Hand-painted cherry blossom floral nail art in white and pink on a soft beige base',
+      description:'Hand-painted blossoms on a soft beige base — fine-brush detail work on accent nails, finished with a glossy seal.' },
+    { id:'nail-art-02', service:'nail-art-complex', category:'nail-art', title:'Marble & Gold Leaf Nails',
+      image:'gallery/nail-art-02.webp', thumb:'gallery/nail-art-02-thumb.webp', width:600, height:400,
+      alt:'Abstract white and grey marble nail art with gold leaf foil accents on square nails',
+      description:'Abstract marbling swirled wet-on-wet, then broken up with real gold leaf — no two nails are ever identical.' },
+    { id:'nail-art-03', service:'nail-art-complex', category:'nail-art', title:'Crystal Glam Party Nails',
+      image:'gallery/nail-art-03.webp', thumb:'gallery/nail-art-03-thumb.webp', width:600, height:400,
+      alt:'Champagne glitter ombré nails with a crystal rhinestone encrusted accent nail',
+      description:'Champagne glitter ombré with a fully crystal-encrusted accent nail — our go-to set for receptions and parties.' }
+  ];
+
+  /* ========================================================== state */
+  var INITIAL_VISIBLE = 12, LOAD_MORE_STEP = 12, EAGER_COUNT = 4;
+  var state = { category:'all', visibleCount:INITIAL_VISIBLE, lightboxIndex:null, lastTrigger:null };
+
+  var el = {};
+  var ICON_EXPAND = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 15 6 6m-6-6v4.8m0-4.8h4.8M9 19.8V15m0 0H4.2M9 15l-6 6M15 4.2V9m0 0h4.8M15 9l6-6M9 4.2V9m0 0H4.2M9 9 3 3"/></svg>';
+  var ICON_CHECK = '<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
+  var ICON_BROKEN = '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.4 21H5a2 2 0 0 1-2-2V5c0-.6.2-1 .6-1.4M22 15.5V5a2 2 0 0 0-2-2H9.5M2 2l20 20M10.4 3 21 13.6"/></svg>';
+
+  /* ========================================================== helpers */
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, function(c){
+      return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];
+    });
+  }
+  function getCategory(id){
+    for (var i=0;i<GALLERY_CATEGORIES.length;i++) if (GALLERY_CATEGORIES[i].id===id) return GALLERY_CATEGORIES[i];
+    return null;
+  }
+  function getCategoryLabel(id){ var c=getCategory(id); return c?c.label:id; }
+  /** Resolve a service id to its display name — never store the name twice. */
+  function getServiceName(item){ return SERVICES[item.service] || getCategoryLabel(item.category); }
+
+  /** filterGallery */
+  function filterGallery(category){
+    if (category==='all') return GALLERY_ITEMS.slice();
+    return GALLERY_ITEMS.filter(function(i){ return i.category===category; });
+  }
+
+  /** updateCounts — one derived source for every count on the page */
+  function updateCounts(){
+    var counts={};
+    for (var i=0;i<GALLERY_CATEGORIES.length;i++){
+      var c=GALLERY_CATEGORIES[i];
+      counts[c.id] = c.id==='all' ? GALLERY_ITEMS.length : filterGallery(c.id).length;
+    }
+    return counts;
+  }
+
+  /* ========================================================== rendering */
+
+  /** renderFilters */
+  function renderFilters(){
+    var counts=updateCounts(), html='';
+    for (var i=0;i<GALLERY_CATEGORIES.length;i++){
+      var c=GALLERY_CATEGORIES[i], n=counts[c.id]||0;
+      if (c.id!=='all' && n===0) continue;                 // hide empty categories
+      var active = state.category===c.id;
+      html += '<button class="pill" type="button" data-category="'+c.id+'" aria-pressed="'+active+'">'
+           +    '<span class="emoji" aria-hidden="true">'+c.emoji+'</span>'+escapeHtml(c.label)+ICON_CHECK
+           +  '</button>';
+    }
+    el.filters.innerHTML = html;
+
+    var activeEl = el.filters.querySelector('[aria-pressed="true"]');
+    if (activeEl && activeEl.scrollIntoView) {
+      activeEl.scrollIntoView({ block:'nearest', inline:'center', behavior:'smooth' });
+    }
+  }
+
+  /** renderGallery */
+  function renderGallery(){
+    var items = filterGallery(state.category);
+    var visible = items.slice(0, state.visibleCount);
+    var remaining = items.length - visible.length;
+
+    if (!items.length){
+      el.grid.innerHTML = '<div class="empty"><div style="font-size:3rem">🎨</div>'
+        + '<h3>Gallery Coming Soon</h3><p>We\u2019re uploading beautiful work — check back soon!</p></div>';
+      el.count.textContent=''; el.loadMoreWrap.hidden=true; return;
+    }
+
+    var html='';
+    for (var i=0;i<visible.length;i++){
+      var it=visible[i], cat=getCategory(it.category), svc=getServiceName(it);
+      html += '<div class="gallery-item" style="animation-delay:'+(Math.min(i,9)*45)+'ms">'
+        + '<button class="card" type="button" data-index="'+i+'" aria-label="View '+escapeHtml(it.title)+' — '+escapeHtml(svc)+'">'
+        +   '<div class="image-card">'
+        +     '<div class="skeleton" data-skeleton></div>'
+        +     '<img src="'+escapeHtml(it.thumb||it.image)+'" alt="'+escapeHtml(it.alt)+'" '
+        +          'width="'+it.width+'" height="'+it.height+'" '
+        +          'loading="'+(i<EAGER_COUNT?'eager':'lazy')+'" decoding="async" '
+        +          'class="img-hidden" data-w="'+it.width+'" data-h="'+it.height+'" data-title="'+escapeHtml(it.title)+'">'
+        +     '<div class="overlay"><div class="overlay-inner">'
+        +       '<h3>'+escapeHtml(it.title)+'</h3>'
+        +       '<p class="svc">'+escapeHtml(svc)+'</p>'
+        +       '<p class="desc">'+escapeHtml(it.description)+'</p>'
+        +     '</div></div>'
+        +     '<span class="cat-badge"><span aria-hidden="true">'+(cat?cat.emoji:'')+'</span> '+escapeHtml(cat?cat.label:it.category)+'</span>'
+        +     '<span class="expand-badge" aria-hidden="true">'+ICON_EXPAND+'</span>'
+        +   '</div>'
+        + '</button></div>';
+    }
+    el.grid.innerHTML = html;
+
+    // Wire load/error per image (also catches images already in cache).
+    var imgs = el.grid.querySelectorAll('img');
+    for (var k=0;k<imgs.length;k++) bindImage(imgs[k]);
+
+    // §23 — the one place a count is rendered
+    var label = state.category==='all' ? '' : getCategoryLabel(state.category)+' ';
+    el.count.innerHTML = 'Showing <strong>'+visible.length+'</strong> of <strong>'+items.length+'</strong> '
+      + escapeHtml(label) + 'design' + (items.length===1?'':'s');
+
+    el.loadMoreWrap.hidden = remaining<=0;
+    el.loadMore.innerHTML = 'Load More Designs <span class="rest">('+remaining+' more)</span>';
+  }
+
+  /** Reveal on load; swap in a graceful fallback on failure. */
+  function bindImage(img){
+    function reveal(){
+      img.classList.remove('img-hidden');
+      var sk = img.parentNode.querySelector('[data-skeleton]');
+      if (sk) sk.remove();
+    }
+    img.addEventListener('load', reveal);
+    img.addEventListener('error', function(){ handleImageError(img); });
+    // Cached images can finish before the listener attaches.
+    if (img.complete) { img.naturalWidth === 0 ? handleImageError(img) : reveal(); }
+  }
+
+  /**
+   * handleImageError — never show the browser's broken-image icon, never let
+   * one failure break the grid. The placeholder keeps the item's exact
+   * aspect ratio so the masonry doesn't reflow.
+   */
+  function handleImageError(img){
+    if (!img || !img.parentNode) return;
+    var w=img.getAttribute('data-w')||4, h=img.getAttribute('data-h')||3;
+    var title=img.getAttribute('data-title')||'Design';
+    var box=document.createElement('div');
+    box.className='img-fallback';
+    box.style.aspectRatio = w+' / '+h;
+    box.innerHTML = ICON_BROKEN + '<span class="t">'+escapeHtml(title)+'</span><span class="s">Photo unavailable</span>';
+    var sk = img.parentNode.querySelector('[data-skeleton]');
+    if (sk) sk.remove();
+    img.parentNode.replaceChild(box, img);
+  }
+
+  /* ========================================================== lightbox */
+
+  function currentSet(){ return filterGallery(state.category); }
+
+  /** openLightbox */
+  function openLightbox(index){
+    var items=currentSet();
+    if (index<0 || index>=items.length) return;
+    state.lightboxIndex=index;
+    state.lastTrigger=document.activeElement;
+    paintLightbox();
+    el.lightbox.hidden=false;
+    document.body.style.overflow='hidden';
+    el.lbClose.focus();
+  }
+
+  function closeLightbox(){
+    if (state.lightboxIndex===null) return;
+    state.lightboxIndex=null;
+    el.lightbox.hidden=true;
+    document.body.style.overflow='';
+    if (state.lastTrigger && state.lastTrigger.focus) state.lastTrigger.focus();  // focus restoration
+  }
+
+  function showNext(){
+    var items=currentSet(); if (state.lightboxIndex===null||!items.length) return;
+    state.lightboxIndex=(state.lightboxIndex+1)%items.length; paintLightbox();
+  }
+  function showPrevious(){
+    var items=currentSet(); if (state.lightboxIndex===null||!items.length) return;
+    state.lightboxIndex=(state.lightboxIndex-1+items.length)%items.length; paintLightbox();
+  }
+
+  function paintLightbox(){
+    var items=currentSet(), it=items[state.lightboxIndex];
+    if (!it) return;
+    var cat=getCategory(it.category), svc=getServiceName(it), many=items.length>1;
+
+    el.lbMedia.innerHTML = '<img class="lb-img" src="'+escapeHtml(it.image)+'" alt="'+escapeHtml(it.alt)+'">';
+    var big = el.lbMedia.querySelector('img');
+    big.addEventListener('error', function(){
+      el.lbMedia.innerHTML = '<div class="lb-fallback">'+ICON_BROKEN
+        + '<p style="font-weight:600;margin:0">'+escapeHtml(it.title)+'</p>'
+        + '<p style="margin:0;font-size:.875rem;opacity:.8">This photo couldn\u2019t be loaded. Please try another design.</p></div>';
+    });
+
+    el.lbPrev.hidden = !many; el.lbNext.hidden = !many;
+    el.lbMeta.innerHTML =
+        '<p class="title">'+escapeHtml(it.title)+'</p>'
+      + '<p class="desc">'+escapeHtml(it.description)+'</p>'
+      + '<p class="svc">Service: <button type="button" data-action="view-service">'+escapeHtml(svc)+'</button></p>'
+      + '<div class="lb-actions">'
+      +   '<span class="lb-cat"><span aria-hidden="true">'+(cat?cat.emoji:'')+'</span> '+escapeHtml(cat?cat.label:it.category)+'</span>'
+      +   '<button class="btn btn-primary btn-sm" type="button" data-action="book">Book '+escapeHtml(svc)+'</button>'
+      + '</div>'
+      + (many ? '<p class="lb-pos" aria-live="polite">'+(state.lightboxIndex+1)+' of '+items.length+'</p>' : '');
+    el.lightbox.setAttribute('aria-label', it.title+' — enlarged view');
+  }
+
+  /** Keep Tab inside the dialog while it is open. */
+  function trapFocus(e){
+    if (e.key!=='Tab') return;
+    var nodes=[].slice.call(el.lightbox.querySelectorAll('button:not([hidden]),[href],input,[tabindex]:not([tabindex="-1"])'))
+      .filter(function(n){ return !n.hidden && n.offsetParent!==null; });
+    if (!nodes.length) return;
+    var first=nodes[0], last=nodes[nodes.length-1];
+    if (e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+  }
+
+  /* ========================================================== events */
+
+  function bindEvents(){
+    // Event delegation: one listener per region, not one per card/pill.
+    el.filters.addEventListener('click', function(e){
+      var btn=e.target.closest('[data-category]');
+      if (!btn) return;
+      state.category=btn.getAttribute('data-category');
+      state.visibleCount=INITIAL_VISIBLE;
+      state.lightboxIndex=null;
+      renderFilters();
+      renderGallery();
+    });
+
+    el.grid.addEventListener('click', function(e){
+      var card=e.target.closest('[data-index]');
+      if (card) openLightbox(parseInt(card.getAttribute('data-index'),10));
+    });
+
+    el.loadMore.addEventListener('click', function(){
+      state.visibleCount += LOAD_MORE_STEP;
+      renderGallery();
+    });
+
+    el.lbClose.addEventListener('click', closeLightbox);
+    el.lbNext.addEventListener('click', showNext);
+    el.lbPrev.addEventListener('click', showPrevious);
+
+    // Click the backdrop (not the content) to dismiss.
+    el.lightbox.addEventListener('click', function(e){ if (e.target===el.lightbox) closeLightbox(); });
+    el.lbInner.addEventListener('click', function(e){
+      var act=e.target.closest('[data-action]');
+      if (!act) return;
+      if (act.getAttribute('data-action')==='book') window.location.href='/book';
+      if (act.getAttribute('data-action')==='view-service') window.location.href='/services';
+    });
+
+    // One keyboard listener for the whole document.
+    document.addEventListener('keydown', function(e){
+      if (state.lightboxIndex===null) return;
+      if (e.key==='Escape') closeLightbox();
+      else if (e.key==='ArrowRight') showNext();
+      else if (e.key==='ArrowLeft') showPrevious();
+      else trapFocus(e);
+    });
+
+    // Mobile swipe between photos.
+    var startX=0, startY=0, tracking=false;
+    el.lightbox.addEventListener('touchstart', function(e){
+      if (!e.touches.length) return;
+      startX=e.touches[0].clientX; startY=e.touches[0].clientY; tracking=true;
+    }, { passive:true });
+    el.lightbox.addEventListener('touchend', function(e){
+      if (!tracking || !e.changedTouches.length) return;
+      tracking=false;
+      var dx=e.changedTouches[0].clientX-startX, dy=e.changedTouches[0].clientY-startY;
+      if (Math.abs(dx)>45 && Math.abs(dx)>Math.abs(dy)) { dx<0 ? showNext() : showPrevious(); }
+    }, { passive:true });
+  }
+
+  /* ========================================================== boot */
+
+  /**
+   * initializeGallery — called once the DOM is ready. Everything is wrapped
+   * so that a single failure can never leave the visitor with a blank panel:
+   * on error we fall back to a plain, still-useful list of the photos.
+   */
+  function initializeGallery(){
+    el = {
+      filters:      document.getElementById('filters'),
+      grid:         document.getElementById('grid'),
+      count:        document.getElementById('count'),
+      loadMore:     document.getElementById('loadMore'),
+      loadMoreWrap: document.getElementById('loadMoreWrap'),
+      lightbox:     document.getElementById('lightbox'),
+      lbInner:      document.getElementById('lbInner'),
+      lbMedia:      document.getElementById('lbMedia'),
+      lbMeta:       document.getElementById('lbMeta'),
+      lbClose:      document.getElementById('lbClose'),
+      lbPrev:       document.getElementById('lbPrev'),
+      lbNext:       document.getElementById('lbNext')
+    };
+    if (!el.grid || !el.filters) return;
+
+    try {
+      renderFilters();
+      renderGallery();
+      bindEvents();
+    } catch (err) {
+      console.error('Gallery failed to initialise:', err);
+      renderStaticFallback();
+    }
+  }
+
+  /** Last-resort rendering: plain images, no interactivity, still useful. */
+  function renderStaticFallback(){
+    var html='';
+    for (var i=0;i<GALLERY_ITEMS.length;i++){
+      var it=GALLERY_ITEMS[i];
+      html += '<div class="gallery-item"><div class="card"><div class="image-card">'
+        + '<img src="'+escapeHtml(it.thumb)+'" alt="'+escapeHtml(it.alt)+'" loading="lazy" decoding="async" '
+        + 'width="'+it.width+'" height="'+it.height+'"></div></div></div>';
+    }
+    el.grid.innerHTML = html;
+    if (el.count) el.count.textContent = 'Showing '+GALLERY_ITEMS.length+' designs';
+  }
+
+  // Initialise third-party/plugin-style code only once the DOM exists.
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeGallery);
+  } else {
+    initializeGallery();   // script ran after parsing (defer/async/injected)
+  }
+
+  // Exposed for testing and for other scripts on the page.
+  window.NailsGallery = {
+    initializeGallery: initializeGallery,
+    renderGallery: renderGallery,
+    renderFilters: renderFilters,
+    filterGallery: filterGallery,
+    updateCounts: updateCounts,
+    openLightbox: openLightbox,
+    closeLightbox: closeLightbox,
+    showNext: showNext,
+    showPrevious: showPrevious,
+    handleImageError: handleImageError,
+    items: GALLERY_ITEMS
+  };
+})();
+</script>
+</body>
+</html>

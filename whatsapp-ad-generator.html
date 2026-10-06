@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
+<title>WhatsApp Ad Generator — Beauty & Services</title>
+<style>
+  /* ── Reset & Variables ─────────────────────────────────────────── */
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  :root{
+    --pink:#db2777;--pink2:#f97316;--pink-light:#fdf2f8;--pink-mid:#fce7f3;
+    --green:#25D366;--green2:#128C7E;--text:#1a1a1a;--sub:#6b7280;
+    --border:#e5e7eb;--white:#fff;--shadow:0 4px 24px rgba(219,39,119,.12);
+    --radius:14px;--font:'Segoe UI',system-ui,sans-serif
+  }
+  body{font-family:var(--font);background:#f8f9fa;color:var(--text);min-height:100vh;overflow-x:hidden}
+
+  /* ── Header ────────────────────────────────────────────────────── */
+  .hdr{background:linear-gradient(135deg,var(--pink),var(--pink2));padding:18px 20px;text-align:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(219,39,119,.25)}
+  .hdr h1{color:#fff;font-size:20px;font-weight:700}
+  .hdr p{color:rgba(255,255,255,.85);font-size:12px;margin-top:3px}
+
+  /* ── Layout ────────────────────────────────────────────────────── */
+  .main{max-width:900px;margin:0 auto;padding:16px}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:700px){.two-col{grid-template-columns:1fr}}
+
+  /* ── Card ──────────────────────────────────────────────────────── */
+  .card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;margin-bottom:16px}
+  .card-hdr{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+  .card-hdr h2{font-size:15px;font-weight:700}
+  .card-body{padding:16px 18px}
+
+  /* ── Tabs ──────────────────────────────────────────────────────── */
+  .tabs{display:flex;gap:0;background:#f1f5f9;border-radius:10px;padding:4px;margin-bottom:16px}
+  .tab-btn{flex:1;padding:8px 12px;border:none;background:transparent;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;color:var(--sub);transition:all .2s}
+  .tab-btn.active{background:var(--white);color:var(--pink);box-shadow:0 2px 8px rgba(0,0,0,.08)}
+  .tab-pane{display:none}
+  .tab-pane.active{display:block}
+
+  /* ── Form Elements ─────────────────────────────────────────────── */
+  .form-group{margin-bottom:12px}
+  label{display:block;font-size:12px;font-weight:600;color:var(--sub);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
+  input,textarea,select{
+    width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:9px;
+    font-size:14px;font-family:var(--font);background:var(--white);color:var(--text);
+    transition:border-color .2s;outline:none
+  }
+  input:focus,textarea:focus,select:focus{border-color:var(--pink)}
+  textarea{resize:vertical;min-height:80px}
+  select{cursor:pointer}
+
+  /* ── Template Grid ─────────────────────────────────────────────── */
+  .template-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  @media(max-width:400px){.template-grid{grid-template-columns:repeat(2,1fr)}}
+  .tmpl-btn{
+    border:2px solid var(--border);border-radius:10px;padding:10px 6px;
+    text-align:center;cursor:pointer;background:var(--white);transition:all .2s;
+    font-size:11px;font-weight:600;color:var(--sub)
+  }
+  .tmpl-btn:hover{border-color:var(--pink);color:var(--pink)}
+  .tmpl-btn.selected{border-color:var(--pink);background:var(--pink-light);color:var(--pink)}
+  .tmpl-icon{font-size:24px;display:block;margin-bottom:4px}
+
+  /* ── Layout Picker ─────────────────────────────────────────────── */
+  .layout-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  @media(max-width:500px){.layout-grid{grid-template-columns:repeat(2,1fr)}}
+  .layout-opt{
+    border:2px solid var(--border);border-radius:12px;padding:12px 8px;
+    text-align:center;cursor:pointer;background:var(--white);transition:all .2s;
+    position:relative;overflow:hidden
+  }
+  .layout-opt:hover{border-color:var(--pink);transform:translateY(-2px);box-shadow:0 6px 16px rgba(219,39,119,.15)}
+  .layout-opt.selected{border-color:var(--pink);background:var(--pink-light);box-shadow:0 6px 16px rgba(219,39,119,.2)}
+  .layout-opt.selected::after{content:'✓';position:absolute;top:6px;right:8px;color:var(--pink);font-weight:700;font-size:13px}
+  .layout-thumb{margin:0 auto 8px;border-radius:5px;border:1px solid var(--border);overflow:hidden;position:relative}
+  .layout-thumb canvas{display:block;width:100%;height:100%}
+  .layout-name{font-size:11px;font-weight:700;color:var(--sub)}
+  .layout-dim{font-size:10px;color:#9ca3af;margin-top:2px}
+  .layout-opt.selected .layout-name{color:var(--pink)}
+
+  /* ── Color Palette ─────────────────────────────────────────────── */
+  .color-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+  .clr-opt{width:30px;height:30px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:.2s;position:relative}
+  .clr-opt.selected{border-color:var(--text);transform:scale(1.1)}
+  .clr-opt::after{content:'✓';color:#fff;font-size:12px;font-weight:700;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0}
+  .clr-opt.selected::after{opacity:1}
+
+  /* ── Logo Upload ───────────────────────────────────────────────── */
+  .upload-box{
+    border:2px dashed var(--border);border-radius:10px;padding:20px;
+    text-align:center;cursor:pointer;transition:all .2s;position:relative;overflow:hidden
+  }
+  .upload-box:hover{border-color:var(--pink);background:var(--pink-light)}
+  .upload-box input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer}
+  .upload-preview{max-height:80px;border-radius:8px;margin-top:8px;object-fit:contain}
+
+  /* ── Buttons ───────────────────────────────────────────────────── */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:11px 18px;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;font-family:var(--font);text-decoration:none}
+  .btn:active{transform:scale(.97)}
+  .btn-primary{background:linear-gradient(135deg,var(--pink),var(--pink2));color:#fff;box-shadow:0 4px 14px rgba(219,39,119,.3)}
+  .btn-primary:hover{box-shadow:0 6px 20px rgba(219,39,119,.4)}
+  .btn-green{background:linear-gradient(135deg,var(--green),var(--green2));color:#fff;box-shadow:0 4px 14px rgba(37,211,102,.3)}
+  .btn-green:hover{box-shadow:0 6px 20px rgba(37,211,102,.4)}
+  .btn-outline{background:transparent;border:2px solid var(--border);color:var(--text)}
+  .btn-outline:hover{border-color:var(--pink);color:var(--pink)}
+  .btn-sm{padding:7px 13px;font-size:12px;border-radius:8px}
+  .btn-full{width:100%;display:flex}
+
+  /* ── Canvas / Poster ───────────────────────────────────────────── */
+  .poster-wrap{background:#111;border-radius:14px;padding:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;min-height:200px}
+  #adCanvas{border-radius:8px;display:block;transition:all .3s}
+  /* Dynamic sizing based on layout */
+  .poster-wrap.square   #adCanvas{max-width:420px;max-height:420px;width:100%;height:auto}
+  .poster-wrap.story    #adCanvas{max-width:240px;max-height:430px;width:auto;height:430px}
+  .poster-wrap.landscape#adCanvas{max-width:100%;max-height:320px;width:100%;height:auto}
+  .poster-wrap.minimal  #adCanvas{max-width:420px;max-height:420px;width:100%;height:auto}
+  .poster-wrap.dark     #adCanvas{max-width:420px;max-height:420px;width:100%;height:auto}
+
+  /* ── Caption Area ──────────────────────────────────────────────── */
+  .caption-box{background:var(--pink-light);border:1.5px solid var(--pink-mid);border-radius:10px;padding:14px;font-size:13px;line-height:1.7;white-space:pre-wrap;word-break:break-word;max-height:280px;overflow-y:auto;color:var(--text)}
+
+  /* ── Action Row ────────────────────────────────────────────────── */
+  .action-row{display:flex;gap:8px;flex-wrap:wrap}
+  .action-row .btn{flex:1;min-width:120px}
+
+  /* ── Recent Ads ────────────────────────────────────────────────── */
+  .recent-list{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px}
+  .recent-item{flex-shrink:0;width:70px;cursor:pointer;text-align:center}
+  .recent-thumb{width:70px;height:70px;border-radius:8px;border:2px solid var(--border);object-fit:cover;transition:.2s}
+  .recent-thumb:hover{border-color:var(--pink)}
+  .recent-label{font-size:10px;color:var(--sub);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+  /* ── Toast ─────────────────────────────────────────────────────── */
+  .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#1a1a1a;color:#fff;padding:10px 20px;border-radius:50px;font-size:13px;font-weight:600;z-index:9999;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap}
+  .toast.show{opacity:1}
+
+  /* ── Badge ─────────────────────────────────────────────────────── */
+  .badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:50px;font-size:11px;font-weight:700;background:var(--pink-light);color:var(--pink)}
+
+  /* ── Section Title ─────────────────────────────────────────────── */
+  .sec-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--sub);margin-bottom:8px}
+
+  /* ── Divider ───────────────────────────────────────────────────── */
+  .divider{height:1px;background:var(--border);margin:14px 0}
+
+  /* ── Scrollbar ─────────────────────────────────────────────────── */
+  ::-webkit-scrollbar{width:6px;height:6px}
+  ::-webkit-scrollbar-track{background:transparent}
+  ::-webkit-scrollbar-thumb{background:#ddd;border-radius:3px}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <h1>📢 WhatsApp Ad Generator</h1>
+  <p>Create stunning marketing ads instantly — Beauty & Services</p>
+</div>
+
+<div class="main">
+
+  <!-- ── TABS ─────────────────────────────────────────────────────── -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('create')">✏️ Create</button>
+    <button class="tab-btn" onclick="switchTab('preview')">🖼️ Preview & Share</button>
+    <button class="tab-btn" onclick="switchTab('recent')">🕐 Recent</button>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- TAB: CREATE -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div id="tab-create" class="tab-pane active">
+
+    <!-- Service Templates -->
+    <div class="card">
+      <div class="card-hdr">
+        <span>🎨</span><h2>Choose Template Preset</h2>
+      </div>
+      <div class="card-body">
+        <div class="template-grid" id="templateGrid"></div>
+      </div>
+    </div>
+
+    <!-- Poster Layout Picker -->
+    <div class="card">
+      <div class="card-hdr">
+        <span>📐</span><h2>Poster Layout Style</h2>
+      </div>
+      <div class="card-body">
+        <div class="layout-grid" id="layoutGrid"></div>
+      </div>
+    </div>
+
+    <!-- Service Details -->
+    <div class="card">
+      <div class="card-hdr">
+        <span>💼</span><h2>Service Details</h2>
+      </div>
+      <div class="card-body">
+        <div class="two-col">
+          <div class="form-group">
+            <label>Business / Salon Name *</label>
+            <input id="bizName" type="text" placeholder="e.g. Nails by Uma" maxlength="40"/>
+          </div>
+          <div class="form-group">
+            <label>Service Name *</label>
+            <input id="svcName" type="text" placeholder="e.g. Bridal Nail Art" maxlength="50"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Short Description</label>
+          <textarea id="svcDesc" placeholder="e.g. Stunning gel nail designs for your special day — includes nail prep, art & top coat" rows="2"></textarea>
+        </div>
+        <div class="two-col">
+          <div class="form-group">
+            <label>Price / Offer *</label>
+            <input id="svcPrice" type="text" placeholder="e.g. ₹499 | 20% OFF Today" maxlength="30"/>
+          </div>
+          <div class="form-group">
+            <label>Category</label>
+            <select id="svcCat">
+              <option value="nails">💅 Nail Services</option>
+              <option value="mehndi">🌿 Mehndi / Henna</option>
+              <option value="beauty">✨ Beauty Parlour</option>
+              <option value="bridal">👰 Bridal Package</option>
+              <option value="hair">💇 Hair Care</option>
+              <option value="skincare">🧖 Skincare / Facial</option>
+              <option value="wax">🪒 Waxing</option>
+              <option value="general">🏪 General Service</option>
+            </select>
+          </div>
+        </div>
+        <div class="two-col">
+          <div class="form-group">
+            <label>Location / Area</label>
+            <input id="svcLocation" type="text" placeholder="e.g. Jaipur, Rajasthan" maxlength="40"/>
+          </div>
+          <div class="form-group">
+            <label>Tagline (optional)</label>
+            <input id="svcTagline" type="text" placeholder="e.g. Book Now & Glow Up!" maxlength="45"/>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Details -->
+    <div class="card">
+      <div class="card-hdr">
+        <span>📱</span><h2>Contact Details</h2>
+      </div>
+      <div class="card-body">
+        <div class="two-col">
+          <div class="form-group">
+            <label>WhatsApp Number *</label>
+            <input id="waNum" type="tel" placeholder="91XXXXXXXXXX (with country code)" maxlength="15"/>
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input id="phoneNum" type="tel" placeholder="e.g. 9876543210" maxlength="15"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Instagram / Social Handle (optional)</label>
+          <input id="social" type="text" placeholder="e.g. @nailsbyuma" maxlength="40"/>
+        </div>
+      </div>
+    </div>
+
+    <!-- Design Settings -->
+    <div class="card">
+      <div class="card-hdr">
+        <span>🎨</span><h2>Poster Design</h2>
+      </div>
+      <div class="card-body">
+        <div class="sec-title">Color Theme</div>
+        <div class="color-row" id="colorRow"></div>
+
+        <div class="divider"></div>
+
+        <div class="sec-title">Upload Logo / Image (optional)</div>
+        <div class="upload-box" id="uploadBox">
+          <input type="file" id="logoFile" accept="image/*" onchange="handleLogoUpload(event)"/>
+          <span style="font-size:28px">📷</span>
+          <p style="font-size:13px;color:var(--sub);margin-top:6px">Tap to upload logo or service image</p>
+          <p style="font-size:11px;color:#9ca3af;margin-top:3px">JPG, PNG, WebP — max 5MB</p>
+          <img id="logoPreview" class="upload-preview" style="display:none"/>
+        </div>
+        <button class="btn btn-outline btn-sm" style="margin-top:8px" onclick="clearLogo()">✕ Remove Image</button>
+      </div>
+    </div>
+
+    <!-- Generate Button -->
+    <button class="btn btn-primary btn-full" onclick="generateAd()" style="font-size:16px;padding:15px">
+      ⚡ Generate WhatsApp Ad
+    </button>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- TAB: PREVIEW & SHARE -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div id="tab-preview" class="tab-pane">
+
+    <div class="card">
+      <div class="card-hdr">
+        <span>🖼️</span><h2>Ad Poster <span class="badge" id="dimBadge">1080×1080</span></h2>
+        <span style="margin-left:auto;font-size:11px;color:var(--sub)" id="layoutBadge">Square • WhatsApp Status & Groups</span>
+      </div>
+      <div class="card-body">
+        <div class="poster-wrap square" id="posterWrap">
+          <canvas id="adCanvas" width="1080" height="1080"></canvas>
+        </div>
+        <div class="action-row">
+          <button class="btn btn-primary" onclick="downloadPoster()">📥 Download Poster</button>
+          <button class="btn btn-outline" onclick="regenerateAd()">🔄 Regenerate</button>
+          <button class="btn btn-outline" onclick="switchTab('create')">✏️ Edit</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-hdr">
+        <span>✍️</span><h2>Marketing Caption</h2>
+      </div>
+      <div class="card-body">
+        <div class="caption-box" id="captionBox">Your caption will appear here after generating the ad...</div>
+        <div class="action-row" style="margin-top:12px">
+          <button class="btn btn-outline" onclick="copyCaption()">📋 Copy Caption</button>
+          <button class="btn btn-outline" onclick="regenerateCaption()">🔄 New Caption</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-hdr">
+        <span>🚀</span><h2>Share Now</h2>
+      </div>
+      <div class="card-body">
+        <div class="action-row" style="margin-bottom:12px">
+          <a id="waShareBtn" href="#" class="btn btn-green" target="_blank" onclick="trackShare('whatsapp')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.535 5.858L.057 23.572a.5.5 0 0 0 .614.614l5.714-1.478A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.694-.518-5.226-1.421l-.374-.222-3.876 1.001 1.001-3.876-.222-.374A9.952 9.952 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Share on WhatsApp
+          </a>
+          <button class="btn btn-outline" onclick="nativeShare()">📤 Share / Save</button>
+        </div>
+        <p style="font-size:11px;color:var(--sub);text-align:center">Save the poster image, then paste the caption in your WhatsApp group or status</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- TAB: RECENT ADS -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div id="tab-recent" class="tab-pane">
+    <div class="card">
+      <div class="card-hdr">
+        <span>🕐</span><h2>Recent Ads</h2>
+        <button class="btn btn-outline btn-sm" style="margin-left:auto" onclick="clearRecent()">Clear All</button>
+      </div>
+      <div class="card-body">
+        <div id="recentContainer">
+          <p style="color:var(--sub);font-size:13px;text-align:center;padding:20px 0">No recent ads yet. Generate your first ad!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end .main -->
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════════════════
+const state = {
+  logoImg: null,
+  selectedColor: 0,
+  selectedTemplate: null,
+  selectedLayout: 'square',  // NEW: layout selection
+  lastAdData: null,
+};
+
+// ═══════════════════════════════════════════════════════════════════
+// LAYOUT DEFINITIONS
+// ═══════════════════════════════════════════════════════════════════
+const LAYOUTS = [
+  {
+    id: 'square',
+    name: 'Square Classic',
+    dim: '1080×1080',
+    info: 'WhatsApp Status & Groups',
+    icon: '⬛',
+    w: 1080, h: 1080,
+    aspectCss: 'square',
+    thumbW: 60, thumbH: 60,
+  },
+  {
+    id: 'story',
+    name: 'Story / Status',
+    dim: '1080×1920',
+    info: 'WhatsApp Status 9:16',
+    icon: '📱',
+    w: 1080, h: 1920,
+    aspectCss: 'story',
+    thumbW: 34, thumbH: 60,
+  },
+  {
+    id: 'landscape',
+    name: 'Landscape Wide',
+    dim: '1920×1080',
+    info: 'Groups & Banners 16:9',
+    icon: '🖥️',
+    w: 1920, h: 1080,
+    aspectCss: 'landscape',
+    thumbW: 60, thumbH: 34,
+  },
+  {
+    id: 'minimal',
+    name: 'Minimal White',
+    dim: '1080×1080',
+    info: 'Clean premium style',
+    icon: '🤍',
+    w: 1080, h: 1080,
+    aspectCss: 'minimal',
+    thumbW: 60, thumbH: 60,
+  },
+  {
+    id: 'dark',
+    name: 'Bold Dark',
+    dim: '1080×1080',
+    info: 'High impact dark theme',
+    icon: '🖤',
+    w: 1080, h: 1080,
+    aspectCss: 'dark',
+    thumbW: 60, thumbH: 60,
+  },
+];
+
+// ═══════════════════════════════════════════════════════════════════
+// TEMPLATES
+// ═══════════════════════════════════════════════════════════════════
+const TEMPLATES = [
+  {id:'nails',label:'Nail Art',icon:'💅',bizName:'Nail Studio',svcName:'Gel Nail Art',svcDesc:'Professional gel nails & stunning nail art designs',price:'₹499 Onwards',cat:'nails',tagline:'Book & Glow Up!',color:0},
+  {id:'mehndi',label:'Mehndi',icon:'🌿',bizName:'Mehndi Artist',svcName:'Bridal Mehndi',svcDesc:'Traditional & modern mehndi designs for all occasions',price:'₹799 Onwards',cat:'mehndi',tagline:'Your Dream Look Awaits!',color:3},
+  {id:'bridal',label:'Bridal',icon:'👰',bizName:'Bridal Studio',svcName:'Bridal Package',svcDesc:'Complete bridal beauty package — makeup, nails & mehndi',price:'₹2499 Package',cat:'bridal',tagline:'Your Perfect Day Starts Here',color:5},
+  {id:'hair',label:'Hair Care',icon:'💇',bizName:'Hair Salon',svcName:'Hair Treatment',svcDesc:'Premium hair styling, coloring & deep conditioning',price:'₹399 Onwards',cat:'hair',tagline:'Transform Your Look Today!',color:2},
+  {id:'facial',label:'Facial',icon:'🧖',bizName:'Beauty Parlour',svcName:'Glow Facial',svcDesc:'Hydrating facial for radiant & glowing skin',price:'₹599 Onwards',cat:'skincare',tagline:'Glow From Within!',color:4},
+  {id:'offer',label:'Special Offer',icon:'🎁',bizName:'Beauty Studio',svcName:'Festival Offer',svcDesc:'Avail amazing discounts on all beauty services this season!',price:'Up to 30% OFF',cat:'general',tagline:'Limited Time Deal — Book Now!',color:1},
+];
+
+// ═══════════════════════════════════════════════════════════════════
+// COLOR THEMES
+// ═══════════════════════════════════════════════════════════════════
+const THEMES = [
+  {name:'Rose Gold', bg:['#db2777','#f97316'], accent:'#fff', card:'rgba(255,255,255,0.15)', text:'#fff'},
+  {name:'Royal Purple', bg:['#7c3aed','#db2777'], accent:'#fbbf24', card:'rgba(255,255,255,0.15)', text:'#fff'},
+  {name:'Ocean Blue', bg:['#1d4ed8','#06b6d4'], accent:'#fbbf24', card:'rgba(255,255,255,0.15)', text:'#fff'},
+  {name:'Forest Green', bg:['#065f46','#10b981'], accent:'#fbbf24', card:'rgba(255,255,255,0.15)', text:'#fff'},
+  {name:'Sunset Orange', bg:['#c2410c','#f97316'], accent:'#fff', card:'rgba(255,255,255,0.15)', text:'#fff'},
+  {name:'Night Black', bg:['#1a1a2e','#16213e'], accent:'#e91e8c', card:'rgba(233,30,140,0.2)', text:'#fff'},
+  {name:'Cream & Pink', bg:['#fdf2f8','#fce7f3'], accent:'#db2777', card:'rgba(219,39,119,0.12)', text:'#1a1a1a'},
+];
+
+// ═══════════════════════════════════════════════════════════════════
+// CATEGORY DATA
+// ═══════════════════════════════════════════════════════════════════
+const CAT_DATA = {
+  nails:   {emoji:'💅', phrases:['Nail Game Strong!','Beautiful Nails = Happy Soul 💕','Get Those Gorgeous Nails Done!']},
+  mehndi:  {emoji:'🌿', phrases:['Stunning Mehndi Designs!','Adorn Your Hands with Art 🌿','Traditional Beauty, Modern Touch']},
+  beauty:  {emoji:'✨', phrases:['Glow Up Time!','Look Your Best, Feel Your Best ✨','Beauty That Speaks Volumes']},
+  bridal:  {emoji:'👰', phrases:['Your Dream Bridal Look!','Every Bride Deserves to Shine 👰','Make Your Special Day Unforgettable']},
+  hair:    {emoji:'💇', phrases:['Hair Goals Unlocked!','Amazing Hair, Amazing You 💇','Professional Hair Care at Its Best']},
+  skincare:{emoji:'🧖', phrases:['Glow From Within!','Healthy Skin, Happy Life 🌟','Radiant Skin Awaits You']},
+  wax:     {emoji:'🪒', phrases:['Smooth & Flawless!','Look & Feel Your Best 🌸','Professional Waxing Services']},
+  general: {emoji:'🏪', phrases:['Amazing Deals Await!','Quality Service, Every Time ⭐','Book Now, Glow Now!']},
+};
+
+// ═══════════════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════════════
+(function init(){
+  renderTemplates();
+  renderLayoutPicker();
+  renderColors();
+  loadRecent();
+  renderLayoutThumbnails();
+})();
+
+// ═══════════════════════════════════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════════════════════════════════
+function V(id){ return document.getElementById(id).value.trim(); }
+function EL(id){ return document.getElementById(id); }
+
+function showToast(msg, duration=2200){
+  const t = EL('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), duration);
+}
+
+function switchTab(name){
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  EL('tab-'+name).classList.add('active');
+  const idx = ['create','preview','recent'].indexOf(name);
+  document.querySelectorAll('.tab-btn')[idx].classList.add('active');
+  if(name==='recent') loadRecent();
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// TEMPLATE RENDERING
+// ═══════════════════════════════════════════════════════════════════
+function renderTemplates(){
+  const grid = EL('templateGrid');
+  grid.innerHTML = TEMPLATES.map(t=>`
+    <div class="tmpl-btn" id="tmpl-${t.id}" onclick="applyTemplate('${t.id}')">
+      <span class="tmpl-icon">${t.icon}</span>${t.label}
+    </div>
+  `).join('');
+}
+
+function applyTemplate(id){
+  const t = TEMPLATES.find(x=>x.id===id);
+  if(!t) return;
+  document.querySelectorAll('.tmpl-btn').forEach(b=>b.classList.remove('selected'));
+  EL('tmpl-'+id).classList.add('selected');
+  state.selectedTemplate = id;
+  EL('bizName').value = t.bizName;
+  EL('svcName').value = t.svcName;
+  EL('svcDesc').value = t.svcDesc;
+  EL('svcPrice').value = t.price;
+  EL('svcCat').value = t.cat;
+  EL('svcTagline').value = t.tagline;
+  selectColor(t.color);
+  showToast('✅ Template applied!');
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// LAYOUT PICKER
+// ═══════════════════════════════════════════════════════════════════
+function renderLayoutPicker(){
+  const grid = EL('layoutGrid');
+  grid.innerHTML = LAYOUTS.map((l,i)=>`
+    <div class="layout-opt ${i===0?'selected':''}" id="layout-opt-${l.id}" onclick="selectLayout('${l.id}')">
+      <div class="layout-thumb" style="width:${l.thumbW}px;height:${l.thumbH}px">
+        <canvas id="thumb-${l.id}" width="${l.w}" height="${l.h}" style="width:${l.thumbW}px;height:${l.thumbH}px;border-radius:4px"></canvas>
+      </div>
+      <div class="layout-name">${l.name}</div>
+      <div class="layout-dim">${l.dim}</div>
+    </div>
+  `).join('');
+}
+
+function renderLayoutThumbnails(){
+  // Draw mini preview thumbnails for each layout option
+  LAYOUTS.forEach(l=>{
+    const c = EL('thumb-'+l.id);
+    if(!c) return;
+    const ctx = c.getContext('2d');
+    const W = l.w, H = l.h;
+
+    if(l.id === 'minimal'){
+      // White background with pink accents
+      ctx.fillStyle = '#fff';
+      ctx.fillRect(0,0,W,H);
+      const g = ctx.createLinearGradient(0,0,W,H*0.2);
+      g.addColorStop(0,'#db2777'); g.addColorStop(1,'#f97316');
+      ctx.fillStyle = g;
+      ctx.fillRect(0,0,W,H*0.18);
+      ctx.fillStyle = '#fdf2f8';
+      ctx.fillRect(W*0.1,H*0.25,W*0.8,H*0.25);
+      ctx.fillStyle = '#db2777';
+      const g2 = ctx.createLinearGradient(W*0.2,H*0.6,W*0.8,H*0.6);
+      g2.addColorStop(0,'#db2777'); g2.addColorStop(1,'#f97316');
+      ctx.fillStyle = g2;
+      ctx.fillRect(W*0.15,H*0.62,W*0.7,H*0.1);
+    } else if(l.id === 'dark'){
+      // Dark with neon accents
+      ctx.fillStyle = '#0f0f1a';
+      ctx.fillRect(0,0,W,H);
+      const ng = ctx.createLinearGradient(0,0,W,H);
+      ng.addColorStop(0,'rgba(219,39,119,0.4)'); ng.addColorStop(1,'rgba(249,115,22,0.2)');
+      ctx.fillStyle = ng;
+      ctx.fillRect(0,0,W,H);
+      ctx.fillStyle = 'rgba(219,39,119,0.8)';
+      ctx.fillRect(W*0.05,H*0.35,W*0.9,H*0.05);
+      ctx.fillStyle = 'rgba(255,255,255,0.15)';
+      ctx.fillRect(W*0.1,H*0.48,W*0.8,H*0.2);
+    } else {
+      // Gradient-based layouts
+      const grad = ctx.createLinearGradient(0,0,W,H);
+      grad.addColorStop(0,'#db2777'); grad.addColorStop(1,'#f97316');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0,0,W,H);
+      ctx.fillStyle = 'rgba(255,255,255,0.12)';
+      ctx.fillRect(0,0,W,H*0.12);
+      ctx.fillStyle = 'rgba(255,255,255,0.15)';
+      const cardY = H*0.16;
+      ctx.beginPath();
+      ctx.roundRect(W*0.06,cardY,W*0.88,H*0.42,20);
+      ctx.fill();
+      ctx.fillStyle = 'rgba(255,255,255,0.2)';
+      const cY2 = cardY+H*0.5;
+      ctx.beginPath();
+      ctx.roundRect(W*0.06,cY2,W*0.88,H*0.2,20);
+      ctx.fill();
+    }
+  });
+}
+
+function selectLayout(id){
+  state.selectedLayout = id;
+  document.querySelectorAll('.layout-opt').forEach(o=>o.classList.remove('selected'));
+  EL('layout-opt-'+id).classList.add('selected');
+  showToast(`Layout: ${LAYOUTS.find(l=>l.id===id)?.name}`);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// COLOR RENDERING
+// ═══════════════════════════════════════════════════════════════════
+function renderColors(){
+  const row = EL('colorRow');
+  row.innerHTML = THEMES.map((t,i)=>`
+    <div class="clr-opt ${i===0?'selected':''}"
+      style="background:linear-gradient(135deg,${t.bg[0]},${t.bg[1]})"
+      title="${t.name}"
+      onclick="selectColor(${i})"
+      id="clr-${i}">
+    </div>
+  `).join('');
+}
+
+function selectColor(idx){
+  document.querySelectorAll('.clr-opt').forEach(c=>c.classList.remove('selected'));
+  const el = EL('clr-'+idx);
+  if(el){ el.classList.add('selected'); }
+  state.selectedColor = idx;
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// LOGO UPLOAD
+// ═══════════════════════════════════════════════════════════════════
+function handleLogoUpload(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  if(file.size > 5*1024*1024){ showToast('❌ Image too large (max 5MB)'); return; }
+  const reader = new FileReader();
+  reader.onload = function(ev){
+    const img = new Image();
+    img.onload = function(){
+      state.logoImg = img;
+      const prev = EL('logoPreview');
+      prev.src = ev.target.result;
+      prev.style.display = 'block';
+      showToast('✅ Image uploaded!');
+    };
+    img.src = ev.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function clearLogo(){
+  state.logoImg = null;
+  EL('logoPreview').style.display = 'none';
+  EL('logoFile').value = '';
+  showToast('Image removed');
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// CANVAS HELPERS
+// ═══════════════════════════════════════════════════════════════════
+function roundRect(ctx, x, y, w, h, r, fill, stroke){
+  ctx.beginPath();
+  ctx.moveTo(x+r, y);
+  ctx.lineTo(x+w-r, y);
+  ctx.quadraticCurveTo(x+w, y, x+w, y+r);
+  ctx.lineTo(x+w, y+h-r);
+  ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
+  ctx.lineTo(x+r, y+h);
+  ctx.quadraticCurveTo(x, y+h, x, y+h-r);
+  ctx.lineTo(x, y+r);
+  ctx.quadraticCurveTo(x, y, x+r, y);
+  ctx.closePath();
+  if(fill){ ctx.fillStyle=fill; ctx.fill(); }
+  if(stroke){ ctx.strokeStyle=stroke; ctx.stroke(); }
+}
+
+function wrapText(ctx, text, x, y, maxW, lineH){
+  const words = text.split(' ');
+  let line = '', lines = [];
+  for(let w of words){
+    const test = line ? line+' '+w : w;
+    if(ctx.measureText(test).width > maxW && line){ lines.push(line); line=w; }
+    else line = test;
+  }
+  if(line) lines.push(line);
+  lines.forEach((l,i)=>ctx.fillText(l, x, y+i*lineH));
+  return lines.length;
+}
+
+function drawGradientBg(ctx, w, h, colors, angle='diagonal'){
+  let grad;
+  if(angle==='vertical') grad = ctx.createLinearGradient(0,0,0,h);
+  else grad = ctx.createLinearGradient(0,0,w,h);
+  grad.addColorStop(0, colors[0]);
+  grad.addColorStop(1, colors[1]);
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, w, h);
+}
+
+function drawDecorCircles(ctx, W, H){
+  ctx.globalAlpha = 0.1;
+  ctx.fillStyle = '#fff';
+  ctx.beginPath(); ctx.arc(W*0.88, H*0.08, W*0.17, 0, Math.PI*2); ctx.fill();
+  ctx.beginPath(); ctx.arc(W*0.1,  H*0.88, W*0.2,  0, Math.PI*2); ctx.fill();
+  ctx.beginPath(); ctx.arc(W*0.5,  H*-0.03,W*0.13, 0, Math.PI*2); ctx.fill();
+  ctx.globalAlpha = 1;
+}
+
+function drawLogoCircle(ctx, x, y, size){
+  if(!state.logoImg) return;
+  ctx.save();
+  ctx.beginPath(); ctx.arc(x+size/2, y+size/2, size/2, 0, Math.PI*2); ctx.closePath();
+  ctx.fillStyle='rgba(255,255,255,0.2)'; ctx.fill();
+  ctx.clip();
+  ctx.drawImage(state.logoImg, x, y, size, size);
+  ctx.restore();
+  ctx.beginPath(); ctx.arc(x+size/2, y+size/2, size/2, 0, Math.PI*2);
+  ctx.strokeStyle='rgba(255,255,255,0.5)'; ctx.lineWidth=4; ctx.stroke();
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// LAYOUT 1: SQUARE CLASSIC (original enhanced)
+// ═══════════════════════════════════════════════════════════════════
+function drawSquareLayout(ctx, W, H, data, theme){
+  const isDark = theme.text === '#fff';
+  drawGradientBg(ctx, W, H, theme.bg);
+  drawDecorCircles(ctx, W, H);
+
+  // Stripe pattern
+  ctx.globalAlpha = 0.06;
+  for(let i=0;i<11;i++){ctx.fillStyle='#fff';ctx.fillRect(i*110,0,55,H);}
+  ctx.globalAlpha = 1;
+
+  // Top bar
+  ctx.fillStyle = theme.card;
+  ctx.fillRect(0, 0, W, 110);
+
+  // WA icon
+  ctx.font = 'bold 44px serif'; ctx.fillStyle = theme.text;
+  ctx.globalAlpha = 0.9; ctx.fillText('💬', 36, 74); ctx.globalAlpha = 1;
+
+  // Biz name
+  ctx.font = 'bold 38px "Segoe UI",Arial,sans-serif';
+  ctx.fillStyle = theme.text; ctx.textAlign = 'center';
+  ctx.fillText(data.bizName.toUpperCase(), W/2, 70);
+
+  // Category emoji
+  const catEmoji = (CAT_DATA[data.cat]||CAT_DATA.general).emoji;
+  ctx.font = '48px serif'; ctx.fillText(catEmoji, W/2, 145);
+
+  // Logo
+  if(state.logoImg) drawLogoCircle(ctx, W-140, 30, 100);
+
+  // Main card
+  const cX=60, cY=170, cW=W-120, cH=500;
+  roundRect(ctx, cX, cY, cW, cH, 30, theme.card, null);
+
+  ctx.textAlign='center';
+  ctx.font = ctx.measureText(data.svcName).width > cW-60 ? 'bold 50px "Segoe UI",Arial' : 'bold 64px "Segoe UI",Arial';
+  ctx.fillStyle = theme.text;
+  wrapText(ctx, data.svcName, W/2, cY+80, cW-60, 72);
+
+  const lineY = cY+165;
+  ctx.beginPath(); ctx.moveTo(cX+60,lineY); ctx.lineTo(cX+cW-60,lineY);
+  ctx.strokeStyle=`${theme.text}40`; ctx.lineWidth=2; ctx.stroke();
+
+  ctx.font='30px "Segoe UI",Arial'; ctx.fillStyle=isDark?'rgba(255,255,255,.85)':'rgba(0,0,0,.65)';
+  const descLines = wrapText(ctx, data.desc||'Book your appointment today!', W/2, lineY+45, cW-80, 40);
+
+  const priceY = lineY+60+descLines*40+20;
+  ctx.font='bold 52px "Segoe UI",Arial';
+  const priceW=Math.min(ctx.measureText(data.price).width+80,cW-60);
+  roundRect(ctx,(W-priceW)/2,priceY,priceW,78,20,'rgba(255,255,255,.15)',null);
+  ctx.strokeStyle=theme.accent; ctx.lineWidth=3;
+  roundRect(ctx,(W-priceW)/2,priceY,priceW,78,20,null,theme.accent);
+  ctx.fillStyle=theme.accent; ctx.font='bold 44px "Segoe UI",Arial';
+  ctx.fillText(data.price, W/2, priceY+52);
+
+  const starY=priceY+100;
+  ctx.font='36px serif'; ctx.fillStyle='#fbbf24'; ctx.fillText('★★★★★',W/2,starY);
+  ctx.font='24px "Segoe UI",Arial'; ctx.fillStyle=isDark?'rgba(255,255,255,.7)':'rgba(0,0,0,.5)';
+  ctx.fillText('Trusted by 1000+ happy clients',W/2,starY+36);
+
+  // Contact box
+  const contY=cY+cH+30;
+  roundRect(ctx,cX,contY,cW,220,30,theme.card,null);
+  if(data.wa){ ctx.font='bold 34px "Segoe UI",Arial'; ctx.fillStyle=theme.text; ctx.fillText(`💬 wa.me/${data.wa}`,W/2,contY+55); }
+  if(data.phone){ ctx.font='30px "Segoe UI",Arial'; ctx.fillStyle=isDark?'rgba(255,255,255,.85)':'rgba(0,0,0,.7)'; ctx.fillText(`📞 ${data.phone}`,W/2,contY+100); }
+  const extras=[]; if(data.location) extras.push(`📍 ${data.location}`); if(data.social) extras.push(`📸 ${data.social}`);
+  if(extras.length){ ctx.font='28px "Segoe UI",Arial'; ctx.fillStyle=isDark?'rgba(255,255,255,.75)':'rgba(0,0,0,.6)'; ctx.fillText(extras.join('   '),W/2,contY+148); }
+
+  const tagY=contY+270;
+  roundRect(ctx,cX,tagY,cW,80,24,'rgba(255,255,255,.15)',null);
+  ctx.font='bold 34px "Segoe UI",Arial'; ctx.fillStyle=theme.text;
+  ctx.fillText(data.tagline||'📲 Book Now — Limited Slots!',W/2,tagY+50);
+
+  ctx.font='22px "Segoe UI",Arial'; ctx.fillStyle=isDark?'rgba(255,255,255,.4)':'rgba(0,0,0,.3)';
+  ctx.fillText('Generated with ❤️ — WhatsApp Ad Generator',W/2,H-28);
+
+  roundRect(ctx,W-160,H-90,140,50,14,'#25D366',null);
+  ctx.font='bold 22px "Segoe UI",Arial'; ctx.fillStyle='#fff';
+  ctx.fillText('WhatsApp Us',W-90,H-58);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// LAYOUT 2: STORY FORMAT (9:16, tall)
+// ═══════════════════════════════════════════════════════════════════
+function drawStoryLayout(ctx, W, H, data, theme){
+  const isDark = theme.text === '#fff';
+  drawGradientBg(ctx, W, H, theme.bg, 'vertical');
+
+  // Large blurred circle decoration
+  ctx.globalAlpha = 0.12;
+  ctx.fillStyle = '#fff';
+  ctx.beginPath(); ctx.arc(W*0.85, H*0.15, W*0.5, 0, Math.PI*2); ctx.fill();
+  ctx.beginPath(); ctx.arc(W*0.15, H*0.85, W*0.55, 0, Math.PI*2); ctx.fill();
+  ctx.globalAlpha = 1;
+
+  // Top zone
+  const topH = H * 0.28;
+  ctx.fillStyle = 'rgba(255,255,255,0.1)';
+  ctx.fillRect(0, 0, W, topH);
+
+  // Logo or emoji centered
+  if(state.logoImg){
+    drawLogoCircle(ctx, W/2-80, 80, 160);
+  } else {
+    const catEmoji = (CAT_DATA[data.cat]||CAT_DATA.general).emoji;
+    ctx.font = '120px serif'; ctx.textAlign='center';
+    ctx.fillStyle = theme.text; ctx.globalAlpha=0.9;
+    ctx.fillText(catEmoji, W/2, 210); ctx.globalAlpha=1;
+  }
+
+  // Business name
+  ctx.textAlign='center';
+  ctx.font='bold 52px "Segoe UI",Arial'; ctx.fillStyle=theme.text;
+  ctx.fillText(data.bizName.toUpperCase(), W/2, topH-40);
+
+  // Divider
+  const dg = ctx.createLinearGradient(W*0.1,0,W*0.9,0);
+  dg.addColorStop(0,'transparent'); dg.addColorStop(0.5,'rgba(255,255,255,0.6)'); dg.addColorStop(1,'transparent');
+  ctx.strokeStyle=dg; ctx.lineWidth=2;
+  ctx.beginPath(); ctx.moveTo(W*0.1,topH); ctx.lineTo(W*0.9,topH); ctx.stroke();
+
+  // Main content card
+  const cY=topH+40, cH=H*0.38;
+  roundRect(ctx, 50, cY, W-100, cH, 36, 'rgba(255,255,255,0.15)', null);
+
+  // Service name - large
+  ctx.font='bold 72px "Segoe UI",Arial'; ctx.fillStyle=theme.text;
+  const sLines = wrapText(ctx, data.svcName, W/2, cY+90, W-140, 80);
+
+  // Desc
+  ctx.font='32px "Segoe UI",Arial';
+  ctx.fillStyle=isDark?'rgba(255,255,255,.75)':'rgba(0,0,0,.6)';
+  wrapText(ctx, data.desc||'Book your appointment today!', W/2, cY+90+sLines*82+20, W-160, 44);
+
+  // Price badge - prominent
+  const pY = cY+cH-130;
+  ctx.font='bold 80px "Segoe UI",Arial';
+  const pW = Math.min(ctx.measureText(data.price).width+80, W-100);
+  roundRect(ctx,(W-pW)/2,pY,pW,110,28,theme.accent==='#fff'?'rgba(255,255,255,.2)':theme.accent+'33',null);
+  ctx.strokeStyle=theme.accent; ctx.lineWidth=4;
+  roundRect(ctx,(W-pW)/2,pY,pW,110,28,null,theme.accent);
+  ctx.fillStyle=theme.accent; ctx.font='bold 70px "Segoe UI",Arial';
+  ctx.fillText(data.price, W/2, pY+80);
+
+  // Stars
+  const stY=cY+cH+40;
+  ctx.font='44px serif'; ctx.fillStyle='#fbbf24';
+  ctx.fillText('★★★★★',W/2,stY);
+  ctx.font='28px "Segoe UI",Arial'; ctx.fillStyle=isDark?'rgba(255,255,255,.7)':'rgba(0,0,0,.5)';
+  ctx.fillText('5.0 Rating • 1000+ Happy Clients',W/2,stY+44);
+
+  // Contact card
+  const ctY=stY+90;
+  roundRect(ctx,50,ctY,W-100,280,36,'rgba(255,255,255,0.18)',null);
+  ctx.font='bold 42px "Segoe UI",Arial'; ctx.fillStyle=theme.text;
+  if(data.wa) ctx.fillText(`💬 wa.me/${data.wa}`,W/2,ctY+64);
+  if(data.phone){ ctx.font='36px "Segoe UI",Arial'; ctx.fillStyle=isDark?'rgba(255,255,255,.85)':'rgba(0,0,0,.7)'; ctx.fillText(`📞 ${data.phone}`,W/2,ctY+118); }
+  const extras2=[]; if(data.location) extras2.push(`📍 ${data.location}`); if(data.social) extras2.push(`📸 ${data.social}`);
+  if(extras2.length){ ctx.font='32px "Segoe UI",Arial'; ctx.fillStyle=isDark?'rgba(255,255,255,.7)':'rgba(0,0,0,.6)'; ctx.fillText(extras2.join('  '),W/2,ctY+170); }
+
+  // CTA pill
+  const tagY2=ctY+230;
+  roundRect(ctx,W/2-360,tagY2,720,90,45,theme.accent==='#fff'?'rgba(255,255,255,.25)':theme.accent,null);
+  ctx.font='bold 40px "Segoe UI",Arial';
+  ctx.fillStyle=isDark||(theme.accent!=='#fff')?'#fff':theme.accent;
+  ctx.fillText(data.tagline||'📲 Tap to Book Now!',W/2,tagY2+58);
+
+  // Footer
+  ctx.font='24px "Segoe UI",Arial'; ctx.fillStyle=isDark?'rgba(255,255,255,.35)':'rgba(0,0,0,.25)';
+  ctx.fillText('Swipe up or WhatsApp to Book • Limited Slots Available',W/2,H-40);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// LAYOUT 3: LANDSCAPE WIDE (16:9)
+// ═══════════════════════════════════════════════════════════════════
+function drawLandscapeLayout(ctx, W, H, data, theme){
+  const isDark = theme.text === '#fff';
+  drawGradientBg(ctx, W, H, theme.bg);
+
+  // Left column decorative panel
+  ctx.fillStyle = 'rgba(255,255,255,0.1)';
+  ctx.fillRect(0, 0, W*0.4, H);
+
+  // Large circle accent
+  ctx.globalAlpha = 0.12;
+  ctx.fillStyle = '#fff';
+  ctx.beginPath(); ctx.arc(W*0.2, H*0.5, W*0.22, 0, Math.PI*2); ctx.fill();
+  ctx.globalAlpha = 1;
+
+  // Logo or emoji in left panel
+  if(state.logoImg){
+    drawLogoCircle(ctx, W*0.2-80, H*0.5-80, 160);
+  } else {
+    const catEmoji=(CAT_DATA[data.cat]||CAT_DATA.general).emoji;
+    ctx.font='180px serif'; ctx.textAlign='center';
+    ctx.fillStyle=theme.text; ctx.globalAlpha=0.85;
+    ctx.fillText(catEmoji, W*0.2, H*0.54); ctx.globalAlpha=1;
+  }
+
+  // Biz name under logo
+  ctx.font='bold 40px "Segoe UI",Arial'; ctx.fillStyle=theme.text;
+  ctx.textAlign='center';
+  ctx.fillText(data.bizName.toUpperCase(), W*0.2, H*0.82);
+
+  // Stars
+  ctx.font='30px serif'; ctx.fillStyle='#fbbf24';
+  ctx.fillText('★★★★★', W*0.2, H*0.88);
+
+  // Vertical divider
+  const dg=ctx.createLinearGradient(0,H*0.08,0,H*0.92);
+  dg.addColorStop(0,'transparent'); dg.addColorStop(0.5,'rgba(255,255,255,0.5)'); dg.addColorStop(1,'transparent');
+  ctx.strokeStyle=dg; ctx.lineWidth=2;
+  ctx.beginPath(); ctx.moveTo(W*0.42,H*0.08); ctx.lineTo(W*0.42,H*0.92); ctx.stroke();
+
+  // RIGHT PANEL content
+  const rx=W*0.46, rw=W*0.5, ry=H*0.08;
+  ctx.textAlign='left';
+
+  // Category emoji small
+  ctx.font='40px serif'; ctx.fillStyle=theme.text; ctx.globalAlpha=0.8;
+  ctx.fillText((CAT_DATA[data.cat]||CAT_DATA.general).emoji, rx, ry+40); ctx.globalAlpha=1;
+
+  // Service name
+  ctx.font='bold 80px "Segoe UI",Arial'; ctx.fillStyle=theme.text;
+  const sLines3=wrapTextLeft(ctx,data.svcName,rx,ry+52,rw-40,88);
+
+  // Description
+  ctx.font='32px "Segoe UI",Arial'; ctx.fillStyle=isDark?'rgba(255,255,255,.75)':'rgba(0,0,0,.6)';
+  const descLines3=wrapTextLeft(ctx,data.desc||'Book your appointment today!',rx,ry+52+sLines3*90+10,rw-40,44);
+
+  // Price + contact row
+  const detY=ry+52+sLines3*90+descLines3*46+40;
+
+  // Price box
+  ctx.font='bold 72px "Segoe UI",Arial';
+  const pW3=Math.min(ctx.measureText(data.price).width+60,rw*0.6);
+  roundRect(ctx,rx,detY,pW3,100,22,theme.card,null);
+  ctx.strokeStyle=theme.accent; ctx.lineWidth=4;
+  roundRect(ctx,rx,detY,pW3,100,22,null,theme.accent);
+  ctx.fillStyle=theme.accent; ctx.font='bold 58px "Segoe UI",Arial';
+  ctx.textAlign='center';
+  ctx.fillText(data.price, rx+pW3/2, detY+68);
+
+  // Contact block
+  const conX=rx;
+  const conY2=detY+130;
+  ctx.textAlign='left'; ctx.font='30px "Segoe UI",Arial'; ctx.fillStyle=theme.text;
+  if(data.wa){ ctx.fillText(`💬 wa.me/${data.wa}`, conX, conY2); }
+  if(data.phone){ ctx.fillText(`📞 ${data.phone}`, conX, conY2+44); }
+  if(data.location){ ctx.fillStyle=isDark?'rgba(255,255,255,.7)':'rgba(0,0,0,.6)'; ctx.fillText(`📍 ${data.location}`, conX, conY2+88); }
+  if(data.social){ ctx.fillText(`📸 ${data.social}`, conX, conY2+132); }
+
+  // Tagline pill right-side bottom
+  const tgY=H*0.85;
+  ctx.textAlign='left';
+  roundRect(ctx,rx,tgY,rw-40,72,36,'rgba(255,255,255,0.18)',null);
+  ctx.font='bold 34px "Segoe UI",Arial'; ctx.fillStyle=theme.text;
+  ctx.textAlign='center';
+  ctx.fillText(data.tagline||'📲 Book Now — Limited Slots!', rx+(rw-40)/2, tgY+46);
+
+  // Top-right WA badge
+  roundRect(ctx,W-200,20,180,60,16,'#25D366',null);
+  ctx.font='bold 24px "Segoe UI",Arial'; ctx.fillStyle='#fff';
+  ctx.fillText('WhatsApp Us', W-110, 57);
+
+  ctx.textAlign='left'; ctx.font='20px "Segoe UI",Arial';
+  ctx.fillStyle=isDark?'rgba(255,255,255,.3)':'rgba(0,0,0,.25)';
+  ctx.fillText('WhatsApp Ad Generator', W*0.46, H-20);
+}
+
+function wrapTextLeft(ctx, text, x, y, maxW, lineH){
+  const words=text.split(' '); let line='', lines=[];
+  for(let w of words){
+    const test=line?line+' '+w:w;
+    if(ctx.measureText(test).width>maxW&&line){lines.push(line);line=w;}
+    else line=test;
+  }
+  if(line) lines.push(line);
+  lines.forEach((l,i)=>ctx.fillText(l,x,y+i*lineH));
+  return lines.length;
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// LAYOUT 4: MINIMAL WHITE
+// ═══════════════════════════════════════════════════════════════════
+function drawMinimalLayout(ctx, W, H, data, theme){
+  // Pure white background
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, W, H);
+
+  // Top gradient accent bar
+  const topGrad = ctx.createLinearGradient(0, 0, W, 0);
+  topGrad.addColorStop(0, theme.bg[0]);
+  topGrad.addColorStop(1, theme.bg[1]);
+  ctx.fillStyle = topGrad;
+  ctx.fillRect(0, 0, W, 180);
+
+  // Biz name on top bar
+  ctx.textAlign='center'; ctx.font='bold 44px "Segoe UI",Arial'; ctx.fillStyle='#fff';
+  ctx.fillText(data.bizName.toUpperCase(), W/2, 80);
+
+  // Small subtitle
+  ctx.font='26px "Segoe UI",Arial'; ctx.fillStyle='rgba(255,255,255,0.8)';
+  ctx.fillText('Beauty & Style Studio', W/2, 130);
+
+  // Logo if present
+  if(state.logoImg){ drawLogoCircle(ctx, W-160, 10, 150); }
+
+  // Category emoji & service name zone
+  const catEmoji=(CAT_DATA[data.cat]||CAT_DATA.general).emoji;
+  ctx.font='64px serif'; ctx.fillStyle='#1a1a1a';
+  ctx.textAlign='center'; ctx.fillText(catEmoji, W/2, 270);
+
+  ctx.font='bold 68px "Segoe UI",Arial'; ctx.fillStyle='#1a1a1a';
+  const sLines4=wrapText(ctx, data.svcName, W/2, 340, W-120, 76);
+
+  // Thin pink divider line
+  ctx.beginPath();
+  ctx.moveTo(W*0.25, 340+sLines4*78+20);
+  ctx.lineTo(W*0.75, 340+sLines4*78+20);
+  const ldGrad=ctx.createLinearGradient(W*0.25,0,W*0.75,0);
+  ldGrad.addColorStop(0,theme.bg[0]); ldGrad.addColorStop(1,theme.bg[1]);
+  ctx.strokeStyle=ldGrad; ctx.lineWidth=4; ctx.stroke();
+
+  // Description
+  const descY=340+sLines4*78+60;
+  ctx.font='30px "Segoe UI",Arial'; ctx.fillStyle='#4b5563';
+  wrapText(ctx, data.desc||'Professional beauty service', W/2, descY, W-160, 42);
+
+  // Price card - bordered box on white
+  const priceCardY=descY+180;
+  const priceCardH=160;
+  ctx.strokeStyle=theme.bg[0]; ctx.lineWidth=3;
+  roundRect(ctx, W*0.1, priceCardY, W*0.8, priceCardH, 24, '#fdf2f8', theme.bg[0]);
+  ctx.font='bold 28px "Segoe UI",Arial'; ctx.fillStyle='#9ca3af';
+  ctx.fillText('SPECIAL PRICE', W/2, priceCardY+50);
+  const priceGrad=ctx.createLinearGradient(0,priceCardY,W,priceCardY+priceCardH);
+  priceGrad.addColorStop(0,theme.bg[0]); priceGrad.addColorStop(1,theme.bg[1]);
+  ctx.fillStyle=priceGrad; ctx.font='bold 72px "Segoe UI",Arial';
+  ctx.fillText(data.price, W/2, priceCardY+124);
+
+  // Stars row
+  const starY4=priceCardY+priceCardH+50;
+  ctx.font='38px serif'; ctx.fillStyle='#fbbf24'; ctx.fillText('★★★★★',W/2,starY4);
+  ctx.font='24px "Segoe UI",Arial'; ctx.fillStyle='#6b7280';
+  ctx.fillText('5.0 Rating • Trusted by 1000+ Clients',W/2,starY4+42);
+
+  // Contact info on light background
+  const conBg=starY4+80;
+  ctx.fillStyle='#f9fafb'; ctx.beginPath();
+  ctx.roundRect(60,conBg,W-120,220,20); ctx.fill();
+  ctx.font='bold 32px "Segoe UI",Arial'; ctx.fillStyle='#1a1a1a';
+  if(data.wa) ctx.fillText(`💬 wa.me/${data.wa}`, W/2, conBg+56);
+  ctx.font='28px "Segoe UI",Arial'; ctx.fillStyle='#4b5563';
+  if(data.phone) ctx.fillText(`📞 ${data.phone}`, W/2, conBg+106);
+  const miniExtras=[]; if(data.location) miniExtras.push(`📍 ${data.location}`); if(data.social) miniExtras.push(`📸 ${data.social}`);
+  if(miniExtras.length){ ctx.font='24px "Segoe UI",Arial'; ctx.fillStyle='#6b7280'; ctx.fillText(miniExtras.join('   '),W/2,conBg+154); }
+
+  // Bottom gradient tagline
+  const tagY4=conBg+240;
+  const tagGrad=ctx.createLinearGradient(0,0,W,0);
+  tagGrad.addColorStop(0,theme.bg[0]); tagGrad.addColorStop(1,theme.bg[1]);
+  ctx.fillStyle=tagGrad;
+  ctx.beginPath(); ctx.roundRect(60,tagY4,W-120,80,40); ctx.fill();
+  ctx.font='bold 34px "Segoe UI",Arial'; ctx.fillStyle='#fff';
+  ctx.fillText(data.tagline||'📲 Book Now — Limited Slots!', W/2, tagY4+52);
+
+  // Bottom mark
+  ctx.font='20px "Segoe UI",Arial'; ctx.fillStyle='rgba(0,0,0,0.2)';
+  ctx.fillText('WhatsApp Ad Generator', W/2, H-20);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// LAYOUT 5: BOLD DARK
+// ═══════════════════════════════════════════════════════════════════
+function drawDarkLayout(ctx, W, H, data, theme){
+  // Deep dark base
+  ctx.fillStyle='#0d0d18';
+  ctx.fillRect(0,0,W,H);
+
+  // Radial glow accents from theme colors
+  const g1=ctx.createRadialGradient(W*0.8, H*0.1, 50, W*0.8, H*0.1, W*0.65);
+  g1.addColorStop(0,theme.bg[0]+'55'); g1.addColorStop(1,'transparent');
+  ctx.fillStyle=g1; ctx.fillRect(0,0,W,H);
+
+  const g2=ctx.createRadialGradient(W*0.2, H*0.9, 50, W*0.2, H*0.9, W*0.6);
+  g2.addColorStop(0,theme.bg[1]+'44'); g2.addColorStop(1,'transparent');
+  ctx.fillStyle=g2; ctx.fillRect(0,0,W,H);
+
+  // Subtle grid lines
+  ctx.globalAlpha=0.04; ctx.strokeStyle='#fff'; ctx.lineWidth=1;
+  for(let x=0;x<W;x+=80){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+  for(let y=0;y<H;y+=80){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+  ctx.globalAlpha=1;
+
+  // Top neon accent line
+  const neonGrad=ctx.createLinearGradient(0,0,W,0);
+  neonGrad.addColorStop(0,'transparent'); neonGrad.addColorStop(0.3,theme.bg[0]);
+  neonGrad.addColorStop(0.7,theme.bg[1]); neonGrad.addColorStop(1,'transparent');
+  ctx.strokeStyle=neonGrad; ctx.lineWidth=4;
+  ctx.beginPath(); ctx.moveTo(0,4); ctx.lineTo(W,4); ctx.stroke();
+
+  // Logo / emoji
+  if(state.logoImg){
+    drawLogoCircle(ctx, W/2-80, 30, 160);
+  } else {
+    const catEmoji=(CAT_DATA[data.cat]||CAT_DATA.general).emoji;
+    ctx.font='80px serif'; ctx.textAlign='center'; ctx.globalAlpha=0.9;
+    ctx.fillText(catEmoji, W/2, 180); ctx.globalAlpha=1;
+  }
+
+  // Biz name with subtle gradient fill
+  ctx.textAlign='center';
+  const bizGrad=ctx.createLinearGradient(0,200,W,250);
+  bizGrad.addColorStop(0,theme.bg[0]); bizGrad.addColorStop(1,theme.bg[1]);
+  ctx.fillStyle=bizGrad; ctx.font='bold 44px "Segoe UI",Arial';
+  ctx.fillText(data.bizName.toUpperCase(), W/2, 220);
+
+  // Horizontal neon line separator
+  ctx.strokeStyle=neonGrad; ctx.lineWidth=2; ctx.globalAlpha=0.5;
+  ctx.beginPath(); ctx.moveTo(W*0.1,250); ctx.lineTo(W*0.9,250); ctx.stroke(); ctx.globalAlpha=1;
+
+  // Service name — large, white
+  ctx.font='bold 76px "Segoe UI",Arial'; ctx.fillStyle='#ffffff';
+  const sLines5=wrapText(ctx, data.svcName, W/2, 340, W-100, 84);
+
+  // Description — muted
+  ctx.font='30px "Segoe UI",Arial'; ctx.fillStyle='rgba(255,255,255,0.55)';
+  const descY5=340+sLines5*86+16;
+  wrapText(ctx, data.desc||'Book your appointment today!', W/2, descY5, W-140, 42);
+
+  // Price neon badge
+  const pY5=descY5+180;
+  ctx.font='bold 64px "Segoe UI",Arial';
+  const pW5=Math.min(ctx.measureText(data.price).width+100,W-100);
+  const pX5=(W-pW5)/2;
+  // Glowing border
+  ctx.shadowColor=theme.bg[0]; ctx.shadowBlur=30;
+  roundRect(ctx,pX5,pY5,pW5,110,24,'rgba(255,255,255,0.06)',null);
+  ctx.strokeStyle=theme.bg[0]; ctx.lineWidth=3;
+  roundRect(ctx,pX5,pY5,pW5,110,24,null,theme.bg[0]);
+  ctx.shadowBlur=0;
+  const priceFill=ctx.createLinearGradient(pX5,pY5,pX5+pW5,pY5+110);
+  priceFill.addColorStop(0,theme.bg[0]); priceFill.addColorStop(1,theme.bg[1]);
+  ctx.fillStyle=priceFill; ctx.font='bold 58px "Segoe UI",Arial';
+  ctx.fillText(data.price, W/2, pY5+74);
+
+  // Stars
+  const stY5=pY5+155;
+  ctx.font='36px serif'; ctx.fillStyle='#fbbf24';
+  ctx.fillText('★★★★★',W/2,stY5);
+  ctx.font='24px "Segoe UI",Arial'; ctx.fillStyle='rgba(255,255,255,0.5)';
+  ctx.fillText('5.0 • 1000+ Happy Clients',W/2,stY5+38);
+
+  // Contact dark card
+  const ctY5=stY5+90;
+  ctx.fillStyle='rgba(255,255,255,0.06)';
+  ctx.beginPath(); ctx.roundRect(60,ctY5,W-120,230,24); ctx.fill();
+  ctx.strokeStyle='rgba(255,255,255,0.12)'; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.roundRect(60,ctY5,W-120,230,24); ctx.stroke();
+
+  ctx.font='bold 36px "Segoe UI",Arial'; ctx.fillStyle='rgba(255,255,255,0.9)';
+  if(data.wa) ctx.fillText(`💬 wa.me/${data.wa}`,W/2,ctY5+60);
+  ctx.font='30px "Segoe UI",Arial'; ctx.fillStyle='rgba(255,255,255,0.7)';
+  if(data.phone) ctx.fillText(`📞 ${data.phone}`,W/2,ctY5+108);
+  const extras5=[]; if(data.location) extras5.push(`📍 ${data.location}`); if(data.social) extras5.push(`📸 ${data.social}`);
+  if(extras5.length){ ctx.font='26px "Segoe UI",Arial'; ctx.fillStyle='rgba(255,255,255,0.5)'; ctx.fillText(extras5.join('   '),W/2,ctY5+155); }
+
+  // Tagline neon pill
+  const tgY5=ctY5+252;
+  ctx.shadowColor=theme.bg[1]; ctx.shadowBlur=20;
+  const tagFill=ctx.createLinearGradient(80,0,W-80,0);
+  tagFill.addColorStop(0,theme.bg[0]+'cc'); tagFill.addColorStop(1,theme.bg[1]+'cc');
+  ctx.fillStyle=tagFill;
+  ctx.beginPath(); ctx.roundRect(80,tgY5,W-160,86,43); ctx.fill();
+  ctx.shadowBlur=0;
+  ctx.font='bold 38px "Segoe UI",Arial'; ctx.fillStyle='#fff';
+  ctx.fillText(data.tagline||'📲 Book Now — Limited Slots!',W/2,tgY5+56);
+
+  // Bottom neon line
+  ctx.strokeStyle=neonGrad; ctx.lineWidth=4; ctx.globalAlpha=0.6;
+  ctx.beginPath(); ctx.moveTo(0,H-4); ctx.lineTo(W,H-4); ctx.stroke(); ctx.globalAlpha=1;
+
+  ctx.font='20px "Segoe UI",Arial'; ctx.fillStyle='rgba(255,255,255,0.2)';
+  ctx.fillText('WhatsApp Ad Generator',W/2,H-30);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// DRAW POSTER — dispatch to layout
+// ═══════════════════════════════════════════════════════════════════
+function drawPoster(data){
+  const layoutDef = LAYOUTS.find(l=>l.id===state.selectedLayout) || LAYOUTS[0];
+  const canvas = EL('adCanvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width  = layoutDef.w;
+  canvas.height = layoutDef.h;
+
+  const theme = THEMES[state.selectedColor];
+
+  // Reset shadow
+  ctx.shadowBlur=0; ctx.shadowColor='transparent';
+
+  // Dispatch to appropriate draw function
+  switch(state.selectedLayout){
+    case 'story':     drawStoryLayout(ctx, layoutDef.w, layoutDef.h, data, theme); break;
+    case 'landscape': drawLandscapeLayout(ctx, layoutDef.w, layoutDef.h, data, theme); break;
+    case 'minimal':   drawMinimalLayout(ctx, layoutDef.w, layoutDef.h, data, theme); break;
+    case 'dark':      drawDarkLayout(ctx, layoutDef.w, layoutDef.h, data, theme); break;
+    default:          drawSquareLayout(ctx, layoutDef.w, layoutDef.h, data, theme);
+  }
+
+  // Update preview wrap class for responsive sizing
+  const wrap = EL('posterWrap');
+  wrap.className = 'poster-wrap ' + layoutDef.aspectCss;
+
+  // Update dimension badge
+  EL('dimBadge').textContent = layoutDef.dim;
+  EL('layoutBadge').textContent = `${layoutDef.name} • ${layoutDef.info}`;
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// CAPTION GENERATOR
+// ═══════════════════════════════════════════════════════════════════
+const CAPTION_VARIANTS = [
+  (d,cat)=>`${cat.emoji} *${d.svcName.toUpperCase()}*
+
+${cat.phrases[0]}
+
+${d.desc ? `_${d.desc}_\n` : ''}
+💰 *Price: ${d.price}*
+${d.location ? `📍 ${d.location}` : ''}
+
+━━━━━━━━━━━━━━━━━━
+📲 *Book Your Appointment Now!*
+${d.wa ? `💬 WhatsApp: wa.me/${d.wa}` : ''}
+${d.phone ? `📞 Call: ${d.phone}` : ''}
+${d.social ? `📸 Follow: ${d.social}` : ''}
+━━━━━━━━━━━━━━━━━━
+
+✅ *${d.bizName}*
+⭐ Trusted by 1000+ Happy Clients
+🕐 Easy Booking | Home Service Available
+
+${d.tagline ? `💬 _"${d.tagline}"_` : ''}
+
+#Beauty #${d.cat.charAt(0).toUpperCase()+d.cat.slice(1)} #BookNow #${d.bizName.replace(/\s+/g,'')} #India`,
+
+  (d,cat)=>`✨ *${d.bizName}* — New Offer! ✨
+
+${cat.phrases[1]}
+
+🎯 *Service:* ${d.svcName}
+${d.desc ? `📋 *About:* ${d.desc}` : ''}
+💥 *Special Price:* ${d.price}
+${d.location ? `🗺️ *Location:* ${d.location}` : ''}
+
+🔥 *Don't Miss This Deal!*
+
+${d.wa ? `👉 WhatsApp Now: https://wa.me/${d.wa}` : ''}
+${d.phone ? `📱 Call: ${d.phone}` : ''}
+${d.social ? `💎 Instagram: ${d.social}` : ''}
+
+_Book fast — Limited slots available!_ ⏰
+
+#${d.svcName.replace(/\s+/g,'')} #${d.cat} #BeautyServices #LimitedOffer`,
+
+  (d,cat)=>`${cat.emoji}${cat.emoji} *SPECIAL OFFER* ${cat.emoji}${cat.emoji}
+
+*${d.svcName}*
+${d.desc ? `\n"${d.desc}"\n` : ''}
+💰 *Starting at ${d.price}*
+
+_${cat.phrases[2]}_
+
+━━━━━━━━━━━━━━━━
+📞 ${d.phone || d.wa || 'Contact Us'}
+${d.wa ? `💬 wa.me/${d.wa}` : ''}
+${d.location ? `📍 ${d.location}` : ''}
+${d.social ? `📸 ${d.social}` : ''}
+━━━━━━━━━━━━━━━━
+
+✨ *${d.bizName}* — Quality You Can Trust!
+
+${d.tagline ? `🔔 _${d.tagline}_` : '🔔 _Book today for the best experience!_'}`,
+];
+
+let captionVariantIdx = 0;
+
+function buildCaption(data, variantIdx){
+  const cat = CAT_DATA[data.cat] || CAT_DATA.general;
+  return CAPTION_VARIANTS[variantIdx % CAPTION_VARIANTS.length](data, cat);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// GENERATE AD
+// ═══════════════════════════════════════════════════════════════════
+function collectFormData(){
+  return {
+    bizName:  V('bizName') || 'My Business',
+    svcName:  V('svcName') || 'Our Service',
+    desc:     V('svcDesc'),
+    price:    V('svcPrice') || 'Call for Price',
+    cat:      V('svcCat') || 'general',
+    location: V('svcLocation'),
+    tagline:  V('svcTagline'),
+    wa:       V('waNum').replace(/[^\d]/g,''),
+    phone:    V('phoneNum'),
+    social:   V('social'),
+    layout:   state.selectedLayout,
+  };
+}
+
+function generateAd(){
+  const data = collectFormData();
+  if(!V('bizName')){ showToast('⚠️ Please enter your business name'); return; }
+  if(!V('svcName')){ showToast('⚠️ Please enter the service name'); return; }
+
+  state.lastAdData = data;
+  captionVariantIdx = 0;
+
+  drawPoster(data);
+  const caption = buildCaption(data, captionVariantIdx);
+  EL('captionBox').textContent = caption;
+
+  const encodedCaption = encodeURIComponent(caption);
+  const waLink = data.wa
+    ? `https://wa.me/${data.wa}?text=${encodedCaption}`
+    : `https://api.whatsapp.com/send?text=${encodedCaption}`;
+  EL('waShareBtn').href = waLink;
+
+  saveToRecent(data);
+  switchTab('preview');
+  showToast('🎉 Ad generated successfully!');
+}
+
+function regenerateAd(){
+  if(!state.lastAdData){ showToast('⚠️ Generate an ad first'); return; }
+  drawPoster(state.lastAdData);
+  showToast('🔄 Poster refreshed!');
+}
+
+function regenerateCaption(){
+  if(!state.lastAdData){ showToast('⚠️ Generate an ad first'); return; }
+  captionVariantIdx++;
+  const caption = buildCaption(state.lastAdData, captionVariantIdx);
+  EL('captionBox').textContent = caption;
+  const encodedCaption = encodeURIComponent(caption);
+  const wa = state.lastAdData.wa;
+  EL('waShareBtn').href = wa
+    ? `https://wa.me/${wa}?text=${encodedCaption}`
+    : `https://api.whatsapp.com/send?text=${encodedCaption}`;
+  showToast('🔄 New caption variant!');
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// COPY / DOWNLOAD / SHARE
+// ═══════════════════════════════════════════════════════════════════
+function copyCaption(){
+  const text = EL('captionBox').textContent;
+  if(!text || text.includes('appear here')){ showToast('⚠️ Generate an ad first'); return; }
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(text).then(()=>showToast('✅ Caption copied!'));
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = text; document.body.appendChild(ta);
+    ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+    showToast('✅ Caption copied!');
+  }
+}
+
+function downloadPoster(){
+  const canvas = EL('adCanvas');
+  if(canvas.width < 100){ showToast('⚠️ Generate an ad first'); return; }
+  const link = document.createElement('a');
+  const bizName = (state.lastAdData?.bizName || 'ad').replace(/\s+/g,'_');
+  const layout = state.lastAdData?.layout || 'square';
+  link.download = `${bizName}_${layout}_whatsapp_ad.png`;
+  link.href = canvas.toDataURL('image/png', 1.0);
+  link.click();
+  showToast('📥 Poster downloaded!');
+}
+
+function nativeShare(){
+  const canvas = EL('adCanvas');
+  if(canvas.width < 100){ showToast('⚠️ Generate an ad first'); return; }
+  if(navigator.share){
+    canvas.toBlob(blob=>{
+      const file = new File([blob], 'whatsapp_ad.png', {type:'image/png'});
+      navigator.share({
+        title: state.lastAdData?.bizName || 'My Ad',
+        text: EL('captionBox').textContent,
+        files: [file],
+      }).catch(()=>downloadPoster());
+    }, 'image/png');
+  } else {
+    downloadPoster();
+  }
+}
+
+function trackShare(method){
+  console.log('Shared via:', method);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// LOCAL STORAGE — RECENT ADS
+// ═══════════════════════════════════════════════════════════════════
+function saveToRecent(data){
+  const canvas = EL('adCanvas');
+  if(canvas.width < 100) return;
+  try {
+    const thumb = canvas.toDataURL('image/jpeg', 0.3);
+    let recent = JSON.parse(localStorage.getItem('wa_ads_recent') || '[]');
+    recent.unshift({ data, thumb, ts: Date.now() });
+    recent = recent.slice(0, 12);
+    localStorage.setItem('wa_ads_recent', JSON.stringify(recent));
+  } catch(e){ console.warn('localStorage save failed', e); }
+}
+
+function loadRecent(){
+  try {
+    const recent = JSON.parse(localStorage.getItem('wa_ads_recent') || '[]');
+    const c = EL('recentContainer');
+    if(!recent.length){
+      c.innerHTML = '<p style="color:var(--sub);font-size:13px;text-align:center;padding:20px 0">No recent ads yet. Generate your first ad!</p>';
+      return;
+    }
+    c.innerHTML = `
+      <div class="recent-list">
+        ${recent.map((r,i)=>`
+          <div class="recent-item" onclick="loadRecentAd(${i})">
+            <img src="${r.thumb}" class="recent-thumb" alt="Ad ${i+1}"/>
+            <div class="recent-label">${r.data.svcName}</div>
+            <div style="font-size:9px;color:#9ca3af">${timeAgo(r.ts)}</div>
+          </div>
+        `).join('')}
+      </div>
+      <p style="font-size:11px;color:var(--sub);margin-top:10px">Tap any thumbnail to reload that ad</p>
+    `;
+  } catch(e){ console.warn('loadRecent error', e); }
+}
+
+function loadRecentAd(idx){
+  try {
+    const recent = JSON.parse(localStorage.getItem('wa_ads_recent') || '[]');
+    const item = recent[idx];
+    if(!item) return;
+    const d = item.data;
+    EL('bizName').value = d.bizName || '';
+    EL('svcName').value = d.svcName || '';
+    EL('svcDesc').value = d.desc || '';
+    EL('svcPrice').value = d.price || '';
+    EL('svcCat').value = d.cat || 'general';
+    EL('svcLocation').value = d.location || '';
+    EL('svcTagline').value = d.tagline || '';
+    EL('waNum').value = d.wa || '';
+    EL('phoneNum').value = d.phone || '';
+    EL('social').value = d.social || '';
+    if(d.layout) selectLayout(d.layout);
+    state.lastAdData = d;
+    drawPoster(d);
+    const caption = buildCaption(d, 0);
+    EL('captionBox').textContent = caption;
+    const encodedCaption = encodeURIComponent(caption);
+    EL('waShareBtn').href = d.wa
+      ? `https://wa.me/${d.wa}?text=${encodedCaption}`
+      : `https://api.whatsapp.com/send?text=${encodedCaption}`;
+    switchTab('preview');
+    showToast('✅ Ad reloaded!');
+  } catch(e){ showToast('Error loading ad'); }
+}
+
+function clearRecent(){
+  if(!confirm('Clear all recent ads?')) return;
+  localStorage.removeItem('wa_ads_recent');
+  loadRecent();
+  showToast('🗑️ Recent ads cleared');
+}
+
+function timeAgo(ts){
+  const diff = (Date.now()-ts)/1000;
+  if(diff<60) return 'Just now';
+  if(diff<3600) return Math.floor(diff/60)+'m ago';
+  if(diff<86400) return Math.floor(diff/3600)+'h ago';
+  return Math.floor(diff/86400)+'d ago';
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// KEYBOARD SHORTCUTS
+// ═══════════════════════════════════════════════════════════════════
+document.addEventListener('keydown',e=>{
+  if(e.ctrlKey && e.key==='Enter') generateAd();
+  if(e.ctrlKey && e.key==='s'){ e.preventDefault(); downloadPoster(); }
+});
+
+// Polyfill roundRect for older browsers
+if(!CanvasRenderingContext2D.prototype.roundRect){
+  CanvasRenderingContext2D.prototype.roundRect=function(x,y,w,h,r){
+    if(w<2*r)r=w/2; if(h<2*r)r=h/2;
+    this.beginPath();
+    this.moveTo(x+r,y); this.arcTo(x+w,y,x+w,y+h,r);
+    this.arcTo(x+w,y+h,x,y+h,r); this.arcTo(x,y+h,x,y,r);
+    this.arcTo(x,y,x+w,y,r); this.closePath();
+    return this;
+  };
+}
+</script>
+</body>
+</html>
